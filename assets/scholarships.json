@@ -1,0 +1,1156 @@
+{
+  "universities": [
+    {
+      "name": "University of Engineering and Technology (UET) Lahore",
+      "scholarships": [
+        {
+          "category": "Need-based",
+          "title": "In-affordability Scholarship",
+          "description": "Scholarships awarded on the basis of poverty-cum-merit by the Scholarship Award Committee.",
+          "committee": [
+            "Dean, Faculty of Engineering (Convener)",
+            "Chairman of the Department (Member)",
+            "Director Finance (Member)",
+            "Provost (Member)",
+            "Incharge of Student Affairs"
+          ]
+        },
+        {
+          "category": "Need-based",
+          "title": "Fee Concession and Other Financial Assistance",
+          "description": "Free ship in tuition fees may be granted to a maximum of 15 deserving students.",
+          "rules": [
+            "Granted on recommendation of the Scholarships Award Committee.",
+            "When two or more siblings are studying, one pays full fee and the other pays half."
+          ]
+        },
+        {
+          "category": "Need-based",
+          "title": "Free Ship in Rationalized Fee",
+          "description": "Ten students in each department run on rationalized fee structure will receive scholarships on merit/need basis.",
+          "benefits": "Rs. 21,000/- per semester (first semester only). Scholarship holders must pay normal fee/user charges."
+        },
+        {
+          "category": "Merit-based",
+          "title": "Cash Awards to Talented Students",
+          "description": "Cash awards granted to students securing first, second, and third position in each semester of all disciplines."
+        },
+        {
+          "category": "Merit-based",
+          "title": "Award for the Best Student Project",
+          "description": "Award for final-year students for best project work in each discipline.",
+          "benefits": [
+            "Cash prize",
+            "Certificate",
+            "Shield (kept in the department)"
+          ],
+          "rules": [
+            "One award per discipline.",
+            "Evaluated by a departmental Selection Committee."
+          ]
+        },
+        {
+          "category": "Merit-based",
+          "title": "Gold Medal",
+          "description": "Gold medal awarded to students meeting excellence criteria.",
+          "criteria": [
+            "Pass all exams in first attempt.",
+            "Complete course within 8 consecutive semesters.",
+            "CGPA of at least 3.75.",
+            "Stand first in aggregate marks in their discipline."
+          ],
+          "note": "In case of tie, multiple gold medals may be awarded."
+        },
+        {
+          "category": "Special Awards",
+          "title": "Presidential Awards",
+          "description": "Two cash prizes awarded by the President of Pakistan.",
+          "benefits": "Rs. 5,000/- each.",
+          "eligibility": [
+            "One student from Tribal Areas",
+            "One student from Settled Districts",
+            "Highest position in Bachelor of Engineering Examination"
+          ]
+        },
+        {
+          "category": "Merit-based",
+          "title": "University Merit Scholarships",
+          "description": "Awarded to students in specific semesters based on academic performance.",
+          "eligibility": [
+            "B.Sc Engineering: 3rd, 5th, 7th semesters",
+            "B.Arch: 5th, 7th, 9th semesters",
+            "Based on results of preceding examinations.",
+            "Not receiving any other scholarship/financial assistance.",
+            "CGPA not less than 2.00."
+          ]
+        },
+        {
+          "category": "External Financial Assistance",
+          "title": "Financial Assistance from External Agencies",
+          "description": "Financial assistance for deserving students provided by various organizations.",
+          "providers": [
+            { "name": "Frontier Education Foundation", "link": "http://www.fef.edu.pk/" },
+            { "name": "Professional Education Foundation", "link": "http://www.thepef.com/" },
+            { "name": "Mora Scholarship from zakat fund" },
+            { "name": "HEC Need-based scholarships", "link": "http://www.hec.gov.pk/" },
+            { "name": "Dr. Omer Hayat Trust fund" },
+            { "name": "Karwan-e-Ilm Foundation", "link": "http://uetpeshawar.edu.pk/info@karwan-e-ilm.com" },
+            { "name": "USAID Merit & Need-Based Scholarships", "link": "http://www.hec.gov.pk/" },
+            { "name": "HEC German Need-Based Scholarships", "link": "http://www.hec.gov.pk/" },
+            { "name": "Diya Foundation Scholarships", "link": "http://www.diyapak.org/" },
+            { "name": "London Foundation Scholarships", "link": "http://www.pfl.uk.net/" },
+            { "name": "National Bank of Pakistan Loan Scheme", "link": "http://www.nbp.com.pk/" },
+            { "name": "Chief Minister Scholarships for needy students", "link": "http://www.pmuhed.com/" },
+            { "name": "Fast Cables Merit Scholarships", "link": "http://www.fast-cables.com/" },
+            { "name": "Prime Minister National ICT Scholarships", "link": "http://www.ictrdf.org.pk/" },
+            { "name": "Ehsaas Scholarship", "link": "http://www.hec.gov.pk/" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "International Islamic University Islamabad (IIUI)",
+      "scholarships": [
+        {
+          "category": "Need-based",
+          "title": "IIUI HEC Need Based Scholarships (Undergraduate)",
+          "eligibility": [
+            "Available for all disciplines at public sector Pakistani universities.",
+            "Must be enrolled in a 4/5 year undergraduate program through merit-based admission.",
+            "Selection based on financial need as determined by HEC’s Institutional Scholarship Award Committee."
+          ],
+          "benefits": [
+            "Full university tuition fee coverage.",
+            "Rs. 6,000 monthly stipend (excluding summer semester).",
+            "Funding continues for the entire program; slots are replaced if a student drops out."
+          ]
+        },
+        {
+          "category": "Need-based",
+          "title": "IIUI Student Advancement Fund Endowment (SAFE)",
+          "eligibility": [
+            "Open to IIUI’s needy and talented students.",
+            "Selection based on SAFE committee’s policy."
+          ],
+          "benefits": [
+            "Provides financial aid and funds capacity-building projects.",
+            "Benefits are directly for enrolled students.",
+            "Fund is part of IIUI’s official endowment."
+          ]
+        },
+        {
+          "category": "Merit-based",
+          "title": "University Merit Scholarships (CGPA 4/4)",
+          "eligibility": [
+            "CGPA of 4.0 with maximum course load and no failed courses.",
+            "No outstanding fees or disciplinary record.",
+            "Only top 3 position holders in class are eligible."
+          ],
+          "benefits": [
+            "Tuition fee waiver: 1st (100%), 2nd (75%), 3rd (50%).",
+            "Applied for the relevant semester only.",
+            "If availing another scholarship, remaining fee is refunded/adjusted."
+          ]
+        }
+      ]
+},
+{
+  "name": "Lahore University of Management Sciences (LUMS)",
+  "scholarships": [
+        {
+          "level": "Undergraduate",
+          "type": "Merit Scholarships",
+          "categories": [
+            {
+              "name": "First Year",
+              "details": {
+                "number_of_awards": "100 scholarships, divided among schools based on admission rankings",
+                "criteria": "Top-ranked applicants per school based on admissions (e.g., SAT, A-Level marks)",
+                "coverage": "Partial to full tuition for one year",
+                "sources": [
+                  "financial-aid.lums.edu.pk",
+                  "Reddit"
+                ]
+              }
+            },
+            {
+              "name": "Continuing Students",
+              "details": {
+                "awarded_to": "Top students per school based on CGPA and placement on the Dean's Honor List",
+                "typical_breakdown": {
+                  "top_3_students": "100% tuition waiver",
+                  "next_10-15_students": "50% waiver",
+                  "required_cgpa": "~3.85-3.95+ depending on the school and year"
+                },
+                "sources": [
+                  "financial-aid.lums.edu.pk",
+                  "Reddit"
+                ]
+              }
+            }
+          ],
+          "student_perspectives": [
+            {
+              "quote": "1-3 students from each school get a 100% scholarship, while 10-15 get 50%. For first year, based on O/A-Level and SAT (near-perfect grades + 1500+ SAT)... After first year, based on CGPA—those above 3.85 usually fall in this category.",
+              "source": "Reddit"
+            },
+            {
+              "quote": "Top 15 students of each school: top 3 get 100%, rest get 50%.",
+              "source": "Reddit"
+            },
+            {
+              "quote": "You need to be one of the top 15 in the batch... around a 3.9+ GPA.",
+              "source": "Reddit"
+            }
+          ]
+        },
+        {
+          "level": "Graduate",
+          "programs": [
+            {
+              "name": "MS Programs (e.g., MS Biology, Computer Science, AI)",
+              "scholarships": [
+                {
+                  "name": "Merit Scholarship (First Year & Continuing)",
+                  "details": {
+                    "eligibility": "Open to top-ranked admitted applicants",
+                    "coverage": "Partial to full tuition waiver for one year; renewed based on performance",
+                    "sources": [
+                      "new-admissions.lums.edu.pk"
+                    ]
+                  }
+                },
+                {
+                  "name": "Program-Specific Awards",
+                  "details": {
+                    "for_programs": "Four Basic Sciences (Biology, Chemistry, Physics, Mathematics)",
+                    "benefit": "Flat tuition subsidy (waiver) for MS students—automatically awarded",
+                    "sources": [
+                      "new-admissions.lums.edu.pk"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "MBA / Executive MBA (SDSB)",
+              "scholarships": [
+                {
+                  "name": "First Year",
+                  "details": {
+                    "gmat_gre_based": {
+                      "50%_waiver": "GMAT ≥ 700 or equivalent GRE",
+                      "or": "50% waiver for top admission evaluation ranking"
+                    },
+                    "sources": [
+                      "new-hr.lums.edu.pk"
+                    ]
+                  }
+                },
+                {
+                  "name": "Second Year",
+                  "details": {
+                    "basis": "Merit-based partial tuition waiver to top-performing students on the Dean's Honor List",
+                    "sources": [
+                      "new-hr.lums.edu.pk"
+                    ]
+                  }
+                },
+                {
+                  "name": "Women's Scholarship",
+                  "details": {
+                    "benefit": "50% tuition waiver to high-merit female applicants. Replaces any lesser scholarship",
+                    "sources": [
+                      "new-hr.lums.edu.pk"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "MPhil Program (Education Leadership & Management)",
+              "scholarships": [
+                {
+                  "name": "Merit Scholarship",
+                  "details": {
+                    "duration": "Awards applied for the entire two-year duration",
+                    "continuing_requirements": "Maintaining CGPA thresholds (e.g., ≥ 3.0)",
+                    "sources": [
+                      "new-admissions.lums.edu.pk"
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Summary Table",
+          "data": [
+            {
+              "program_level": "UG – First Year",
+              "criteria": "Top-ranked applicants (SAT/A-Levels, etc.)",
+              "award": "Partial to full tuition (1 year)"
+            },
+            {
+              "program_level": "UG – Continuing",
+              "criteria": "Top CGPA (Dean's List)",
+              "award": "100% for top 3; ~50% for next 10-15"
+            },
+            {
+              "program_level": "MS (Various Fields)",
+              "criteria": "Admission ranking & performance",
+              "award": "Partial/full tuition waiver (1 year, renewable)"
+            },
+            {
+              "program_level": "MS – Four Basic Sciences",
+              "criteria": "Admission in program",
+              "award": "Flat tuition subsidy (waiver)"
+            },
+            {
+              "program_level": "MBA / EMBA – Year 1",
+              "criteria": "GMAT ≥ 700 or top evaluation ranking",
+              "award": "50% waiver"
+            },
+            {
+              "program_level": "MBA / EMBA – Year 2",
+              "criteria": "Dean's Honor List",
+              "award": "Partial tuition waiver"
+            },
+            {
+              "program_level": "MBA – Women's Scholarship",
+              "criteria": "High merit female applicants",
+              "award": "50% tuition waiver"
+            },
+            {
+              "program_level": "MPhil (ELM)",
+              "criteria": "Admission & CGPA ≥ threshold",
+              "award": "Full merit award for entire program"
+            }
+          ]
+        }
+      ]
+    },
+    {
+  "university": "University of Education (UE) Lahore",
+  "scholarships": [
+    {
+      "title": "Rehmatul-Lil-Alameen Scholarship",
+      "description": "Scholarship to assist bright and underprivileged students affected by COVID-19 who cannot afford education.",
+      "funding_resource": "Higher Education Department (HED), Government of Punjab",
+      "financial_support": "Determined by HED after comprehensive evaluation.",
+      "how_to_apply": "Students do not need to apply. Nominations are forwarded by UE Divisions/Campus and Financial Aid Office to HED.",
+      "details_link": "https://hedscholarships.punjab.gov.pk/"
+    },
+    {
+      "title": "Ehsaas Undergraduate Scholarship",
+      "description": "Government of Pakistan initiative providing financial support to undergraduate students from poor households.",
+      "funding_resource": "HEC, Government of Pakistan",
+      "financial_support": "Covers 100% tuition fee plus Rs. 40,000 per annum stipend.",
+      "how_to_apply": "Apply online at https://ehsaas.hec.gov.pk/#/login and submit printed form with documents to FAO Coordinator.",
+      "details_link": "https://www.hec.gov.pk/english/services/students/Ehsaas/Pages/Eligibility-Criteria.aspx"
+    },
+    {
+      "title": "HEC Need Based Scholarship",
+      "description": "Supports financially disadvantaged students to access higher education.",
+      "funding_resource": "HEC, Government of Pakistan",
+      "financial_support": "Tuition fee + Rs. 6000 per month stipend for entire program.",
+      "how_to_apply": "Get and submit form to FAO Coordinator after announcement. Download from HEC website.",
+      "details_link": "https://hec.gov.pk/english/scholarshipsgrants/NBS/Pages/Eligibility-Criteria.aspx"
+    },
+    {
+      "title": "Punjab Educational Endowment Fund (PEEF) Master Level Scholarship",
+      "description": "PEEF provides scholarships to talented but deserving students for master’s level education.",
+      "funding_resource": "PEEF, Government of Punjab",
+      "financial_support": "Covers tuition fee, stipend, and hostel fee (paid bi-annually).",
+      "how_to_apply": "Obtain form from FAO Coordinator or PEEF website and submit with required documents.",
+      "details_link": "https://www.peef.org.pk/masterlevel-scholarships"
+    },
+    {
+      "title": "PEEF Bachelor Level Scholarship",
+      "description": "PEEF selects students based on intermediate results and sends nomination letters to their addresses.",
+      "funding_resource": "PEEF, Government of Punjab",
+      "financial_support": "As decided by PEEF.",
+      "how_to_apply": "PEEF contacts selected students directly after result verification.",
+      "details_link": "https://www.peef.org.pk/"
+    },
+    {
+      "title": "Karwan-e-Ilm Scholarship",
+      "description": "Provides financial help to deserving students securing 75%+ marks in Matric/Intermediate.",
+      "funding_resource": "Karwan-e-Ilm Foundation (KIF), Pakistan",
+      "financial_support": "Decided by KIF Committee after evaluation.",
+      "how_to_apply": "Submit handwritten application with documents to FAO Coordinator after announcement.",
+      "details_link": "https://www.kif.com.pk/index.php?pag=get_scholar"
+    },
+    {
+      "title": "Diya Pakistan Scholarship",
+      "description": "Supports financially distressed students to continue education and reduce poverty.",
+      "funding_resource": "Diya Pakistan Foundation",
+      "financial_support": "Determined by Diya Scholarship Committee based on degree expenses.",
+      "how_to_apply": "Apply online through https://diyapak.org/apply-scholarship/",
+      "details_link": "https://diyapak.org/scholarship-section/"
+    },
+    {
+      "title": "Bait-ul-Maal Scholarship",
+      "description": "Provides stipends to deserving students in recognized educational institutions across Punjab.",
+      "funding_resource": "Bait-ul-Maal, Government of Punjab",
+      "financial_support": "Decided by District Bait-ul-Maal Committee based on degree expenses.",
+      "how_to_apply": "Submit prescribed form to Chairman, District Bait-ul-Maal Committee. Form available at link below.",
+      "details_link": "https://baitulmaal.punjab.gov.pk/education_stipend"
+    },
+    {
+      "title": "Balochistan Education Endowment Fund (BEEF) Scholarship",
+      "description": "Awards scholarships to meritorious students from Balochistan to develop human resource for national progress.",
+      "funding_resource": "BEEF, Government of Balochistan",
+      "financial_support": "Determined by BEEF after comprehensive evaluation.",
+      "how_to_apply": "Obtain and submit form with documents to FAO Coordinator after announcement.",
+      "details_link": "https://www.beef.org.pk/"
+    },
+    {
+      "title": "Prime Minister’s Electric Wheelchair Scheme",
+      "description": "Provides electric wheelchairs to disabled students of public universities to support their education.",
+      "funding_resource": "HEC, Government of Pakistan",
+      "financial_support": "Distribution of motorized wheelchairs.",
+      "how_to_apply": "Apply online via https://eportal.hec.gov.pk/wheelchair and submit printed form to FAO Coordinator.",
+      "details_link": "https://hec.gov.pk/english/services/students/wheelchair/Pages/Eligibility-Criteria.aspx"
+    },
+    {
+      "title": "UE Merit Based Scholarship",
+      "description": "Semester-wise merit scholarship for top three BS and Master’s students of the University of Education, Lahore.",
+      "funding_resource": "University of Education, Lahore",
+      "financial_support": "Covers tuition fee depending on position: 100%, 75%, or 50%.",
+      "how_to_apply": "No application required. UE prepares and finalizes list of eligible students automatically based on results."
+    }
+  ]
+}
+,
+{
+  "university": "Air University Islamabad",
+  "scholarships": [
+    {
+      "category": "AU Sponsored MS & PhD Programs",
+      "schemes": [
+        {
+          "name": "Scheme-I",
+          "benefits": [
+            "Stipend of Rs. 40,000 per month (Engineering Departments)",
+            "Stipend of Rs. 20,000 per month (Faculty of Computing & Artificial Intelligence)",
+            "100% Tuition Fee Waiver",
+            "Career progression through Lab Engineer, Teaching/Research Assistant, Post-doc, and faculty positions"
+          ],
+          "eligibility": "Minimum CGPA of 3.5 in Bachelor Degree",
+          "bond_required": true
+        },
+        {
+          "name": "Scheme-II",
+          "benefits": [
+            "100% Tuition Fee Waiver",
+            "Teaching Assistant/Research Assistant role required"
+          ],
+          "eligibility": "Minimum CGPA of 3.5 in Bachelor Degree",
+          "bond_required": true
+        },
+        {
+          "name": "Scheme-III",
+          "benefits": [
+            "50% Tuition Fee Waiver",
+            "Departmental duties as assigned by Head of Department"
+          ],
+          "eligibility": "Minimum CGPA of 3.0 in Bachelor Degree"
+        }
+      ],
+      "note": "All fee waivers are subject to continued academic performance."
+    },
+    {
+      "category": "Educate to Innovate Scholarship Scheme",
+      "programs": ["MS Information Security", "MS Avionics Engineering"],
+      "benefits": [
+        "Full or Partial Fee Waiver",
+        "Opportunity to work on industry/research projects such as Data Sharing for Aerial Vehicles, GSM Security, Sensor Fusion for Mobile Nodes"
+      ],
+      "eligibility": "CGPA 3.0 or above in relevant bachelor degree"
+    },
+    {
+      "category": "Need & Merit Based Financial Aid Schemes",
+      "overview": "AU invites applications every Fall semester for financial grants based on student need and merit. Aid depends on availability of funds.",
+      "grants": [
+        "Ehsaas Undergraduate Scholarship Project (EUSP)",
+        "HEC Need Based Grant",
+        "Punjab Educational Endowment Fund (PEEF)",
+        "Air University Need Based Financial Grant (AUNBFG)",
+        "Incentive Financial Grant (IFG) for AU Multan Campus",
+        "PAF Wards Discounts/Rebate",
+        "AU Employee Discount",
+        "AU Employee Ward Discount/Rebate",
+        "HEC Employee Ward Discount"
+      ],
+      "procedure": {
+        "steps": [
+          "Apply for financial grant along with admission form at AU portal.",
+          "After admission confirmation, submit documents to Financial Aid Office within 15 days of semester start.",
+          "Late applicants can apply within 15 days of semester start via Registrar.",
+          "Spring semester students can apply in next Fall semester."
+        ],
+        "eligibility": [
+          "Admitted on open merit only.",
+          "Minimum CGPA of 2.0 required to continue grant.",
+          "Only one need-based grant allowed per student.",
+          "Disciplinary actions or unfair means make student ineligible.",
+          "Specific criteria apply for Ehsaas, PEEF, and HEC grants.",
+          "PAF ward discount: 25% tuition fee rebate (requires documentation).",
+          "AU Employee discount: 50% rebate (for non-probationary employees admitted on open merit)."
+        ]
+      },
+      "special_cases": [
+        "IFG: Offered to AU Multan Campus students; reviewed annually.",
+        "HEC Employee Ward Discount: 50% Tuition Fee Concession for wards of HEC regular employees."
+      ]
+    },
+    {
+      "category": "Merit Scholarships Policy",
+      "undergraduate": {
+        "awards": [
+          {"position": "1st", "reward": "Rs. 25,000"},
+          {"position": "2nd", "reward": "Rs. 20,000"},
+          {"position": "3rd", "reward": "Rs. 15,000"},
+          {"special": "SGPA 4.0 bonus", "reward": "Rs. 5,000 additional"}
+        ],
+        "eligibility": [
+          "Minimum SGPA of 3.5",
+          "Full-time student with full course load",
+          "No summer semester awards",
+          "No disciplinary punishment",
+          "Not for final semester students",
+          "If tied positions occur, all are awarded respective position reward",
+          "Combined awards cannot exceed 100% of tuition fee"
+        ]
+      },
+      "postgraduate": {
+        "programs": ["MBA", "MS", "M.Phil."],
+        "awards": [
+          {"position": "1st", "reward": "Rs. 25,000"},
+          {"position": "2nd", "reward": "Rs. 20,000"},
+          {"position": "3rd", "reward": "Rs. 15,000"},
+          {"special": "SGPA 4.0 bonus", "reward": "Rs. 5,000 additional"}
+        ],
+        "eligibility": [
+          "Minimum SGPA of 3.75",
+          "Full-time with regular workload",
+          "No summer/thesis awards",
+          "No disciplinary punishment",
+          "Award total cannot exceed 100% of tuition fee",
+          "Tied positions receive respective position rewards"
+        ]
+      },
+      "procedure": "Financial Aid Office processes merit scholarships within two months of result announcement. Award is adjusted in fee or refunded via draft."
+    }
+  ],
+  "contact": {
+    "name": "Mr. Babar Hussain",
+    "designation": "Financial Aid Officer",
+    "extension": "214 / 051-9153214",
+    "email": "fao@au.edu.pk"
+  },
+  "university_contact": {
+    "UAN": "051-111-AIR-UNI",
+    "address": "Service Road E-9, Islamabad, Pakistan",
+    "email": "Webmaster@au.edu.pk"
+  }
+}
+
+
+
+,
+{
+  "university": "National University of Computer and Emerging Sciences (FAST-NUCES)",
+  "scholarships": [
+    {
+      "title": "Merit Scholarships for Bachelor Students",
+      "description": "Awarded to the top three position holders of each Examination Board in the year of admission, and the top three students in the NU admission merit list.",
+      "funding_resource": "FAST-NUCES",
+      "financial_support": "Full tuition fee waiver for four years of uninterrupted studies with full course load.",
+      "eligibility": "Students must maintain a semester GPA of 3.0 or higher to continue receiving the scholarship.",
+      "how_to_apply": "Automatically awarded based on merit; no separate application required."
+    },
+    {
+      "title": "HEC Scholarships for MS and PhD Students",
+      "description": "Scholarships provided by the Higher Education Commission (HEC) for MS and PhD degree students.",
+      "funding_resource": "Higher Education Commission (HEC), Government of Pakistan",
+      "financial_support": "Covers tuition fee, monthly stipend, and book allowance.",
+      "how_to_apply": "Students can apply through HEC when the scholarships are announced."
+    },
+    {
+      "title": "Punjab Educational Endowment Fund (PEEF) Scholarships",
+      "description": "Government of Punjab scholarships for indigent students domiciled in Punjab, newly admitted in any FAST-NU campus.",
+      "funding_resource": "Government of Punjab (PEEF)",
+      "financial_support": "Covers a portion of tuition fee for 4-year undergraduate studies. Remaining fee may be given by the university as Qarz-e-Hasna.",
+      "how_to_apply": "Eligible students may apply through campus administration after admission."
+    },
+    {
+      "title": "Sindh Government Endowment Board Scholarships",
+      "description": "Need-cum-merit scholarships for Karachi campus students at undergraduate and graduate levels.",
+      "funding_resource": "Government of Sindh",
+      "financial_support": "Full tuition fee for entire program duration; renewable every year. 60% quota for rural students, 40% for urban.",
+      "how_to_apply": "Students can apply when applications open each year; about 25 new scholarships are offered annually."
+    },
+    {
+      "title": "Khyber Pakhtunkhwa Education Foundation (KPEF) Scholarship",
+      "description": "Scholarships for Peshawar campus students on need-cum-merit basis for BS and MS studies.",
+      "funding_resource": "Government of Khyber Pakhtunkhwa (KPEF)",
+      "financial_support": "Covers 80% of tuition fees for the entire duration of the program.",
+      "how_to_apply": "Apply online through the KPEF website when the annual call is announced. Selected applicants are interviewed on campus."
+    },
+    {
+      "title": "Balochistan Government Endowment Board Scholarship",
+      "description": "Need-cum-merit scholarships for Karachi campus students at undergraduate and graduate levels.",
+      "funding_resource": "Government of Balochistan",
+      "financial_support": "Full tuition fee for the entire program duration, renewable annually.",
+      "how_to_apply": "Students can apply when the Balochistan Endowment Board announces its scholarship cycle."
+    },
+    {
+      "title": "OSAF Financial Assistance (Study Loan)",
+      "description": "Financial assistance arranged by the Old Students Association of FAST (OSAF) for students unable to afford their full tuition fee.",
+      "funding_resource": "OSAF (Old Students Association of FAST)",
+      "financial_support": "Partial or full financial assistance depending on need.",
+      "how_to_apply": "Apply through the Financial Aid Office of the university."
+    },
+    {
+      "title": "Other Community-Based Scholarships",
+      "description": "Various scholarships provided by community groups and foundations such as Memon Community, Bohra Community, INFAQ Foundation, and Agha Khan Foundation.",
+      "funding_resource": "Various community and foundation donors",
+      "financial_support": "Varies depending on sponsoring organization.",
+      "how_to_apply": "Students can apply to specific community organizations offering scholarships."
+    },
+    {
+      "title": "Assistantships",
+      "description": "Students are given paid assistantships for rendering services in different university departments and activities.",
+      "funding_resource": "FAST-NUCES",
+      "financial_support": "Monetary compensation for services provided.",
+      "how_to_apply": "Interested students can apply through relevant university departments."
+    },
+    {
+      "title": "Bank Loans",
+      "description": "Educational loan facilities offered through partner banks.",
+      "funding_resource": "PICIC Commercial Bank, NIB Bank, Bank Alfalah, Bank Islami, MCB",
+      "financial_support": "Loan amount and repayment terms vary by bank.",
+      "how_to_apply": "Apply directly to participating banks for student loan programs."
+    },
+    {
+      "title": "Study Loan / Financial Assistance",
+      "description": "Interest-free, need-based study loans for bright but financially challenged students.",
+      "funding_resource": "FAST-NUCES",
+      "financial_support": "Covers tuition fee only; renewable every semester based on performance. Discontinued if CGPA falls below minimum requirement.",
+      "how_to_apply": "Apply using the prescribed form available from campus offices or the university website.",
+      "repayment_terms": {
+        "start": "Three months after graduation or upon employment, whichever is earlier.",
+        "duration": "Repayment within four years after graduation.",
+        "conditions": "Students must sign a contract authorizing employers to deduct repayments at source."
+      },
+      "application_form": "Available for download from the university website."
+    }
+  ],
+  "contact": {
+    "phone": "111-128-128",
+    "address": "FAST-House, Rohtas Road, G-9/4, Islamabad - 44000, Pakistan"
+  },
+  "campuses": [
+    "Chiniot-Faisalabad Campus",
+    "Islamabad Campus",
+    "Karachi Campus",
+    "Lahore Campus",
+    "Multan Campus",
+    "Peshawar Campus"
+  ]
+}
+
+,    {
+      "name": "COMSATS University",
+      "campuses": [
+        {
+          "campus": "Lahore",
+          "scholarships": [
+            {
+              "name": "Quaid-e-Azam Scholarship",
+              "type": "Merit Based",
+              "eligibility": "BS Physics, Math, Econ, Chemistry with CGPA 2.5+",
+              "slots": "Contact Relevant Campus"
+            },
+            {
+              "name": "CUI Top Merit UG",
+              "type": "Admission Based",
+              "eligibility": "Topper in Admission Merit List (BS)",
+              "slots": "Contact Relevant Campus"
+            },
+            {
+              "name": "High Achievers",
+              "type": "Admission Based",
+              "eligibility": "Top 10 Board Position Holders",
+              "slots": "Contact Relevant Campus"
+            },
+            {
+              "name": "Worker's Students Quota",
+              "type": "Category Based",
+              "eligibility": "Punjab Workers Welfare Board",
+              "slots": "Contact Relevant Campus"
+            },
+            {
+              "name": "Kinship Concession",
+              "type": "Need Based",
+              "eligibility": "Siblings in CUI with good academics",
+              "slots": "Contact Relevant Campus"
+            },
+            {
+              "name": "CUI Endowment Fund",
+              "type": "Need Based",
+              "eligibility": "Financial need",
+              "slots": "Contact Relevant Campus"
+            }
+          ]
+        },
+        {
+          "campus": "Islamabad",
+          "scholarships": [
+            {
+              "name": "Top Merit UG",
+              "type": "Admission Based",
+              "eligibility": "Topper in BS Merit List",
+              "slots": "Contact Relevant Campus"
+            },
+            {
+              "name": "Top 5 Merit (BS English)",
+              "type": "Admission Based",
+              "eligibility": "75% = 100% waiver, 65-74% = 50%",
+              "slots": "Contact Relevant Campus"
+            },
+            {
+              "name": "Top 5 Merit (BS Econ)",
+              "type": "Admission Based",
+              "eligibility": "75% = 100%, 65-74% = 50%",
+              "slots": "Contact Relevant Campus"
+            },
+            {
+              "name": "CUI Endowment Fund",
+              "type": "Need Based",
+              "eligibility": "Based on need",
+              "slots": "Contact Relevant Campus"
+            }
+          ]
+        },
+        {
+          "campus": "Abbottabad",
+          "scholarships": [
+            {
+              "name": "Bu Ali Sina",
+              "type": "Admission Based",
+              "eligibility": "BS Microbiology & Biotechnology",
+              "slots": "Contact Relevant Campus"
+            },
+            {
+              "name": "Haroon Rashid",
+              "type": "Merit Based",
+              "eligibility": "GPA 4.0 students at Abbottabad",
+              "slots": "Contact Relevant Campus"
+            }
+          ]
+        },
+        {
+          "campus": "Wah",
+          "scholarships": [
+            {
+              "name": "BBA & BAF Scheme",
+              "type": "Admission Based",
+              "eligibility": "Full or partial waiver based on criteria",
+              "slots": "Contact Relevant Campus"
+            },
+            {
+              "name": "Top 10 Board Holders",
+              "type": "Admission Based",
+              "eligibility": "Top 10 board position holders",
+              "slots": "Contact Relevant Campus"
+            }
+          ]
+        },
+        {
+          "campus": "Attock",
+          "scholarships": [
+            {
+              "name": "Admission Topper",
+              "type": "Admission Based",
+              "eligibility": "Topper in admission merit list",
+              "slots": "Contact Relevant Campus"
+            },
+            {
+              "name": "PAC Concession",
+              "type": "Category Based",
+              "eligibility": "Children of PAC Kamra",
+              "slots": "Contact Relevant Campus"
+            }
+          ]
+        },
+        {
+          "campus": "Sahiwal",
+          "scholarships": [
+            {
+              "name": "Merit Scholarship (Fall 2023)",
+              "type": "Admission Based",
+              "eligibility": "Merit based partial waiver",
+              "slots": "Contact Relevant Campus"
+            },
+            {
+              "name": "Top 10 Board Holders",
+              "type": "Admission Based",
+              "eligibility": "Top 10 board position holders",
+              "slots": "Contact Relevant Campus"
+            }
+          ]
+        },
+        {
+          "campus": "Vehari",
+          "scholarships": [
+            {
+              "name": "Campus Based Scholarships",
+              "type": "Admission Based",
+              "eligibility": "Merit based partial waiver",
+              "slots": "Contact Relevant Campus"
+            },
+            {
+              "name": "Marks Based Scholarship",
+              "type": "Admission Based",
+              "eligibility": "Based on Intermediate Marks",
+              "slots": "Contact Relevant Campus"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "NED University",
+      "scholarships": [
+        {
+          "name": "NED Scholar's Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "AHS-EA Memorial Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Mr. Abdul Wajid Scholarship from Zakat Fund / Financial Assistance",
+          "type": "Need Based"
+        },
+        {
+          "name": "IEP-SAC Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "NED Alumni Association of Canada (NEDAC) Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Professional Education Foundation (PEF) Scholarship",
+          "type": "Need Based"
+        },
+        {
+          "name": "Lotte Scholarship Scheme",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Muhammad Akbar Foundation Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Zakat & Ushr Stipend Scholarship",
+          "type": "Need Based"
+        },
+        {
+          "name": "NED Sixtyniners Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Young Dreamer Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Alkauser Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "NED ALUMNI SCHOLARSHIP (NED EE CS 94 95 Batch)",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Prof. Dr. Mahmood Khan Pathan Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "M. Farooq Siddiqui Scholarship / Financial Assistance",
+          "type": "Need Based"
+        },
+        {
+          "name": "Endowment Fund Scholarship",
+          "type": "Need Based"
+        },
+        {
+          "name": "NED Alumni Association of South California (NEDAASC)",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Suleman Habib Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Oxbridge Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Syed Javaid Akhter Memorial Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Akram Family Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Syed Itrat Hussain Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Agha Ejaz Hussain Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Late Farhat Hussain Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "NEDAF Saudia Arabia Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Batool Zehra Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Hamid Masood Sohail Memorial Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Karachi District Council",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "M. A Jalil Late & Mrs Nasreen Jalil Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Industrial Steel Limited (ISL) Mentoring Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Karachi Gateway Terminal Limited Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Syed Asim Ahmed (Mechanical Batch-92-93) Memorial Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Orange Tree Foundation Scholarship (OTF)",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Habib Metropolitan Bank Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "NED Batch 1970-1975 Karamat Ullah Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "SINDH HEC Indigenous Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Muhammad Ishaque Memorial Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "A .Q. Najmi Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "UKAA Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "M. Ahsan. Saghir Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Ismat Shafi Khan Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Ihsan Trust / Meezan Bank",
+          "type": "Need Based"
+        },
+        {
+          "name": "Mazhar ul Haq Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Muhammad Hayat Khan Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Masooma Khatoon Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Feroz 1888 Mills Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Aisha Arsalan Khan Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "NED Alumni 81-82 Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "NBP Loan Scheme",
+          "type": "Financial Assistance"
+        },
+        {
+          "name": "Mr. Sohail Ehtesham Scholarship / Financial Assistance (Zakat Fund)",
+          "type": "Need Based"
+        },
+        {
+          "name": "Sher Bano & Gulrez Esbhani Scholarship. Kulsoom & Asghar Ali Ghanchi Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Pakistan Bait Ul Mal",
+          "type": "Need Based"
+        },
+        {
+          "name": "Ehsaas Undergraduate Scholarship Project 2021",
+          "type": "Need Based"
+        },
+        {
+          "name": "Minority Student Scholarship Program (MSSP)",
+          "type": "Category Based"
+        },
+        {
+          "name": "Pakistan Engineering Council",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Masooma Zehra Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "M.A Rizwani Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "NED Mechanical Scholarship 2007-2008",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Pakistan Cable Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Trial Blazers Engineering Group Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Prof. Abdul Azim Siddiqui Memorial Scholarship Program",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Azmatullah Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Moazzam Memorial Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Sultana Saad Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Nuzhat Ishtiaq Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "New England NED Alumni Association Scholarship (NEDA - NE)",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Mohammad Adham Family Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Disadvantaged Students Scholarship Programme (DSSP)",
+          "type": "Need Based"
+        },
+        {
+          "name": "NED Chicago Alumni",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Aina Rashid Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Dr. Bakr Bin Bakr Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "MaaJee Scholarship (Founded by Mr. Aftab Rizvi, NED Alumnus)",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Mr. & Mrs Waseem Hamid Rizvi For Labia Naseem",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Waheed Asghar Memorial Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Ustad Zubai Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Halim Redhwi Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Safia Redhwi Scholarship",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Ms. Sayeedunisa M/O Mr. Hadi Ali (Maa Jee Endowment Fund)",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Ms. Sultana Sher Ali M/O Mr. Nusrat Sher Ali (Maa Jee Endowment Fund)",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Ms. Nusrat Begum M/O Mr. Saleem A Khan (Maa Jee Endowment Fund)",
+          "type": "Merit/Need Based"
+        },
+        {
+          "name": "Helping Hand for Relief and Development (HHRD) Financial Assistance",
+          "type": "Need Based"
+        }
+      ]
+    }
+  ]
+}

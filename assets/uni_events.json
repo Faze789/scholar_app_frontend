@@ -1,0 +1,664 @@
+{
+  "universities": [
+    {
+  "LUMS Events": [
+    {
+      "title": "From Lahore to London: How Passion and Persistence Built a Career in VFX—and What…",
+      "category": "Alumni Event, Talk",
+      "date": "October 03, 2025",
+      "time": "11:15 am",
+      "venue": "9-B2, SBASSE",
+      "details": "Full Details"
+    },
+    {
+      "title": "Virsa-e-Dhrupad: A Musical Dialogue between Self and the Divine",
+      "category": "Performance",
+      "date": "September 26, 2025",
+      "time": "6:00 pm - 8:00 pm",
+      "venue": "SS Auditorium, Academic Block, LUMS",
+      "details": "Full Details"
+    },
+    {
+      "title": "CCLS Talk Series 2025: Similarities Between Pakistan’s Legal System and That of Hong…",
+      "category": "Talk",
+      "date": "September 25, 2025",
+      "time": "10:15 am - 11:50 am",
+      "venue": "CR 2-07, SAHSOL, LUMS",
+      "details": "Full Details"
+    },
+    {
+      "title": "Icons of Devotion: Launch of the Jain Artefacts Catalogue",
+      "category": "Announcement",
+      "date": "September 26, 2025",
+      "time": "4:00 pm",
+      "venue": "Academic Block, LUMS",
+      "details": "Full Details"
+    },
+    {
+      "title": "Shifting Terrain: Unpacking Potential and Pitfalls of New Pro-Women Legislation in 2025",
+      "category": "Panel Discussion",
+      "date": "September 23, 2025",
+      "time": "6:00 pm",
+      "venue": "VC Faculty Lounge (first floor), Academic Block, LUMS",
+      "details": "Full Details"
+    },
+    {
+      "title": "Panel Session on Flood Response: Policy, Community and Partnerships",
+      "category": "Panel Discussion",
+      "date": "September 19, 2025",
+      "time": "3:00 pm - 4:30 pm",
+      "venue": "Auditorium 304, SDSB, LUMS",
+      "details": "Full Details"
+    },
+    {
+      "title": "From English Fiction into Urdu Fiction – A Conversation with Osama Siddique",
+      "category": "Talk",
+      "date": "September 19, 2025",
+      "time": "6:00 pm - 8:00 pm",
+      "venue": "A-11, Academic Block, LUMS",
+      "details": "Full Details"
+    },
+    {
+      "title": "SAHSOL Hosts Fourth Pedagogical Training Workshop on Legal Education",
+      "category": "Workshop",
+      "date": "September 18, 2025 - September 20, 2025",
+      "time": "9:00 am - 5:30 pm",
+      "venue": "LUMS",
+      "details": "Full Details"
+    },
+    {
+      "title": "Stories Beyond a Single Frame: Book Panel on Home #itscomplicated",
+      "category": "Panel Discussion",
+      "date": "September 25, 2025",
+      "time": "4:00 pm - 5:30 pm",
+      "venue": "LCE Auditorium, SBASSE Basement, LUMS",
+      "details": "Full Details"
+    },
+    {
+      "title": "ALUMS Chat: Redefining Business Education with Innovation & Inclusion",
+      "category": "Alumni Event",
+      "date": "September 26, 2025",
+      "time": "4:00 pm",
+      "venue": "LUMS Facebook Page",
+      "details": "Full Details"
+    },
+    {
+      "title": "Path2Dev - Academic and Policy Conference on Development Economics 2025",
+      "category": "Conference",
+      "date": "September 11, 2025 - September 13, 2025",
+      "venue": "LUMS",
+      "details": "Full Details"
+    },
+    {
+      "title": "Discussion on Flood Management and Water Governance in Pakistan",
+      "category": "Talk",
+      "date": "September 11, 2025",
+      "time": "6:00 pm - 7:00 pm",
+      "venue": "SBACR 0-01, Ground Floor, SAHSOL, LUMS",
+      "details": "Full Details"
+    },
+    {
+      "title": "Cracking Clerkships: Applying for Judicial Roles in Pakistan",
+      "category": "Webinar",
+      "date": "September 15, 2025",
+      "time": "6:00 pm - 7:30 pm",
+      "venue": "MS Teams | Online",
+      "details": "Full Details"
+    },
+    {
+      "title": "Dr. Vahid Hosseini on Transportation & Air Pollution",
+      "category": "Talk",
+      "date": "September 03, 2025",
+      "time": "11:00 am - 12:30 pm",
+      "venue": "Dean’s Smart Lab, 4th Floor, SBASSE Building",
+      "details": "Full Details"
+    },
+    {
+      "title": "Welcome to Orientation 2025!",
+      "category": "Announcement",
+      "date": "August 25, 2025 - August 29, 2025",
+      "details": "Full Details"
+    },
+    {
+      "title": "Book Talk: From the Beginning to Lahore’s Happenings",
+      "category": "Talk",
+      "date": "August 21, 2025",
+      "time": "5:00 pm",
+      "venue": "VC Faculty Lounge, Academic Block, LUMS",
+      "details": "Full Details"
+    },
+    {
+      "title": "Public Defence of PhD Management Dissertation: Sania Moazzam",
+      "category": "PhD Defence",
+      "date": "August 26, 2025",
+      "time": "2:30 pm",
+      "venue": "Faculty Lounge, 4th Floor, SDSB Building",
+      "details": "Full Details"
+    },
+    {
+      "title": "Next Gen Engineers – Your Guide to AI & Data Science Careers",
+      "category": "Webinar",
+      "date": "August 15, 2025",
+      "time": "6:00 - 7:30 pm",
+      "venue": "MS Teams | Online",
+      "details": "Full Details"
+    },
+    {
+      "title": "ALUMS Chat: Championing Justice Through Practical Legal Education",
+      "category": "Alumni Event",
+      "date": "August 29, 2025",
+      "time": "4:00 pm",
+      "venue": "LUMS Facebook Page",
+      "details": "Full Details"
+    },
+    {
+      "title": "Leadership Summit on Blockchain and Digital Assets",
+      "category": "Announcement",
+      "date": "August 23, 2025",
+      "time": "9:00 am - 6:00 pm",
+      "venue": "Serena Hotel, Islamabad",
+      "details": "Full Details"
+    }
+  ]
+}
+,
+    {
+      "title": "COMSATS Events",
+      "university": "COMSATS University Islamabad",
+      "events": [
+        {
+          "title": "COMSATS Industrial Connect - Career Expo Spring 2025",
+          "date": "2025-05-12",
+          "category": "Career Expo"
+        },
+        {
+          "title": "Workshop on Building Mobile Applications with Android Studio",
+          "date": "2025-05-23",
+          "category": "Workshop"
+        },
+        {
+          "title": "Seminar - Career Opportunities in IT Industry in Computer Science",
+          "date": "2024-05-02",
+          "category": "Seminar"
+        },
+        {
+          "title": "Training - Web Application Development",
+          "date": "2024-08-27",
+          "category": "Training"
+        },
+        {
+          "title": "Hands-On Workshop: Mastering Hardware and PCB Design",
+          "date": "2025-03-10",
+          "category": "Workshop"
+        },
+        {
+          "title": "Job Fair 2025 at COMSATS Sahiwal Campus",
+          "date": "2025-04-24",
+          "category": "Job Fair"
+        },
+        {
+          "title": "Career Development Session by Trillium Technologies",
+          "date": "2025-02-28",
+          "category": "Career Talk"
+        },
+        {
+          "title": "Seminar on AI in Engineering and Scholarship (ASME Chapter)",
+          "date": "2025-03-14",
+          "category": "Seminar"
+        },
+        {
+          "title": "Open House & Job Fair Fall 2024",
+          "date": "2024-12-19",
+          "category": "Job Fair"
+        },
+        {
+          "title": "Professional Development Training: Writing Winning Research Grants",
+          "date": "2025-05-22",
+          "category": "Training"
+        }
+      ]
+    },
+    {
+  "university": "University of Education",
+  "events": [
+    {
+      "title": "Honorarium Awarding Ceremony; Self-Assessment 2013-14",
+      "participants": "Vice Chancellor, Registrar, QEC Staff, Program Team members, Principals & Directors of UE Campuses/Divisions.",
+      "purpose": "Encouragement & appreciation of PT members by awarding them honorarium of Rs. 5000/- and Certificate of Appreciation."
+    },
+    {
+      "title": "Program Team Workshop",
+      "participants": "PT members, QEC members, University Officials",
+      "purpose": "To aware & train PT members about Self-Assessment, preparation of SA report and filling the SA proformas."
+    },
+    {
+      "title": "Assessment Team Workshop",
+      "participants": "AT members, QEC members, University Officials",
+      "purpose": "To train the AT members about assessment of the programs through SARs and submission of AT findings & Rubric Forms."
+    },
+    {
+      "title": "World Quality Day",
+      "participants": "University Faculty Members, QEC Staff, Students, University Officials, Representatives from other Universities",
+      "purpose": "To raise awareness of how quality approaches can make a tangible impact on educational organizations and to make collaboration in terms of quality of education with other Universities."
+    },
+    {
+      "title": "Seminar for Celebration of World Quality Day (21.12.2016)",
+      "speakers": [
+        "Dr. Sajid Ali (Chairman, Quality & Productivity Society of Pakistan)",
+        "Prof. Dr. Rauf-i-Azam (Vice Chancellor, University of Education, Lahore)"
+      ],
+      "audience": "Director (Division of Science & Technology), Principal Township Campus, Director PHEC, Director Research and Faculty Members from all Divisions and Campuses of University.",
+      "host": "Director QEC (Dr. Muhammad Mansha) and all QEC staff.",
+      "purpose": "To promote the importance of Quality and the contribution it makes towards the growth and prosperity of nations.",
+      "theme": "Quality in Higher Education"
+    },
+    {
+      "title": "Seminar on Celebration of World Quality Day (28.12.2016)",
+      "speakers": [
+        "Dr. Cusrow J. Dubash (Vice Rector, Forman Christian College)",
+        "Prof. Dr. Rauf-i-Azam (Vice Chancellor, University of Education, Lahore)",
+        "Dr. Naveed A. Malik (Rector, Virtual University)"
+      ],
+      "audience": "All QEC staff from different Universities of Lahore, Faculty members of University of Education and Virtual University.",
+      "hosts": [
+        "QEC University of Education",
+        "QEC Virtual University"
+      ],
+      "purpose": "To stimulate critical thinking as to how QECs and faculty can develop the competence to meet challenges faced by Higher Education Institutions (HEIs) for producing effective graduates.",
+      "theme": "Producing Effective Graduates: A Challenge for Quality Assurance in Higher Education"
+    },
+    {
+      "title": "Awareness Seminar & Training Workshop of Program Teams (19.01.2017)",
+      "trainer": "Dr. Muhammad Mansha (Director, Quality Enhancement Cell)",
+      "audience": "61 Program Team Members of all Campuses and Divisions of University of Education.",
+      "host": "QEC University of Education",
+      "purpose": "To aware and train PT members regarding implementation of Self-Assessment criteria on the selected program of respective campuses/divisions, preparation of SAR and filling the SA proformas."
+    },
+    {
+      "title": "Awareness Seminar & Training Workshop of Assessment Team (ATs) Regarding Implementation of Rubric Form (11.05.2017)",
+      "trainer": "Dr. Muhammad Mansha (Director, Quality Enhancement Cell)",
+      "audience": "62 Assessment Team Members of all Campuses and Divisions of University of Education.",
+      "host": "QEC University of Education",
+      "purpose": "To train the AT members about the criteria set by HEC for assessment of the programs through SARs prepared by the program team members and submission of Rubric Score about the program."
+    },
+    {
+      "title": "Awareness Seminar & Training Workshop of Assessment Team (ATs) Regarding Formulation of AT-Findings (11.05.2017)",
+      "trainer": "Dr. Muhammad Mansha (Director, Quality Enhancement Cell)",
+      "audience": "62 Assessment Team Members of all Campuses and Divisions of University of Education.",
+      "host": "QEC University of Education",
+      "purpose": "To train the AT members for preparation of the findings that they have observed regarding assessment of the program of respective campuses/divisions."
+    },
+    {
+      "title": "Training Workshop of Affiliated Colleges on Implementation of Minimum Quality Standards (11.07.2017)",
+      "speakers": [
+        "Prof. Dr. Rauf-i-Azam (Vice Chancellor, University of Education, Lahore)",
+        "Dr. Muhammad Mansha (Director, Quality Enhancement Cell)",
+        "Dr. Rana Abrar (Chairman, Affiliation Committee)"
+      ],
+      "audience": "Heads/Principals of Affiliated Colleges and Incharge Examinations.",
+      "host": "QEC University of Education",
+      "purpose": "To make affiliated colleges aware of how they can develop the competence to meet challenges faced by Higher Education Institutions (HEIs) for producing effective graduates by implementing Minimum Quality Standards."
+    },
+    {
+      "title": "Training Workshop of Program Team Members (27–28 February 2019)",
+      "participants": "PT members, QEC members, University Officials",
+      "purpose": "Quality Enhancement Cell organized a two-day workshop to train faculty members and assist departments, institutes, and centers in improving the quality of teaching and research compatible with international standards."
+    },
+    {
+      "title": "Training Workshop of Assessment Team Members (12–21 June 2019)",
+      "participants": "AT members, QEC members, University Officials",
+      "purpose": "A two-day training workshop was held at the Multipurpose Hall of the main campus and Multan Campus, hosted by the Quality Enhancement Cell (QEC)."
+    }
+  ]
+}
+,
+{
+  "university": "Air University Events",
+  "events": [
+    {
+      "title": "Balochistan Education Endowment Fund (BEEF) Delegation Visit to Air University",
+      "date": "09 Jan 2024",
+      "description": "A delegation from the Balochistan Education Endowment Fund (BEEF), led by Mr. Mohsin Qadeer, Team Leader of the Scholarship Scheme, recently visited Air University Islamabad Campus. Mr. Umair Ahmad, Deputy Director of Financial Operations and Business Development warmly welcomed and briefed the delegation.",
+      "image": "Sample Image",
+      "read_more": "Read More"
+    },
+    {
+      "title": "MoU Signing Between Air University and EDUFI",
+      "date": "02 Feb 2024",
+      "description": "EDUFI and Air University have signed a MoU for an innovative 'Study Now, Pay Later' plan to facilitate students for payment of their tuition fees through convenient monthly installments.",
+      "image": "Sample Image",
+      "read_more": "Read More"
+    },
+    {
+      "title": "AIRTECH'2024",
+      "date": "01 Mar 2024",
+      "description": "",
+      "image": "Sample Image",
+      "read_more": "Read More"
+    },
+    {
+      "title": "Air University Career Fair 2024",
+      "date": "07 Mar 2024",
+      "description": "Air University's Career Fair 2024, organized by the Placement and Alumni Affairs team on March 07, 2024, was inaugurated by Air University Vice Chancellor Air Marshal Javaid Ahmed, HI (M) (RETD.), and Registrar Air Cdre (R) Abdul Wahab Motla, alongside distinguished guests from the Federation of Pakistan Chambers of Commerce & Industry.",
+      "image": "Sample Image",
+      "read_more": "Read More"
+    },
+    {
+      "title": "1st International Conference on Recent Trends in Statistics Data Analytics with Applications in Natural Sciences",
+      "date": "09 May 2024",
+      "description": "",
+      "image": "Sample Image",
+      "read_more": "Read More"
+    },
+    {
+      "title": "Eduvision Session",
+      "date": "06 May 2024",
+      "description": "Air University Islamabad recently hosted a dynamic seminar in collaboration with Eduvision, Pakistan's top educational information website. The seminar, organized by the Placement and Alumni Affairs team, centered on vital topics: job search strategies and market trends.",
+      "image": "Sample Image",
+      "read_more": "Read More"
+    },
+    {
+      "title": "Huawei Fresh Blood Induction Drive 2024",
+      "date": "16 May 2024",
+      "description": "Air University Islamabad recently hosted Huawei Technologies Pakistan's Fresh Blood Induction Drive 2024, organized by the Placement and Alumni Affairs team. The event included a session led by the Huawei Team, providing insights into the company and career opportunities.",
+      "image": "Sample Image",
+      "read_more": "Read More"
+    },
+    {
+      "title": "CPD Courses 2024",
+      "date": "01 Jul 2024",
+      "description": "",
+      "image": "Sample Image",
+      "read_more": "Read More"
+    },
+    {
+      "title": "Orientation Day Semester Fall 2024",
+      "date": "11 Sep 2024",
+      "description": "Excitement filled the air as Air University welcomed new students on Fall 2024 Semester Orientation Day. Alumni shared their experiences and advice with eager new students ready to learn and grow.",
+      "image": "Sample Image",
+      "read_more": "Read More"
+    },
+    {
+      "title": "Pakistan Cyber Security Challenge (PCC) 2024",
+      "date": "19 Nov 2024",
+      "description": "The Pakistan Cyber Security Challenge (PCC) 2024, held at Air University Islamabad, brought together over 1,600 participants from more than 110 institutions to compete in Capture-the-Flag and the Cybersecurity Startup Ideas Cup. The event was graced by Air Marshal (R) Asad Lodhi and other dignitaries.",
+      "image": "Sample Image",
+      "read_more": "Read More"
+    }
+  ]
+}
+
+,
+{
+  "university": "NUST University Events",
+  "events": [
+    {
+      "date": "27 Nov",
+      "category": "Conferences",
+      "title": "Join NUST's 4th International Conference on Recent Trends in Statistics & Data Analytics"
+    },
+    {
+      "date": "10 Oct",
+      "category": "Talk Series",
+      "title": "Get Legal Insights at NUST’s Legal Lecture Series!"
+    },
+    {
+      "date": "08 Oct",
+      "category": "Admissions",
+      "title": "PhD Admissions 2026 are now OPEN!"
+    },
+    {
+      "date": "07 Oct",
+      "category": "Announcement",
+      "title": "Click Karo, Account Kholo with Askari Bank!"
+    },
+    {
+      "date": "06 Oct",
+      "category": "Workshop",
+      "title": "Join HCIA-AI ICT Associate Training at NUST!"
+    },
+    {
+      "date": "06 Oct",
+      "category": "Admissions",
+      "title": "UG Admissions 2026 are Now Open!"
+    },
+    {
+      "date": "03 Oct",
+      "category": "Vacancy",
+      "title": "Join Us at NUST SEECS as RA!"
+    },
+    {
+      "date": "30 Sep",
+      "category": "Conferences",
+      "title": "Call for Abstracts: Poster Presentation for ICoDT2!"
+    },
+    {
+      "date": "27 Sep",
+      "category": "Workshop",
+      "title": "Join NUST's 2-Day Hands-On Workshop on Metagenomics for Precision Biomarker Discovery"
+    },
+    {
+      "date": "25 Sep",
+      "category": "Webinars",
+      "title": "Webinar on Shaping Disability Disclosure in Higher Education Pakistan"
+    },
+    {
+      "date": "25 Sep",
+      "category": "Conferences",
+      "title": "5th NUST Flagship International Conference on Digital Futures & Transformative Technologies (ICoDT2) is coming to NUST!"
+    },
+    {
+      "date": "24 Sep",
+      "category": "Vacancy",
+      "title": "Join Us at NUST SEECS!"
+    },
+    {
+      "date": "24 Sep",
+      "category": "Event",
+      "title": "Join 5th International Conference on Water, Energy and Environment for Sustainability (ICWEES 2025)"
+    },
+    {
+      "date": "24 Sep",
+      "category": "Conferences",
+      "title": "Join IC-WEES 2025: Advancing Sustainability: Synergizing Build Environment, Water and AI!"
+    },
+    {
+      "date": "23 Sep",
+      "category": "Vacancy",
+      "title": "Join NUST under the Project 'Security Framework for IoT'"
+    },
+    {
+      "date": "22 Sep",
+      "category": "Workshop",
+      "title": "Join NUST’s Summer School on GHG Measurement Techniques!"
+    },
+    {
+      "date": "21 Sep",
+      "category": "Workshop",
+      "title": "Join NUST’s 4-Day Hands-On Workshop on Python for AI and Data Science"
+    },
+    {
+      "date": "16 Sep",
+      "category": "Course",
+      "title": "Introducing NUST's First Ever Optimal Health and Wellness Course"
+    },
+    {
+      "date": "15 Sep",
+      "category": "Vacancy",
+      "title": "Join NUST & Gazi University as a Research Fellow!"
+    },
+    {
+      "date": "13 Sep",
+      "category": "Workshop",
+      "title": "Join NUST’s 2-Day Workshop on Programming in Python for Beginners!"
+    },
+    {
+      "date": "11 Sep",
+      "category": "Announcement",
+      "title": "NUST is Here for You!"
+    },
+    {
+      "date": "08 Sep",
+      "category": "Seminar",
+      "title": "Join Research Seminar on The Science of Mental Representations!"
+    },
+    {
+      "date": "05 Sep",
+      "category": "Workshop",
+      "title": "Machine Learning Workshop - From Theory to Data: Bridging Theoretical Models & Real-World Data"
+    },
+    {
+      "date": "05 Sep",
+      "category": "Session",
+      "title": "Session on Structural Health Monitoring of Civil Infrastructure – Methods & Applications"
+    },
+    {
+      "date": "03 Sep",
+      "category": "Workshop",
+      "title": "Join NUST’s 1-Day Workshop on Experimental Fluid Mechanics!"
+    },
+    {
+      "date": "02 Sep",
+      "category": "Vacancy",
+      "title": "Join NUST!"
+    },
+    {
+      "date": "01 Sep",
+      "category": "Workshop",
+      "title": "Join Summer School on Mathematics of Movement"
+    },
+    {
+      "date": "29 Aug",
+      "category": "Orientation",
+      "title": "Employee Orientation 2025"
+    },
+    {
+      "date": "28 Aug",
+      "category": "Announcement",
+      "title": "Project Tameer: Donate for Pakistan!"
+    },
+    {
+      "date": "26 Aug",
+      "category": "Workshop",
+      "title": "Join NUST’s three-day Applied ML 360° Interdisciplinary Bootcamp!"
+    },
+    {
+      "date": "25 Aug",
+      "category": "Workshop",
+      "title": "Join NUST's 2-Day Hands-On Workshop on RNA Sequencing Analysis!"
+    },
+    {
+      "date": "25 Aug",
+      "category": "Workshop",
+      "title": "Take Your Research from Bench to Breakthrough!"
+    }
+  ]
+}
+
+
+,
+    
+    {
+      "title": "NED Events",
+      "university": "NED University of Engineering & Technology",
+      "events": [
+        {
+          "title": "3rd International Conference on Economics and Allied Sciences (ISIF-2025)",
+          "theme": "Innovation, Sustainability, and Islamic Finance: Shaping Pakistan’s Green Economy",
+          "date": "2025-11-11 to 2025-11-12",
+          "category": "Conference"
+        },
+        {
+          "title": "11th International Conference of the Linguistics Association of Pakistan (ICLAP 2025)",
+          "theme": "Exploring the Intersections of Language, Technology, and Society",
+          "date": "2025-11-05 to 2025-11-07",
+          "category": "Conference"
+        },
+        {
+          "title": "2nd International Conference on Technology-Driven Climate Action (CLIMATECH-2025)",
+          "theme": "Sustainable Innovations for Climate Change",
+          "date": "2025-01-16 to 2025-01-17",
+          "category": "Conference"
+        },
+        {
+          "title": "CAREER FAIR 2024 by Directorate of Industrial Liaison",
+          "theme": "Industrial Linkage & Job Opportunities",
+          "date": "2024-11-20",
+          "category": "Career Fair"
+        },
+        {
+          "title": "Leadership Conference 2024: 1st National Conference on Industrial Linkage",
+          "theme": "Fostering Sustainable Partnerships Between Industry and Academia",
+          "date": "2024-08-03",
+          "category": "Leadership/Industry"
+        }
+      ]
+    },
+    {
+      "title": "NUST Events",
+      "university": "National University of Sciences & Technology (NUST)",
+      "events": [
+        {
+          "title": "IC-WEES 2025: Advancing Sustainability",
+          "theme": "Synergizing Built Environment, Water and AI",
+          "date": "2025-09-24",
+          "category": "Conference"
+        },
+        {
+          "title": "Summer School on Mathematics of Movement",
+          "theme": "Understanding the science behind motion using mathematics",
+          "date": "2025-09-01",
+          "category": "Workshop"
+        },
+        {
+          "title": "Applied ML 360° Interdisciplinary Bootcamp",
+          "theme": "Hands-on bootcamp covering practical applications of Machine Learning",
+          "date": "2025-08-26 to 2025-08-28",
+          "category": "Workshop"
+        },
+        {
+          "title": "Crash Course in Python (Session 1)",
+          "theme": "Beginner-friendly programming workshop for Python",
+          "date": "2025-08-11",
+          "category": "Workshop"
+        },
+        {
+          "title": "Crash Course in Python (Session 2)",
+          "theme": "Second batch of beginner-friendly Python training",
+          "date": "2025-08-11",
+          "category": "Workshop"
+        },
+        {
+          "title": "MATLAB Workshop",
+          "theme": "Master engineering tools for innovation using MATLAB",
+          "date": "2025-08-04",
+          "category": "Workshop"
+        },
+        {
+          "title": "Virtual Reality Development Workshop",
+          "theme": "Five-day hands-on VR development workshop",
+          "date": "2025-08-04 to 2025-08-08",
+          "category": "Workshop"
+        },
+        {
+          "title": "Career Development Series",
+          "theme": "Guidance on resumes, interviews, and industry readiness",
+          "date": "Ongoing",
+          "category": "Career Development"
+        },
+        {
+          "title": "Centre for Counselling & Career Advisory Sessions",
+          "theme": "Mental health, academic, and career counselling for students",
+          "date": "Ongoing",
+          "category": "Student Support"
+        },
+        {
+          "title": "Industry-Academia Linkage Meetups",
+          "theme": "Bridging the gap between academic research and industrial needs",
+          "date": "Ongoing",
+          "category": "Networking"
+        }
+      ]
+    }
+  ]
+}

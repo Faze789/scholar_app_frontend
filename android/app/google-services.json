@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "504053698707",
+    "project_id": "scholar-match-fyp",
+    "storage_bucket": "scholar-match-fyp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504053698707:android:da641f75fecc7dd333fd66",
+        "android_client_info": {
+          "package_name": "com.example.scholar_match_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKL_gAFLybzrFxqgGTYLDmpjIYCRa9YPg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
