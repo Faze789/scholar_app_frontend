@@ -139,7 +139,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                 ),
               ),
               SizedBox(height: 32),
-              Container(
+              SizedBox(
                 width: double.infinity,
                 height: 56,
                 child: ElevatedButton(
@@ -249,7 +249,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                   ),
                 ),
                 SizedBox(height: 24),
-                Container(
+                SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
@@ -313,7 +313,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                   ),
                 ),
                 SizedBox(height: 24),
-                Container(
+                SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {

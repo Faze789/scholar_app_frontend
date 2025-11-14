@@ -1,5 +1,7 @@
 import 'dart:async';
-import 'student_alumni.dart';
+import 'package:scholar_match_app/admin/admin_dashboard.dart';
+
+import 'student_alumni_admin.dart';
 import 'student/student_screen.dart'; 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -28,6 +30,7 @@ import 'package:scholar_match_app/student/NustUniScreen.dart';
 import 'package:scholar_match_app/student/FAST_UNI_FEES.dart';
 import 'package:scholar_match_app/alumni/AlumniNedEvents.dart';
 import 'package:scholar_match_app/student/connect_alumni.dart';
+import 'package:scholar_match_app/admin/admin_home_screen.dart';
 import 'package:scholar_match_app/alumni/AlumniIqraEvents.dart';
 import 'package:scholar_match_app/alumni/AlumniNustEvents.dart';
 import 'package:scholar_match_app/alumni/AlumniHomeScreen.dart';
@@ -62,6 +65,7 @@ import 'package:scholar_match_app/student/abroad_scholarships/turkey_scholarship
 import 'package:scholar_match_app/student/abroad_scholarships/hungary_scholarships.dart';
 import 'package:scholar_match_app/student/abroad_scholarships/chevening_scholarships.dart';
 import 'package:scholar_match_app/student/abroad_scholarships/abroad_scholarships_screen.dart';
+
 
 
 
@@ -633,6 +637,31 @@ GoRoute(
         return EventsApplied(alumniData: alumniData);
       },
     ),
+
+
+
+    GoRoute(
+      path: '/admin',
+      builder: (context, state) {
+        return admin();
+      },
+    ),
+
+     GoRoute(
+  path: '/admin_dashboard',
+  builder: (context, state) {
+    final data = state.extra as Map<String, dynamic>;
+    return admin_dashboard(
+      email: data['email'],
+      password: data['password'],
+    );
+  },
+),
+
+
+
+
+
 
 
       

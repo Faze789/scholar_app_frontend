@@ -31,7 +31,7 @@ class _UetFeePageState extends State<UetFeePage> {
   Future<void> fetchFeeData() async {
     try {
       final response =
-          await http.get(Uri.parse("http://192.168.100.149:5000/feesuet"));
+          await http.get(Uri.parse("http://192.168.100.121:5000/feesuet"));
       if (response.statusCode == 200) {
         final decoded = json.decode(response.body);
         if (decoded["status"] == "success") {

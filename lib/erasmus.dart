@@ -26,7 +26,7 @@ class _ErasmusScholarshipScreenState extends State<ErasmusScholarshipScreen> {
   Future<void> fetchScholarshipData() async {
     try {
       final response = await http.get(
-        Uri.parse('http://192.168.100.149:5000/erasmus'),
+        Uri.parse('http://192.168.100.121:5000/erasmus'),
         headers: {'Content-Type': 'application/json'},
       );
 
@@ -253,14 +253,13 @@ class _ErasmusScholarshipScreenState extends State<ErasmusScholarshipScreen> {
         title: const Text("Erasmus Scholarship"),
         backgroundColor: Colors.deepPurple,
         foregroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.go('/abroad-scholarships', extra: widget.studentData),
-        ),
+      
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: fetchScholarshipData,
+            icon: const Icon(Icons.home),
+            onPressed: () {
+              context.go('/student_dashboard', extra: widget.studentData); 
+            },
             tooltip: 'Refresh data',
           ),
         ],

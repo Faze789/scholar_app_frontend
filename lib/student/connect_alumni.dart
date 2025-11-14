@@ -123,7 +123,7 @@ class _ConnectAlumniScreenState extends State<ConnectAlumniScreen> {
             padding: const EdgeInsets.all(16),
             child: Row(
               children: [
-                // Avatar with status indicator
+                
                 Stack(
                   children: [
                     Container(

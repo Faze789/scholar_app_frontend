@@ -33,7 +33,7 @@ class _ComsatsUniState extends State<ComsatsUni> {
 
   Future<void> fetchFeeData() async {
     try {
-      final uri = Uri.parse('http://192.168.100.149:5000//feescomsats');
+      final uri = Uri.parse('http://192.168.100.121:5000/feescomsats');
       final response = await http.get(uri);
 
       if (!mounted) return;

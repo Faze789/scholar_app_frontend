@@ -162,24 +162,24 @@ Future<bool> _callPredictionAPI() async {
       final result = json.decode(processedResponse);
       
       if (result['universities'] == null || result['universities'] is! List) {
-        print('❌ Invalid API response structure');
+        print('Invalid API response structure');
         _showErrorDialog("Invalid API response structure");
         return false;
       }
 
-      print('✅ API call successful, universities found: ${result['universities'].length}');
+      print(' API call successful, universities found: ${result['universities'].length}');
       
       setState(() {
         apiResponseData = result;
       });
       return true;
     } else {
-      print('❌ API Error: ${response.statusCode}');
+      print(' API Error: ${response.statusCode}');
       _showErrorDialog("API Error: ${response.statusCode}\n${response.body}");
       return false;
     }
   } catch (e) {
-    print('❌ API call failed: $e');
+    print(' API call failed: $e');
     _showErrorDialog("API call failed: $e");
     return false;
   }
@@ -210,7 +210,7 @@ Future<bool> _callPredictionAPI() async {
     );
 
     try {
-      print('🔄 Starting registration process...');
+      print('Starting registration process...');
 
       String? imageUrl;
       if (_profileImage != null) {
@@ -221,20 +221,20 @@ Future<bool> _callPredictionAPI() async {
           _showErrorDialog("Failed to upload image to Cloudinary.");
           return;
         }
-        print('✅ Image uploaded successfully: $imageUrl');
+        print(' Image uploaded successfully: $imageUrl');
       }
 
-      print('🔄 Calling prediction API...');
+      print('Calling prediction API...');
       final apiSuccess = await _callPredictionAPI();
       if (!apiSuccess) {
         Navigator.pop(context);
         return;
       }
-      print('✅ API call successful');
+      print('API call successful');
 
       Navigator.pop(context);
 
-      print('🔄 Sending OTP...');
+      print('Sending OTP...');
       final otpSent = await _sendOtp();
       if (!otpSent) {
         return;
@@ -259,7 +259,7 @@ Future<bool> _callPredictionAPI() async {
         ),
       );
 
-      print('🔄 Creating Firebase user...');
+      print('Creating Firebase user...');
 UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
   email: email,
   password: password,
@@ -269,20 +269,20 @@ final user = userCredential.user;
 if (user == null) {
   throw Exception("Firebase user creation failed");
 }
-print('✅ Firebase user created: ${user.uid}');
+print('Firebase user created: ${user.uid}');
 
 
-print('🔄 Preparing student data...');
+print('Preparing student data...');
 final studentData = _prepareStudentData(imageUrl);
-print('✅ Student data prepared');
+print('Student data prepared');
 
-print('🔄 Saving to Firestore...');
+print('Saving to Firestore...');
 await _firestore.collection('students_data').doc(user.uid).set(studentData)
   .timeout(const Duration(seconds: 30));
-print('✅ Data saved to Firestore with UID: ${user.uid}');
+print('Data saved to Firestore with UID: ${user.uid}');
 
 
-print('🔄 Verifying saved data...');
+print('Verifying saved data...');
 final savedDoc = await _firestore.collection('students_data').doc(user.uid).get()
   .timeout(const Duration(seconds: 15));
 
@@ -297,7 +297,7 @@ print('✅ Data verification successful');
       _showSuccessDialog();
 
     } catch (e) {
-      print('❌ Registration failed: $e');
+      print('Registration failed: $e');
       Navigator.pop(context);
       _showErrorDialog("Registration failed: $e");
     }
@@ -319,7 +319,7 @@ print('✅ Data verification successful');
         final data = json.decode(response.body);
         if (data['success'] == true) {
           _otpId = data['otpId'];
-          print('✅ OTP sent successfully, otpId: $_otpId');
+          print('OTP sent successfully, otpId: $_otpId');
           return true;
         }
       }
@@ -327,7 +327,7 @@ print('✅ Data verification successful');
       _showErrorDialog("Failed to send OTP: ${response.body}");
       return false;
     } catch (e) {
-      print('❌ Send OTP failed: $e');
+      print(' Send OTP failed: $e');
       _showErrorDialog("Failed to send OTP: $e");
       return false;
     }
@@ -350,7 +350,7 @@ print('✅ Data verification successful');
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         if (data['success'] == true) {
-          print('✅ OTP verified successfully');
+          print(' OTP verified successfully');
           return true;
         }
       }
@@ -358,7 +358,7 @@ print('✅ Data verification successful');
       _showErrorDialog("OTP verification failed: ${json.decode(response.body)['error'] ?? response.body}");
       return false;
     } catch (e) {
-      print('❌ Verify OTP failed: $e');
+      print(' Verify OTP failed: $e');
       _showErrorDialog("OTP verification failed: $e");
       return false;
     }
@@ -447,7 +447,7 @@ print('✅ Data verification successful');
         'fsc_marks': null,     
       });
       
-      print('✅ O/A Level Student - Saving: O-Level=$oLevelMarks, A-Level=$aLevelMarks, Matric=null, FSC=null');
+      print('O/A Level Student - Saving: O-Level=$oLevelMarks, A-Level=$aLevelMarks, Matric=null, FSC=null');
     } else {
       data.addAll({
         'matric_marks': double.tryParse(matricMarks) ?? 0,
@@ -456,7 +456,7 @@ print('✅ Data verification successful');
         'a_level_marks': null,   
       });
       
-      print('✅ Matric/FSC Student - Saving: Matric=$matricMarks, FSC=$fscMarks, O-Level=null, A-Level=null');
+      print(' Matric/FSC Student - Saving: Matric=$matricMarks, FSC=$fscMarks, O-Level=null, A-Level=null');
     }
 
     data.addAll({
@@ -521,7 +521,7 @@ print('✅ Data verification successful');
 
           switch (uniId) {
             case 'iiui':
-              print('✅ IIUI data processed successfully');
+              print(' IIUI data processed successfully');
               data.addAll({
                 'iiui_processed': true,
                 'iiui_processing_date': FieldValue.serverTimestamp(),
@@ -529,35 +529,35 @@ print('✅ Data verification successful');
               break;
               
             case 'ned':
-              print('✅ NED data processed successfully');
+              print(' NED data processed successfully');
               break;
               
             case 'nust':
-              print('✅ NUST data processed successfully');
+              print(' NUST data processed successfully');
               break;
               
             case 'comsats':
-              print('✅ COMSATS data processed successfully');
+              print(' COMSATS data processed successfully');
               break;
               
             case 'fast':
-              print('✅ FAST data processed successfully');
+              print(' FAST data processed successfully');
               break;
               
             case 'uet':
-              print('✅ UET data processed successfully');
+              print(' UET data processed successfully');
               break;
               
             case 'bahria':
-              print('✅ Bahria data processed successfully');
+              print(' Bahria data processed successfully');
               break;
               
             case 'iqra':
-              print('✅ Iqra data processed successfully');
+              print(' Iqra data processed successfully');
               break;
               
             default:
-              print('✅ $uniName data processed successfully');
+              print(' $uniName data processed successfully');
           }
         }
 
@@ -571,21 +571,21 @@ print('✅ Data verification successful');
           }).toList(),
         });
 
-        print('✅ All university data processed successfully');
+        print(' All university data processed successfully');
         
       } catch (e) {
-        print('⚠️ Warning: Error processing API response data: $e');
+        print(' Warning: Error processing API response data: $e');
         data.addAll({
           'api_processing_error': e.toString(),
           'api_processing_timestamp': FieldValue.serverTimestamp(),
         });
       }
     } else {
-      print('⚠️ No API response data available');
+      print('No API response data available');
       data['api_data_available'] = false;
     }
 
-    print('🔥 FINAL DATA STRUCTURE:');
+    print(' FINAL DATA STRUCTURE:');
     print('is_o_a_level: ${data['is_o_a_level']}');
     print('matric_marks: ${data['matric_marks']}');
     print('fsc_marks: ${data['fsc_marks']}');
@@ -613,7 +613,7 @@ print('✅ Data verification successful');
           
               ...((apiResponseData!['universities'] as List)
                   .where((uni) => uni['admitted'] == true)
-                  .map((uni) => Text("✅ Admitted: ${uni['name']}", 
+                  .map((uni) => Text(" Admitted: ${uni['name']}", 
                       style: const TextStyle(color: Colors.green, fontSize: 12)))
                   .toList()),
             ],
