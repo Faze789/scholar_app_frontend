@@ -15,7 +15,7 @@ class _uni_of_educationState extends State<uni_of_education> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'UNIVERISTY OF EDUCATION',
+          'UNIVERSITY OF EDUCATION',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.white,
@@ -47,7 +47,7 @@ class _uni_of_educationState extends State<uni_of_education> {
                     ),
                     SizedBox(width: 4),
                     Text(
-                      'Bahria Fee',
+                      'UE FEE',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
@@ -61,10 +61,10 @@ class _uni_of_educationState extends State<uni_of_education> {
           ),
         ],
       ),
+
       body: SingleChildScrollView(
         child: Column(
           children: [
-          
             Container(
               height: 320,
               decoration: const BoxDecoration(
@@ -78,16 +78,18 @@ class _uni_of_educationState extends State<uni_of_education> {
                 children: [
                   Positioned.fill(
                     child: Image.network(
-                      'https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
+                      'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80',
                       fit: BoxFit.cover,
                       opacity: const AlwaysStoppedAnimation(0.4),
                     ),
                   ),
+
                   Container(
                     padding: const EdgeInsets.all(20),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
+
                       children: [
                         const Text(
                           'Welcome to',
@@ -97,8 +99,9 @@ class _uni_of_educationState extends State<uni_of_education> {
                           ),
                         ),
                         const SizedBox(height: 8),
+
                         const Text(
-                          'Bahria University',
+                          'University of Education',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 36,
@@ -106,24 +109,27 @@ class _uni_of_educationState extends State<uni_of_education> {
                             height: 1.2,
                           ),
                         ),
+
                         const SizedBox(height: 4),
                         const Text(
-                          'جامعہ بحریہ',
+                          'جامعہ تعلیم لاہور',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
+
                         const SizedBox(height: 16),
                         const Text(
-                          'A Federally Chartered Public Sector University established by Pakistan Navy in 2000',
+                          'A multi-campus Public University established in 2002, dedicated to excellence in education, research, and teacher development in Pakistan.',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                             height: 1.4,
                           ),
                         ),
+
                         const SizedBox(height: 20),
                         ElevatedButton(
                           onPressed: () {},
@@ -155,9 +161,10 @@ class _uni_of_educationState extends State<uni_of_education> {
               padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+
                 children: [
                   const Text(
-                    'About Bahria University',
+                    'University of Education',
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
@@ -165,27 +172,29 @@ class _uni_of_educationState extends State<uni_of_education> {
                     ),
                   ),
                   const SizedBox(height: 16),
+
                   const Text(
-                    'Bahria University is a Federally Chartered Public Sector University established by the Pakistan Navy in 2000. With its principal seat at Islamabad and campuses in Karachi and Lahore, Bahria University has steadily grown into one of the leading higher education institutions in Pakistan. The university plays a major role in grooming future leaders who can make a positive difference to the world around them.',
+                    'Established in 2002 with multiple campuses across Punjab, the University of Education (UE) is one of Pakistan’s leading public universities specializing in teacher education, sciences, management, social sciences, and research development. It plays a vital role in producing qualified educators, researchers, and leaders for academic and professional fields.',
                     style: TextStyle(
                       fontSize: 16,
                       height: 1.6,
                       color: Colors.black87,
                     ),
                   ),
+
                   const SizedBox(height: 20),
                   Row(
                     children: [
                       Expanded(
-                        child: _buildStatCard('24+', 'Years of Excellence'),
+                        child: _buildStatCard('22+', 'Years of Excellence'),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
-                        child: _buildStatCard('25,000+', 'Students'),
+                        child: _buildStatCard('36,000+', 'Students'),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
-                        child: _buildStatCard('3', 'Campuses'),
+                        child: _buildStatCard('9', 'Campuses'),
                       ),
                     ],
                   ),
@@ -193,89 +202,76 @@ class _uni_of_educationState extends State<uni_of_education> {
               ),
             ),
 
+   
             _buildSection(
               title: 'Academic Programs',
-              imageUrl: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
+              imageUrl: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644',
               items: [
-                'Faculty of Computer Sciences',
-                'Faculty of Engineering Sciences',
-                'Faculty of Management Sciences',
-                'Faculty of Architecture & Design',
+                'Faculty of Education',
                 'Faculty of Social Sciences',
+                'Faculty of Science & Technology',
+                'Faculty of Economics & Management',
+                'Faculty of Languages & Humanities',
                 'Faculty of Life Sciences',
               ],
             ),
 
-         
             _buildSection(
               title: 'Research & Innovation',
-              imageUrl: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
+              imageUrl: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d',
               items: [
-                'Center for Advanced Research in Engineering',
-                'Maritime Technology Center',
-                'Cyber Security Research Lab',
-                'Artificial Intelligence & Robotics Lab',
-                'Innovation & Entrepreneurship Center',
-                'Research Publications & Patents',
-              ],
-            ),
-
-        
-            _buildSection(
-              title: 'Campus Life',
-              imageUrl: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
-              items: [
-                'State-of-the-art Hostel Facilities',
-                'Sports Complex & Gymnasium',
-                'Student Societies & Clubs',
-                'Cultural & Social Activities',
-                'Medical Center & Healthcare',
-                'Transportation Services',
-              ],
-            ),
-
-          
-            _buildSection(
-              title: 'Admissions',
-              imageUrl: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
-              items: [
-                'Undergraduate Programs',
-                'Graduate Programs',
-                'Doctoral Programs',
-                'Merit-based Scholarships',
-                'Need-based Financial Aid',
-                'International Student Programs',
-              ],
-            ),
-
-          
-            _buildSection(
-              title: 'International Relations',
-              imageUrl: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
-              items: [
-                'Global University Partnerships',
-                'Student Exchange Programs',
-                'International Faculty Recruitment',
-                'Dual Degree Programs',
-                'International Conferences & Seminars',
-                'Cross-cultural Learning Opportunities',
+                'Educational Research Centers',
+                'Science & Technology Labs',
+                'Social Science Research Units',
+                'Digital Learning Innovation Lab',
+                'Teacher Training & Development Centers',
+                'Research Publications & Journals',
               ],
             ),
 
          
             _buildSection(
-              title: 'Alumni Network',
-              imageUrl: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
+              title: 'Campus Life',
+              imageUrl: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f',
               items: [
-                'Successful Graduates in Leading Positions',
-                'Alumni Mentorship Programs',
-                'Career Development Services',
-                'Professional Networking Events',
-                'Industry Partnerships',
-                'Lifelong Learning Support',
+                'Hostel Facilities',
+                'Sports Grounds & Complex',
+                'Student Societies & Clubs',
+                'Seminars & Workshops',
+                'Medical & Counseling Services',
+                'Transportation Facilities',
               ],
             ),
 
+           
+            _buildSection(
+              title: 'Admissions',
+              imageUrl: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173',
+              items: [
+                'Undergraduate Programs',
+                'Graduate (MS/MPhil) Programs',
+                'PhD Programs',
+                'Merit-based Scholarships',
+                'Need-based Scholarships',
+                'Entry Test & Interview System',
+              ],
+            ),
+
+    
+            _buildSection(
+              title: 'Alumni Network',
+              imageUrl: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18',
+              items: [
+                'Graduates in Education Sector',
+                'Alumni Mentorship',
+                'Professional Networking',
+                'Career Development',
+                'Government & Private Sector Placement',
+                'Teacher Training Leadership',
+              ],
+            ),
+
+            // ---------- CONTACT ----------
             Container(
               padding: const EdgeInsets.all(20),
               margin: const EdgeInsets.all(20),
@@ -285,6 +281,7 @@ class _uni_of_educationState extends State<uni_of_education> {
                 ),
                 borderRadius: BorderRadius.circular(12),
               ),
+
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -297,51 +294,56 @@ class _uni_of_educationState extends State<uni_of_education> {
                     ),
                   ),
                   const SizedBox(height: 16),
+
                   const Row(
                     children: [
                       Icon(Icons.location_on, color: Colors.white, size: 20),
                       SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          'Shangrilla Road, Sector E-8/1, Islamabad, Pakistan',
+                          'College Road, Township, Lahore, Pakistan',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 8),
+
                   const Row(
                     children: [
                       Icon(Icons.phone, color: Colors.white, size: 20),
                       SizedBox(width: 8),
                       Text(
-                        '+92-51-9260002-7',
+                        '+92-42-99262214',
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
                   ),
                   const SizedBox(height: 8),
+
                   const Row(
                     children: [
                       Icon(Icons.email, color: Colors.white, size: 20),
                       SizedBox(width: 8),
                       Text(
-                        'info@bahria.edu.pk',
+                        'info@ue.edu.pk',
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
                   ),
                   const SizedBox(height: 8),
+
                   const Row(
                     children: [
                       Icon(Icons.language, color: Colors.white, size: 20),
                       SizedBox(width: 8),
                       Text(
-                        'www.bahria.edu.pk',
+                        'www.ue.edu.pk',
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
                   ),
+
                   const SizedBox(height: 16),
                   Row(
                     children: [
@@ -360,6 +362,7 @@ class _uni_of_educationState extends State<uni_of_education> {
                         ),
                       ),
                       const SizedBox(width: 12),
+
                       ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
@@ -437,10 +440,12 @@ class _uni_of_educationState extends State<uni_of_education> {
           ),
         ],
       ),
+
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+
           children: [
             Container(
               height: 200,
@@ -450,6 +455,7 @@ class _uni_of_educationState extends State<uni_of_education> {
                   fit: BoxFit.cover,
                 ),
               ),
+
               child: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -461,6 +467,7 @@ class _uni_of_educationState extends State<uni_of_education> {
                     ],
                   ),
                 ),
+
                 child: Padding(
                   padding: const EdgeInsets.all(20),
                   child: Align(
@@ -477,11 +484,14 @@ class _uni_of_educationState extends State<uni_of_education> {
                 ),
               ),
             ),
+
             Container(
               color: Colors.white,
               padding: const EdgeInsets.all(20),
+
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+
                 children: items
                     .map(
                       (item) => Padding(

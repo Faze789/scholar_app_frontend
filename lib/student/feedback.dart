@@ -51,11 +51,15 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.deepPurple),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
+            icon: const Icon(Icons.home, color: Colors.grey),
+            tooltip: 'Go to Dashboard',
+            onPressed: () {
+              context.go(
+                '/student_dashboard',
+                extra: widget.studentData,
+              );
+            },
+          ),
         title: Text(
           'Share Feedback',
           style: TextStyle(

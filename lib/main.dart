@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'package:scholar_match_app/admin/admin_dashboard.dart';
-
 import 'student_alumni_admin.dart';
 import 'student/student_screen.dart'; 
 import 'package:flutter/material.dart';
@@ -13,6 +11,7 @@ import 'package:scholar_match_app/student/air_feee.dart';
 import 'package:scholar_match_app/student/iiui_uni.dart';
 import 'package:scholar_match_app/student/lums_fee.dart';
 import 'package:scholar_match_app/student/all_chats.dart';
+import 'package:scholar_match_app/student/visual_uni.dart';
 import 'package:scholar_match_app/student/uni_events.dart';
 import 'package:scholar_match_app/student/AIR_scholar.dart';
 import 'package:scholar_match_app/student/chat_screen.dart';
@@ -20,6 +19,7 @@ import 'package:scholar_match_app/student/comsats_uni.dart';
 import 'package:scholar_match_app/alumni/apply_alumnii.dart';
 import 'package:scholar_match_app/alumni/comsats_event.dart';
 import 'package:scholar_match_app/student/UetDashboard.dart';
+import 'package:scholar_match_app/admin/admin_dashboard.dart';
 import 'package:scholar_match_app/alumni/all_uni_events.dart';
 import 'package:scholar_match_app/alumni/events_applied.dart';
 import 'package:scholar_match_app/alumni/alumni_sign_in.dart';
@@ -50,6 +50,7 @@ import 'package:scholar_match_app/student/FAST_SCHOLARSHIPS.dart';
 import 'package:scholar_match_app/alumni/alumni_chats_screen.dart';
 import 'package:scholar_match_app/student/StudentLoginScreen.dart';
 import 'package:scholar_match_app/student/FAST_UNI_DASHBOARD.dart';
+import 'package:scholar_match_app/admin/admin_check_all_users.dart';
 import 'package:scholar_match_app/student/ComsatsUniDashboard.dart';
 import 'package:scholar_match_app/student/StudentSignUpScreen.dart';
 import 'package:scholar_match_app/student/uni_of_education_fee.dart';
@@ -57,6 +58,7 @@ import 'package:scholar_match_app/student/AllScholarshipsScreen.dart';
 import 'package:scholar_match_app/student/NustScholarshipScreen.dart';
 import 'package:scholar_match_app/student/StudentDashboardScreen.dart';
 import 'package:scholar_match_app/student/ned_scholarship_screen.dart';
+import 'package:scholar_match_app/admin/admin_check_user_feedback.dart';
 import 'package:scholar_match_app/student/COMSATS_scholarship_screen.dart';
 import 'package:scholar_match_app/student/abroad_scholarships/rhodes.dart';
 import 'package:scholar_match_app/student/abroad_scholarships/common_wealth.dart';
@@ -65,6 +67,9 @@ import 'package:scholar_match_app/student/abroad_scholarships/turkey_scholarship
 import 'package:scholar_match_app/student/abroad_scholarships/hungary_scholarships.dart';
 import 'package:scholar_match_app/student/abroad_scholarships/chevening_scholarships.dart';
 import 'package:scholar_match_app/student/abroad_scholarships/abroad_scholarships_screen.dart';
+
+
+
 
 
 
@@ -184,6 +189,16 @@ class MyApp extends StatelessWidget {
         return FeedbackScreen(studentData: studentData);
       },
     ),
+
+      GoRoute(
+      path: '/visual_uni',
+      name: 'visual_uni',
+      builder: (context, state) {
+        final studentData = state.extra as Map<String, dynamic>;
+        return VisualUni(studentData: studentData);
+      },
+    ),
+
 
 
 
@@ -657,6 +672,30 @@ GoRoute(
     );
   },
 ),
+
+
+     GoRoute(
+  path: '/admin_check_all_users',
+  builder: (context, state) {
+    final data = state.extra as Map<String, dynamic>;
+    return AdminCheckAllUsers(
+      email: data['email'],
+      password: data['password'],
+    );
+  },
+),
+
+    GoRoute(
+  path: '/admin_check_user_feedback',
+  builder: (context, state) {
+    final data = state.extra as Map<String, dynamic>;
+    return AdminCheckUserFeedback(
+      email: data['email'],
+      password: data['password'],
+    );
+  },
+),
+
 
 
 

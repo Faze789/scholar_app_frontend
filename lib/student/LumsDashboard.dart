@@ -61,7 +61,7 @@ class _LumsDashboardState extends State<LumsDashboard> {
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Colors.grey,
                     ),
                   ),
                   SizedBox(height: 8),
@@ -69,7 +69,7 @@ class _LumsDashboardState extends State<LumsDashboard> {
                     'Lahore University of Management Sciences (LUMS) is a leading institution in Pakistan, renowned for its world-class education in business, humanities, and sciences.',
                     style: TextStyle(
                       fontSize: 18,
-                      color: Colors.white,
+                      color: Colors.grey,
                     ),
                     textAlign: TextAlign.left,
                   ),
@@ -96,7 +96,7 @@ class _LumsDashboardState extends State<LumsDashboard> {
               description:
                   'LUMS offers a diverse range of programs in management, law, engineering, sciences, and humanities, designed to foster critical thinking and leadership.',
               imageUrl:
-                  'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
+                  'assets/lums_acad.jpg',
             ),
          
             UniversitySection(
@@ -104,7 +104,7 @@ class _LumsDashboardState extends State<LumsDashboard> {
               description:
                   'Our state-of-the-art research facilities and innovation centers drive transformative solutions for industry and society.',
               imageUrl:
-                  'https://images.unsplash.com/photo-1581093458791-9d7a6c7b8c7f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
+                  'assets/lums_res.jpg',
             ),
           
             UniversitySection(
@@ -120,7 +120,7 @@ class _LumsDashboardState extends State<LumsDashboard> {
               description:
                   'LUMS connects students with global universities and industries, offering exchange programs and international internships.',
               imageUrl:
-                  'https://images.unsplash.com/photo-1546410531-1568e3b6836b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
+                  'assets/lums_global.png',
             ),
             const SizedBox(height: 16),
      
@@ -174,20 +174,28 @@ class UniversitySection extends StatelessWidget {
                 topLeft: Radius.circular(12),
                 bottomLeft: Radius.circular(12),
               ),
-              child: Image.network(
-                imageUrl,
-                width: 120,
-                height: 120,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    width: 120,
-                    height: 120,
-                    color: Colors.grey,
-                    child: const Icon(Icons.error),
-                  );
-                },
-              ),
+              child: (imageUrl.startsWith('assets/')
+    ? Image.asset(
+        imageUrl,
+        width: 120,
+        height: 120,
+        fit: BoxFit.cover,
+      )
+    : Image.network(
+        imageUrl,
+        width: 120,
+        height: 120,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          return Container(
+            width: 120,
+            height: 120,
+            color: Colors.grey,
+            child: const Icon(Icons.error),
+          );
+        },
+      )),
+
             ),
             Expanded(
               child: Padding(

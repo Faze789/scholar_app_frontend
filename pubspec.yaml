@@ -45,6 +45,7 @@ dependencies:
   intl: ^0.20.2
   url_launcher: ^6.3.2
   flutter_animate: ^4.5.2
+  fl_chart: ^1.1.0
 
 
 dev_dependencies:
@@ -79,6 +80,17 @@ flutter:
     - assets/air.png
     - assets/ned.png
     - assets/fast.png
+    - assets/iiui_re.jpg
+    - assets/lums_acad.jpg
+    - assets/lums_res.jpg
+    - assets/lums_global.png
+    - assets/ned_academic.jpg
+    - assets/ned_research.jpg
+    - assets/ned_student.png
+    - assets/ned_intl.jpg
+    - assets/ned_alumni.jpg
+
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

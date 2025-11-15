@@ -1,0 +1,743 @@
+import 'package:flutter/material.dart';
+import 'dart:math' as math;
+
+class VisualUni extends StatefulWidget {
+  final Map<String, dynamic> studentData;
+
+  const VisualUni({super.key, required this.studentData});
+
+  @override
+  State<VisualUni> createState() => _VisualUniState();
+}
+
+class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _animation;
+  int _selectedView = 0; // 0: Radial, 1: Bar, 2: Comparison
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    );
+    _animation = CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeOutCubic,
+    );
+    _animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  List<UniversityData> _getUniversityData() {
+    final List<dynamic> universities = widget.studentData['universities_list'] ?? [];
+    return universities.map((uni) {
+      final String id = uni['id'] ?? '';
+      final String name = uni['name'] ?? '';
+      final bool admitted = uni['admitted'] ?? false;
+      final String admissionChance = uni['admission_chance'] ?? 'N/A';
+      
+      // Get student aggregate
+      final double studentAggregate = (widget.studentData['${id}_student_aggregate'] ?? 0.0).toDouble();
+      
+      // Get last year aggregate
+      final double lastYearAggregate = (widget.studentData['${id}_last_year_aggregate'] ?? 0.0).toDouble();
+      
+      // Get predicted 2026 aggregate
+      final double predicted2026 = (widget.studentData['${id}_predicted_2026_aggregate'] ?? 0.0).toDouble();
+      
+      return UniversityData(
+        id: id,
+        name: name,
+        admitted: admitted,
+        admissionChance: admissionChance,
+        studentAggregate: studentAggregate,
+        lastYearAggregate: lastYearAggregate,
+        predicted2026: predicted2026,
+      );
+    }).toList();
+  }
+
+  Color _getChanceColor(String chance) {
+    if (chance.contains('High (90%+)')) return const Color(0xFF10B981);
+    if (chance.contains('Good (70-90%)')) return const Color(0xFF3B82F6);
+    if (chance.contains('Possible (30-70%)')) return const Color(0xFFF59E0B);
+    return const Color(0xFF6B7280);
+  }
+
+  double _getChancePercentage(String chance) {
+    if (chance.contains('High (90%+)')) return 95.0;
+    if (chance.contains('Good (70-90%)')) return 80.0;
+    if (chance.contains('Possible (30-70%)')) return 50.0;
+    return 20.0;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final universityData = _getUniversityData();
+    final admittedCount = universityData.where((u) => u.admitted == true).length;
+    final totalCount = universityData.where((u) => u.admitted != null).length;
+
+    return Scaffold(
+      backgroundColor: const Color(0xFF0F172A),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF1E293B),
+        elevation: 0,
+        title: const Text(
+          'University Admission Analysis',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
+      body: Column(
+        children: [
+          // Stats Header
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  const Color(0xFF1E293B),
+                  const Color(0xFF0F172A),
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildStatCard(
+                  'Admitted',
+                  '$admittedCount/$totalCount',
+                  Icons.check_circle,
+                  const Color(0xFF10B981),
+                ),
+                _buildStatCard(
+                  'Avg Score',
+                  '${widget.studentData['matric_marks'] != null ? ((widget.studentData['matric_marks'] as num) / 11).toStringAsFixed(1) : 'N/A'}%',
+                  Icons.school,
+                  const Color(0xFF3B82F6),
+                ),
+                _buildStatCard(
+                  'Top Match',
+                  _getTopMatch(universityData),
+                  Icons.star,
+                  const Color(0xFFF59E0B),
+                ),
+              ],
+            ),
+          ),
+
+          // View Selector
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Row(
+              children: [
+                _buildViewButton('Radial', Icons.pie_chart, 0),
+                const SizedBox(width: 10),
+                _buildViewButton('Bars', Icons.bar_chart, 1),
+                const SizedBox(width: 10),
+                _buildViewButton('Compare', Icons.compare_arrows, 2),
+              ],
+            ),
+          ),
+
+          // Main Content
+          Expanded(
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              child: _buildSelectedView(universityData),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStatCard(String label, String value, IconData icon, Color color) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: color.withOpacity(0.3)),
+      ),
+      child: Column(
+        children: [
+          Icon(icon, color: color, size: 24),
+          const SizedBox(height: 8),
+          Text(
+            value,
+            style: TextStyle(
+              color: color,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Text(
+            label,
+            style: TextStyle(
+              color: color.withOpacity(0.7),
+              fontSize: 12,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildViewButton(String label, IconData icon, int index) {
+    final isSelected = _selectedView == index;
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            _selectedView = index;
+            _animationController.reset();
+            _animationController.forward();
+          });
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          decoration: BoxDecoration(
+            color: isSelected ? const Color(0xFF3B82F6) : const Color(0xFF1E293B),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: isSelected ? const Color(0xFF3B82F6) : const Color(0xFF334155),
+            ),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, color: Colors.white, size: 18),
+              const SizedBox(width: 8),
+              Text(
+                label,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSelectedView(List<UniversityData> data) {
+    switch (_selectedView) {
+      case 0:
+        return _buildRadialView(data);
+      case 1:
+        return _buildBarView(data);
+      case 2:
+        return _buildComparisonView(data);
+      default:
+        return _buildRadialView(data);
+    }
+  }
+
+  Widget _buildRadialView(List<UniversityData> data) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        children: [
+          const Text(
+            'Admission Probability',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 30),
+          SizedBox(
+            height: 350,
+            child: AnimatedBuilder(
+              animation: _animation,
+              builder: (context, child) {
+                return CustomPaint(
+                  size: const Size(350, 350),
+                  painter: RadialChartPainter(
+                    data: data,
+                    animation: _animation.value,
+                    getChanceColor: _getChanceColor,
+                    getChancePercentage: _getChancePercentage,
+                  ),
+                );
+              },
+            ),
+          ),
+          const SizedBox(height: 30),
+          _buildLegend(data),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBarView(List<UniversityData> data) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Aggregate Comparison',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 20),
+          ...data.map((uni) => _buildBarItem(uni)).toList(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBarItem(UniversityData uni) {
+    final percentage = _getChancePercentage(uni.admissionChance);
+    final color = _getChanceColor(uni.admissionChance);
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Text(
+                  uni.name,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              Text(
+                '${percentage.toInt()}%',
+                style: TextStyle(
+                  color: color,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          AnimatedBuilder(
+            animation: _animation,
+            builder: (context, child) {
+              return Stack(
+                children: [
+                  Container(
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF1E293B),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  Container(
+                    height: 40,
+                    width: (MediaQuery.of(context).size.width - 40) * (percentage / 100) * _animation.value,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [color, color.withOpacity(0.6)],
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: color.withOpacity(0.5),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(
+                        uni.admissionChance,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              _buildScorePill('Your Score', uni.studentAggregate),
+              const SizedBox(width: 8),
+              _buildScorePill('Required', uni.lastYearAggregate),
+              if (uni.admitted == true)
+                const Padding(
+                  padding: EdgeInsets.only(left: 8),
+                  child: Icon(Icons.check_circle, color: Color(0xFF10B981), size: 20),
+                ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildScorePill(String label, double score) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: const Color(0xFF1E293B),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFF334155)),
+      ),
+      child: Text(
+        '$label: ${score.toStringAsFixed(1)}',
+        style: const TextStyle(
+          color: Colors.white70,
+          fontSize: 11,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildComparisonView(List<UniversityData> data) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Detailed Comparison',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 20),
+          ...data.map((uni) => _buildComparisonCard(uni)).toList(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildComparisonCard(UniversityData uni) {
+    final color = _getChanceColor(uni.admissionChance);
+    final difference = uni.studentAggregate - uni.lastYearAggregate;
+
+    return AnimatedBuilder(
+      animation: _animation,
+      builder: (context, child) {
+        return Opacity(
+          opacity: _animation.value,
+          child: Transform.translate(
+            offset: Offset(0, 20 * (1 - _animation.value)),
+            child: child,
+          ),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 16),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: const Color(0xFF1E293B),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: color.withOpacity(0.3)),
+          boxShadow: [
+            BoxShadow(
+              color: color.withOpacity(0.2),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    uni.name,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: color.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: color),
+                  ),
+                  child: Text(
+                    uni.admissionChance,
+                    style: TextStyle(
+                      color: color,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: _buildInfoColumn('Your Aggregate', uni.studentAggregate.toStringAsFixed(2), Colors.blue),
+                ),
+                Expanded(
+                  child: _buildInfoColumn('Last Year', uni.lastYearAggregate.toStringAsFixed(2), Colors.orange),
+                ),
+                Expanded(
+                  child: _buildInfoColumn('2026 Predicted', uni.predicted2026.toStringAsFixed(2), Colors.purple),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: difference >= 0 ? const Color(0xFF10B981).withOpacity(0.1) : const Color(0xFFEF4444).withOpacity(0.1),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    difference >= 0 ? Icons.trending_up : Icons.trending_down,
+                    color: difference >= 0 ? const Color(0xFF10B981) : const Color(0xFFEF4444),
+                    size: 20,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    difference >= 0
+                        ? 'You are ${difference.toStringAsFixed(2)} points above cutoff'
+                        : 'You are ${difference.abs().toStringAsFixed(2)} points below cutoff',
+                    style: TextStyle(
+                      color: difference >= 0 ? const Color(0xFF10B981) : const Color(0xFFEF4444),
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoColumn(String label, String value, Color color) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(
+            color: Colors.white54,
+            fontSize: 11,
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          value,
+          style: TextStyle(
+            color: color,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLegend(List<UniversityData> data) {
+    return Wrap(
+      spacing: 12,
+      runSpacing: 12,
+      children: data.map((uni) {
+        final color = _getChanceColor(uni.admissionChance);
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          decoration: BoxDecoration(
+            color: color.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: color.withOpacity(0.3)),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 10,
+                height: 10,
+                decoration: BoxDecoration(
+                  color: color,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Text(
+                uni.name.length > 15 ? '${uni.name.substring(0, 15)}...' : uni.name,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                ),
+              ),
+            ],
+          ),
+        );
+      }).toList(),
+    );
+  }
+
+  String _getTopMatch(List<UniversityData> data) {
+    final admitted = data.where((u) => u.admitted == true).toList();
+    if (admitted.isEmpty) return 'None';
+    admitted.sort((a, b) => b.studentAggregate.compareTo(a.studentAggregate));
+    final name = admitted.first.name;
+    return name.length > 8 ? '${name.substring(0, 8)}...' : name;
+  }
+}
+
+class UniversityData {
+  final String id;
+  final String name;
+  final bool? admitted;
+  final String admissionChance;
+  final double studentAggregate;
+  final double lastYearAggregate;
+  final double predicted2026;
+
+  UniversityData({
+    required this.id,
+    required this.name,
+    required this.admitted,
+    required this.admissionChance,
+    required this.studentAggregate,
+    required this.lastYearAggregate,
+    required this.predicted2026,
+  });
+}
+
+class RadialChartPainter extends CustomPainter {
+  final List<UniversityData> data;
+  final double animation;
+  final Color Function(String) getChanceColor;
+  final double Function(String) getChancePercentage;
+
+  RadialChartPainter({
+    required this.data,
+    required this.animation,
+    required this.getChanceColor,
+    required this.getChancePercentage,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final center = Offset(size.width / 2, size.height / 2);
+    final radius = math.min(size.width, size.height) / 2.5;
+
+    // Draw background circles
+    final bgPaint = Paint()
+      ..color = const Color(0xFF1E293B)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2;
+
+    for (int i = 1; i <= 3; i++) {
+      canvas.drawCircle(center, radius * i / 3, bgPaint);
+    }
+
+    // Draw university segments
+    final total = data.length;
+    final anglePerSegment = (2 * math.pi) / total;
+
+    for (int i = 0; i < data.length; i++) {
+      final uni = data[i];
+      final percentage = getChancePercentage(uni.admissionChance);
+      final color = getChanceColor(uni.admissionChance);
+      final startAngle = -math.pi / 2 + (i * anglePerSegment);
+      final segmentRadius = (radius * percentage / 100) * animation;
+
+      // Draw segment
+      final paint = Paint()
+        ..color = color.withOpacity(0.3)
+        ..style = PaintingStyle.fill;
+
+      final path = Path();
+      path.moveTo(center.dx, center.dy);
+      path.arcTo(
+        Rect.fromCircle(center: center, radius: segmentRadius),
+        startAngle,
+        anglePerSegment,
+        false,
+      );
+      path.close();
+      canvas.drawPath(path, paint);
+
+      // Draw border
+      final borderPaint = Paint()
+        ..color = color
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2;
+      canvas.drawPath(path, borderPaint);
+
+      // Draw label
+      final labelAngle = startAngle + anglePerSegment / 2;
+      final labelRadius = radius * 1.1;
+      final labelX = center.dx + labelRadius * math.cos(labelAngle);
+      final labelY = center.dy + labelRadius * math.sin(labelAngle);
+
+      final textPainter = TextPainter(
+        text: TextSpan(
+          text: '${percentage.toInt()}%',
+          style: TextStyle(
+            color: color,
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        textDirection: TextDirection.ltr,
+      );
+      textPainter.layout();
+      textPainter.paint(
+        canvas,
+        Offset(labelX - textPainter.width / 2, labelY - textPainter.height / 2),
+      );
+    }
+
+    // Draw center circle
+    final centerPaint = Paint()
+      ..color = const Color(0xFF0F172A)
+      ..style = PaintingStyle.fill;
+    canvas.drawCircle(center, radius * 0.3, centerPaint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+}

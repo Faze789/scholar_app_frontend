@@ -698,6 +698,14 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
                       },
                     ),
 
+                    _dashboardItem(
+                      icon: Icons.feedback,
+                      label: "visual Chart",
+                      onTap: ()  {
+                       context.go('/visual_uni', extra: _prepareNavigationData());
+                      },
+                    ),
+
                     ],
                   ),
                 ),

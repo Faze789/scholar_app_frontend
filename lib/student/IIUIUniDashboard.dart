@@ -24,7 +24,7 @@ class _IIUIUniDashboardState extends State<IIUIUniDashboard> {
         backgroundColor: Colors.green[800],
         actions: [
           IconButton(
-            icon: const Icon(Icons.monetization_on, color: Colors.white),
+            icon: const Icon(Icons.feed, color: Colors.white),
             tooltip: 'IIUI Fees',
             onPressed: () {
             
@@ -104,7 +104,7 @@ class _IIUIUniDashboardState extends State<IIUIUniDashboard> {
               description:
                   'Our research centers promote cutting-edge studies in Islamic thought, social sciences, and technology, contributing to global knowledge.',
               imageUrl:
-                  'https://images.unsplash.com/photo-1581093450021-4a56a75c6145?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
+                  'assets/iiui_re.jpg',
             ),
          
             UniversitySection(
@@ -174,20 +174,28 @@ class UniversitySection extends StatelessWidget {
                 topLeft: Radius.circular(12),
                 bottomLeft: Radius.circular(12),
               ),
-              child: Image.network(
-                imageUrl,
-                width: 120,
-                height: 120,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    width: 120,
-                    height: 120,
-                    color: Colors.grey,
-                    child: const Icon(Icons.error),
-                  );
-                },
-              ),
+              child: (imageUrl.startsWith('assets/')
+    ? Image.asset(
+        imageUrl,
+        width: 120,
+        height: 120,
+        fit: BoxFit.cover,
+      )
+    : Image.network(
+        imageUrl,
+        width: 120,
+        height: 120,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          return Container(
+            width: 120,
+            height: 120,
+            color: Colors.grey,
+            child: const Icon(Icons.error),
+          );
+        },
+      )),
+
             ),
             Expanded(
               child: Padding(

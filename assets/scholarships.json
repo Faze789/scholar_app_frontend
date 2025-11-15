@@ -332,7 +332,7 @@
       ]
     },
     {
-  "university": "University of Education (UE) Lahore",
+  "name": "University of Education (UE) Lahore",
   "scholarships": [
     {
       "title": "Rehmatul-Lil-Alameen Scholarship",
@@ -425,7 +425,7 @@
 }
 ,
 {
-  "university": "Air University Islamabad",
+  "name": "Air University Islamabad",
   "scholarships": [
     {
       "category": "AU Sponsored MS & PhD Programs",
@@ -562,7 +562,7 @@
 
 ,
 {
-  "university": "National University of Computer and Emerging Sciences (FAST-NUCES)",
+  "name": "National University of Computer and Emerging Sciences (FAST-NUCES)",
   "scholarships": [
     {
       "title": "Merit Scholarships for Bachelor Students",

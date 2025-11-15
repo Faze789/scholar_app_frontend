@@ -187,7 +187,7 @@ class _NedUniversityDashboardState extends State<NedFeesDashboard> {
             
             _buildSection(
               title: 'Academic Faculties',
-              imageUrl: 'https://images.unsplash.com/photo-1503676260728-332c239b7241?auto=format&fit=crop&w=1000&q=80',
+              imageUrl: 'assets/ned_academic.jpg',
               items: [
                 'Faculty of Civil & Petroleum Engineering',
                 'Faculty of Mechanical & Manufacturing',
@@ -215,7 +215,7 @@ class _NedUniversityDashboardState extends State<NedFeesDashboard> {
           
             _buildSection(
               title: 'Research & Innovation',
-              imageUrl: 'https://images.unsplash.com/photo-1532094349884-543995b5f930?auto=format&fit=crop&w=1000&q=80',
+              imageUrl: 'assets/ned_research.jpg',
               items: [
                 'Advanced Research Laboratories',
                 'Center for Innovation & Technology',
@@ -229,7 +229,7 @@ class _NedUniversityDashboardState extends State<NedFeesDashboard> {
            
             _buildSection(
               title: 'Student Life',
-              imageUrl: 'https://images.unsplash.com/photo-1523050854058-8df90110c9d1?auto=format&fit=crop&w=1000&q=80',
+              imageUrl: 'assets/ned_student.png',
               items: [
                 'Technical Societies & Clubs',
                 'Sports & Fitness Facilities',
@@ -243,7 +243,7 @@ class _NedUniversityDashboardState extends State<NedFeesDashboard> {
         
             _buildSection(
               title: 'International Affairs',
-              imageUrl: 'https://images.unsplash.com/photo-1541339907198-e08756fdad5d?auto=format&fit=crop&w=1000&q=80',
+              imageUrl: 'assets/ned_intl.jpg',
               items: [
                 'Global University Partnerships',
                 'Student & Faculty Exchange',
@@ -257,7 +257,7 @@ class _NedUniversityDashboardState extends State<NedFeesDashboard> {
             
             _buildSection(
               title: 'Alumni Network',
-              imageUrl: 'https://images.unsplash.com/photo-1516321318423-4e15f3a08b97?auto=format&fit=crop&w=1000&q=80',
+              imageUrl: 'assets/ned_alumni.jpg',
               items: [
                 'NED Alumni Association',
                 'Global Alumni Network',
@@ -413,103 +413,109 @@ class _NedUniversityDashboardState extends State<NedFeesDashboard> {
     );
   }
 
-  Widget _buildSection({
-    required String title,
-    required String imageUrl,
-    required List<String> items,
-  }) {
-    return Container(
-      margin: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 200,
+Widget _buildSection({
+  required String title,
+  required String imageUrl,
+  required List<String> items,
+}) {
+
+  final ImageProvider imageProvider = imageUrl.startsWith('assets/')
+    ? AssetImage(imageUrl)
+    : NetworkImage(imageUrl);
+
+
+  return Container(
+    margin: const EdgeInsets.all(20),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(12),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.1),
+          blurRadius: 8,
+          offset: const Offset(0, 2),
+        ),
+      ],
+    ),
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: 200,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: imageProvider,
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Container(
               decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(imageUrl),
-                  fit: BoxFit.cover,
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    Colors.black.withOpacity(0.7),
+                  ],
                 ),
               ),
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.transparent,
-                      Colors.black.withOpacity(0.7),
-                    ],
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Text(
-                      title,
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
                   ),
                 ),
               ),
             ),
-            Container(
-              color: Colors.white,
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: items
-                    .map(
-                      (item) => Padding(
-                        padding: const EdgeInsets.only(bottom: 12),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 6,
-                              height: 6,
-                              decoration: const BoxDecoration(
-                                color: Color(0xFF1A3C6D),
-                                shape: BoxShape.circle,
+          ),
+          Container(
+            color: Colors.white,
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: items
+                  .map(
+                    (item) => Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 6,
+                            height: 6,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFF1A3C6D),
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Text(
+                              item,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.black87,
+                                height: 1.4,
                               ),
                             ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Text(
-                                item,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black87,
-                                  height: 1.4,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    )
-                    .toList(),
-              ),
+                    ),
+                  )
+                  .toList(),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-    );
-  }
+    ),
+  );
+}
 }

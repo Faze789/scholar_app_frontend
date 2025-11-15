@@ -6,10 +6,12 @@ class air_univeristy extends StatefulWidget {
   const air_univeristy({super.key, required this.studentData});
 
   @override
-  State<air_univeristy> createState() => _UOLUniversityDashboardState();
+  State<air_univeristy> createState() => _AirUniversityDashboardState();
 }
 
-class _UOLUniversityDashboardState extends State<air_univeristy> {
+class _AirUniversityDashboardState extends State<air_univeristy> {
+  final Color auColor = const Color(0xFF003B73); // Air University Blue
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +23,7 @@ class _UOLUniversityDashboardState extends State<air_univeristy> {
             color: Colors.white,
           ),
         ),
-        backgroundColor: const Color(0xFF004D40), 
+        backgroundColor: auColor,
         elevation: 0,
         actions: [
           Padding(
@@ -40,14 +42,11 @@ class _UOLUniversityDashboardState extends State<air_univeristy> {
                 child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(
-                      Icons.account_balance_wallet,
-                      color: Colors.white,
-                      size: 18,
-                    ),
+                    Icon(Icons.account_balance_wallet,
+                        color: Colors.white, size: 18),
                     SizedBox(width: 4),
                     Text(
-                      'AIR Fee',
+                      'AU Fee',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
@@ -61,26 +60,28 @@ class _UOLUniversityDashboardState extends State<air_univeristy> {
           ),
         ],
       ),
+
+      // MAIN BODY
       body: SingleChildScrollView(
         child: Column(
           children: [
-           
+            // HEADER WITH IMAGE
             Container(
               height: 320,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [Color(0xFF004D40), Color(0xFF00695C)],
+                  colors: [auColor, auColor.withOpacity(0.7)],
                 ),
               ),
               child: Stack(
                 children: [
                   Positioned.fill(
                     child: Image.network(
-                      'https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?auto=format&fit=crop&w=1000&q=80',
+                      'https://upload.wikimedia.org/wikipedia/en/6/61/Air_University_Pakistan_Insignia.png',
                       fit: BoxFit.cover,
-                      opacity: const AlwaysStoppedAnimation(0.4),
+                      opacity: const AlwaysStoppedAnimation(0.3),
                     ),
                   ),
                   Container(
@@ -108,7 +109,7 @@ class _UOLUniversityDashboardState extends State<air_univeristy> {
                         ),
                         const SizedBox(height: 16),
                         const Text(
-                          'Transforming lives through quality education and research since 1999',
+                          'A federally chartered public sector university under Pakistan Air Force, pioneering research and innovation.',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
@@ -120,11 +121,9 @@ class _UOLUniversityDashboardState extends State<air_univeristy> {
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
-                            foregroundColor: const Color(0xFF004D40),
+                            foregroundColor: auColor,
                             padding: const EdgeInsets.symmetric(
-                              horizontal: 24,
-                              vertical: 12,
-                            ),
+                                horizontal: 24, vertical: 12),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25),
                             ),
@@ -141,43 +140,40 @@ class _UOLUniversityDashboardState extends State<air_univeristy> {
               ),
             ),
 
-          
+       
             Container(
               padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'About AIR UNIVERSITY',
+                  Text(
+                    'About Air University',
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF004D40),
+                      color: auColor,
                     ),
                   ),
                   const SizedBox(height: 16),
                   const Text(
-                    'Founded in 1999, the AIR UNIVERSITY is one of Pakistan’s leading private universities, known for its diverse academic programs and state-of-the-art facilities. With campuses in Lahore, Islamabad, Sargodha, and Gujrat, UOL is dedicated to fostering innovation, research, and global leadership.',
+                    'Established in 2002, Air University is a public-sector university supervised by the Pakistan Air Force. '
+                    'With campuses in Islamabad, Kamra (Aerospace & Aviation Campus), and Multan, AU is known for its strong programs '
+                    'in Engineering, Cyber Security, Computer Science, Aviation, and Health Sciences.',
                     style: TextStyle(
                       fontSize: 16,
                       height: 1.6,
                       color: Colors.black87,
                     ),
                   ),
+
                   const SizedBox(height: 20),
                   Row(
                     children: [
-                      Expanded(
-                        child: _buildStatCard('25+', 'Years of Excellence'),
-                      ),
+                      Expanded(child: _buildStatCard('2002', 'Founded')),
                       const SizedBox(width: 12),
-                      Expanded(
-                        child: _buildStatCard('35,000+', 'Students'),
-                      ),
+                      Expanded(child: _buildStatCard('12,000+', 'Students')),
                       const SizedBox(width: 12),
-                      Expanded(
-                        child: _buildStatCard('5', 'Campuses'),
-                      ),
+                      Expanded(child: _buildStatCard('3', 'Campuses')),
                     ],
                   ),
                 ],
@@ -186,94 +182,69 @@ class _UOLUniversityDashboardState extends State<air_univeristy> {
 
       
             _buildSection(
-              title: 'Academic Faculties',
-              imageUrl: 'https://images.unsplash.com/photo-1503676260728-332c239b7241?auto=format&fit=crop&w=1000&q=80',
+              title: 'Faculties',
+              imageUrl:
+                  'https://au.edu.pk/Pages/Faculties/FCAI/Departments/CYS/Assets/3.PSX_20191109_194422-01-011.jpeg',
               items: [
-                'Faculty of Engineering & Technology',
-                'Faculty of Information Technology',
+                'Faculty of Engineering',
+                'Faculty of Computing & AI',
+                'Faculty of Cyber Security',
+                'Faculty of Aviation & Aerospace',
                 'Faculty of Management Sciences',
-                'Faculty of Allied Health Sciences',
-                'Faculty of Law',
-                'Faculty of Arts & Architecture',
+                'Faculty of Social Sciences',
+                'Faculty of Health Sciences',
               ],
             ),
 
-            
             _buildSection(
-              title: 'Programs & Degrees',
-              imageUrl: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&w=1000&q=80',
+              title: 'Programs Offered',
+              imageUrl:
+                  'https://www.au.edu.pk/AU_New_Assets/images/blog/10.jpg',
               items: [
-                'Undergraduate Programs (BS/BBA)',
-                'Master’s Programs (MS/MBA)',
-                'Doctoral Programs (PhD)',
-                'Professional Certifications',
-                'Medical & Dental Programs',
-                'Online Learning Programs',
+                'BS Computer Science',
+                'BS Cyber Security',
+                'BS Software Engineering',
+                'BS Artificial Intelligence',
+                'BS Aviation Management',
+                'BE Electrical Engineering',
+                'MS & PhD Programs',
               ],
             ),
 
-           
+        
             _buildSection(
               title: 'Research & Innovation',
-              imageUrl: 'https://images.unsplash.com/photo-1532094349884-543995b5f930?auto=format&fit=crop&w=1000&q=80',
+              imageUrl:
+                  'https://aumc.edu.pk/files/research.webp',
               items: [
-                'Research Centers & Labs',
-                'Innovation & Entrepreneurship Hub',
-                'Industry-Academia Collaborations',
-                'Research Publications',
-                'Technology Transfer Initiatives',
-                'Sustainable Development Projects',
+                'National Centre for Cyber Security (NCCS)',
+                'Aerospace & Aviation Research Labs',
+                'AI, Robotics & Machine Learning Labs',
+                'Industry Collaboration & Technology Transfer',
+                'Research Publications & Conferences',
               ],
             ),
 
           
             _buildSection(
-              title: 'Student Life',
-              imageUrl: 'https://images.unsplash.com/photo-1523050854058-8df90110c9d1?auto=format&fit=crop&w=1000&q=80',
+              title: 'Student Life at AU',
+              imageUrl:
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfXWqyYDg28wA2vEWe58kMQWLv5Uxk3lq37g&s',
               items: [
-                'Student Societies & Clubs',
-                'Sports & Fitness Facilities',
-                'Cultural & Tech Events',
-                'Career Services & Internships',
-                'Hostel & Residential Facilities',
-                'Student Wellness Programs',
+                'Sports & Fitness Center',
+                'Air University Students Club',
+                'Tech & Research Competitions',
+                'Inter-University Events',
+                'Hostel, Cafeteria & Transport',
               ],
             ),
 
-            _buildSection(
-              title: 'International Affairs',
-              imageUrl: 'https://images.unsplash.com/photo-1541339907198-e08756fdad5d?auto=format&fit=crop&w=1000&q=80',
-              items: [
-                'Global University Partnerships',
-                'Student & Faculty Exchange',
-                'International Research Collaborations',
-                'Dual Degree Programs',
-                'Global Conferences & Workshops',
-                'Scholarships for International Students',
-              ],
-            ),
-
-           
-            _buildSection(
-              title: 'Alumni Network',
-              imageUrl: 'https://images.unsplash.com/photo-1516321318423-4e15f3a08b97?auto=format&fit=crop&w=1000&q=80',
-              items: [
-                'UOL Alumni Association',
-                'Global Alumni Network',
-                'Career Support & Mentorship',
-                'Alumni Events & Reunions',
-                'Professional Development Programs',
-                'Lifelong Learning Opportunities',
-              ],
-            ),
-
-          
             Container(
               padding: const EdgeInsets.all(20),
               margin: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF004D40), Color(0xFF00695C)],
+                gradient: LinearGradient(
+                  colors: [auColor, auColor.withOpacity(0.8)],
                 ),
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -281,7 +252,7 @@ class _UOLUniversityDashboardState extends State<air_univeristy> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'Get in Touch',
+                    'Contact Information',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -295,7 +266,7 @@ class _UOLUniversityDashboardState extends State<air_univeristy> {
                       SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          '1-KM Defence Road, Lahore, Pakistan',
+                          'Main Campus, PAF Complex, E-9 Islamabad',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -307,7 +278,7 @@ class _UOLUniversityDashboardState extends State<air_univeristy> {
                       Icon(Icons.phone, color: Colors.white, size: 20),
                       SizedBox(width: 8),
                       Text(
-                        '+92-42-111-865-865',
+                        '+92-51-9153220',
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
@@ -318,43 +289,8 @@ class _UOLUniversityDashboardState extends State<air_univeristy> {
                       Icon(Icons.email, color: Colors.white, size: 20),
                       SizedBox(width: 8),
                       Text(
-                        'info@uol.edu.pk',
+                        'info@au.edu.pk',
                         style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          foregroundColor: const Color(0xFF004D40),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                        ),
-                        child: const Text(
-                          'Visit Campus',
-                          style: TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.transparent,
-                          foregroundColor: Colors.white,
-                          side: const BorderSide(color: Colors.white),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                        ),
-                        child: const Text(
-                          'Apply Now',
-                          style: TextStyle(fontWeight: FontWeight.w600),
-                        ),
                       ),
                     ],
                   ),
@@ -362,12 +298,12 @@ class _UOLUniversityDashboardState extends State<air_univeristy> {
               ),
             ),
 
-        
+         
             Container(
-              color: const Color(0xFF004D40),
+              color: auColor,
               padding: const EdgeInsets.all(16.0),
               child: const Text(
-                '© 2025 University of Lahore. All rights reserved.',
+                '© 2025 Air University. All rights reserved.',
                 style: TextStyle(color: Colors.white),
                 textAlign: TextAlign.center,
               ),
@@ -382,10 +318,10 @@ class _UOLUniversityDashboardState extends State<air_univeristy> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFF004D40).withOpacity(0.1),
+        color: const Color(0xFF003B73).withOpacity(0.1),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: const Color(0xFF004D40).withOpacity(0.2),
+          color: const Color(0xFF003B73).withOpacity(0.2),
         ),
       ),
       child: Column(
@@ -395,18 +331,13 @@ class _UOLUniversityDashboardState extends State<air_univeristy> {
             style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF004D40),
+              color: Color(0xFF003B73),
             ),
           ),
           const SizedBox(height: 4),
-          Text(
-            label,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 12,
-              color: Colors.black87,
-            ),
-          ),
+          Text(label,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 12, color: Colors.black87)),
         ],
       ),
     );
@@ -423,10 +354,9 @@ class _UOLUniversityDashboardState extends State<air_univeristy> {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 8,
+              offset: const Offset(0, 2)),
         ],
       ),
       child: ClipRRect(
@@ -437,10 +367,8 @@ class _UOLUniversityDashboardState extends State<air_univeristy> {
             Container(
               height: 200,
               decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(imageUrl),
-                  fit: BoxFit.cover,
-                ),
+                image:
+                    DecorationImage(image: NetworkImage(imageUrl), fit: BoxFit.cover),
               ),
               child: Container(
                 decoration: BoxDecoration(
@@ -484,7 +412,7 @@ class _UOLUniversityDashboardState extends State<air_univeristy> {
                               width: 6,
                               height: 6,
                               decoration: const BoxDecoration(
-                                color: Color(0xFF004D40),
+                                color: Color(0xFF003B73),
                                 shape: BoxShape.circle,
                               ),
                             ),

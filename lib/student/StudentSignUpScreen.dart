@@ -44,8 +44,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
   List<String> selectedFields = [];
   Map<String, dynamic>? apiResponseData;
 
-  // Track selected degree level
-  String _selectedDegreeLevel = 'bachelors'; // 'bachelors', 'masters', 'phd'
+  String _selectedDegreeLevel = 'bachelors'; 
 
   final List<String> fieldsOfStudy = [
     "Computer Science",
@@ -60,7 +59,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
     "Architecture"
   ];
 
-  static const String otpServerUrl = 'http://192.168.100.121:3001';
+  static const String otpServerUrl = 'http://192.168.100.149:3001';
 
   Future<void> _pickImage() async {
     final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -119,7 +118,7 @@ Future<bool> _callPredictionAPI() async {
 
     String program = selectedFields.isNotEmpty ? selectedFields.first : _selectedDegreeLevel;
 
-    final url = Uri.parse("http://192.168.100.121:5000/predict");
+    final url = Uri.parse("http://192.168.100.149:5000/predict");
     
     print('Making API call to: $url');
     

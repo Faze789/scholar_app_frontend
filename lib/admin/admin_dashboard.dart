@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class admin_dashboard extends StatefulWidget {
   final String email;
@@ -101,22 +102,58 @@ class _admin_dashboardState extends State<admin_dashboard> {
                         ),
                       ),
                       const SizedBox(height: 30),
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          foregroundColor: Colors.blue.shade900,
-                          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          elevation: 5,
-                        ),
-                        child: const Text(
-                          'Manage Data',
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                      ),
+                     ElevatedButton(
+  onPressed: () {
+    context.go(
+      '/admin_check_user_feedback',
+      extra: {
+        'email': widget.email,
+        'password': widget.password,
+      },
+    );
+  },
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.white,
+    foregroundColor: Colors.blue.shade900,
+    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(15),
+    ),
+    elevation: 5,
+  ),
+  child: const Text(
+    'User\'s Feedback',
+    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+  ),
+),
+
+SizedBox(height: 50,),
+
+ElevatedButton(
+  onPressed: () {
+    context.go(
+      '/admin_check_all_users',
+      extra: {
+        'email': widget.email,
+        'password': widget.password,
+      },
+    );
+  },
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.white,
+    foregroundColor: Colors.blue.shade900,
+    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(15),
+    ),
+    elevation: 5,
+  ),
+  child: const Text(
+    'Check All Users',
+    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+  ),
+),
+
                     ],
                   ),
                 ),
