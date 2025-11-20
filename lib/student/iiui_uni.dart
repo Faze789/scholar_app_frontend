@@ -23,7 +23,7 @@ class _IIUIUniState extends State<IIUIUni> {
   }
 
   Future<List<dynamic>> fetchFeeStructure() async {
-    final url = Uri.parse('http://192.168.100.121:5000/feesiiui');
+    final url = Uri.parse('http://35.174.6.20:5000/feesiiui');
     final response = await http.get(url);
 
     if (response.statusCode == 200) {

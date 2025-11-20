@@ -25,7 +25,7 @@ class _NustScholarshipScreenState extends State<NustScholarshipScreen> {
 
   Future<void> fetchScholarships() async {
     try {
-      final response = await http.get(Uri.parse('http://192.168.100.121:5000/scholarshipsnust'));
+      final response = await http.get(Uri.parse('http://35.174.6.20:5000/scholarshipsnust'));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         if (data['status'] == 'success') {

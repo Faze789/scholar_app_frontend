@@ -33,7 +33,7 @@ class _NedFeesScreenState extends State<NedFeesScreen> {
   
 
   Future<void> fetchNedFees() async {
-    const String url = 'http://192.168.100.121:5000/nedfees';
+    const String url = 'http://35.174.6.20:5000/nedfees';
 
     try {
       final response = await http.get(Uri.parse(url));
@@ -332,60 +332,6 @@ void _showMeritCheck(BuildContext context) {
                   ),
                 ),
                 const SizedBox(height: 20),
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  margin: const EdgeInsets.only(bottom: 20),
-                  decoration: BoxDecoration(
-                    color: Colors.indigo.shade50,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.2),
-                        spreadRadius: 2,
-                        blurRadius: 8,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Merit Check Result',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: Colors.indigo,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        'NED Match: ${hasNedMatch ? 'Yes' : 'No'}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14,
-                          color: hasNedMatch ? Colors.green.shade700 : Colors.red.shade600,
-                        ),
-                      ),
-                      if (hasNedMatch) ...[
-                        Text(
-                          'Matched Field: $matchedField',
-                          style: TextStyle(fontSize: 14, color: Colors.grey[900]),
-                        ),
-                        Text(
-                          'Value: $matchedValue',
-                          style: TextStyle(fontSize: 14, color: Colors.grey[900]),
-                        ),
-                      ],
-                      if (!hasNedMatch)
-                        Text(
-                          'No matching NED data found.',
-                          style: TextStyle(fontSize: 14, color: Colors.grey[900]),
-                        ),
-                    ],
-                  ),
-                ),
                 ExpansionTile(
                   leading: const Icon(Icons.school, color: Colors.indigo),
                   title: const Text(

@@ -42,9 +42,9 @@ class _AllUniEventsScreenState extends State<AllUniEventsScreen> {
 
   Future<void> fetchAllEvents() async {
     try {
-      final comsatsRes = await http.get(Uri.parse("http://192.168.100.121:5000/api/comsats_events"));
-      final neduetRes = await http.get(Uri.parse("http://192.168.100.121:5000/api/neduet_events"));
-      final uetRes = await http.get(Uri.parse("http://192.168.100.121:5000/api/uet_taxila_events"));
+      final comsatsRes = await http.get(Uri.parse("http://35.174.6.20:5000/api/comsats_events"));
+      final neduetRes = await http.get(Uri.parse("http://35.174.6.20:5000/api/neduet_events"));
+      final uetRes = await http.get(Uri.parse("http://35.174.6.20:5000/api/uet_taxila_events"));
 
       if (comsatsRes.statusCode == 200 && neduetRes.statusCode == 200 && uetRes.statusCode == 200) {
         final comsatsJson = json.decode(comsatsRes.body) as Map<String, dynamic>;

@@ -112,7 +112,7 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
         return;
       }
 
-      final url = Uri.parse("http://192.168.100.149:5000/predict");
+      final url = Uri.parse("http://35.174.6.20:5000/predict");
       final response = await http.post(
         url,
         headers: {"Content-Type": "application/json"},

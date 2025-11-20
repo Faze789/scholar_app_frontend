@@ -31,7 +31,7 @@ class _UetFeePageState extends State<UetFeePage> {
   Future<void> fetchFeeData() async {
     try {
       final response =
-          await http.get(Uri.parse("http://192.168.100.121:5000/feesuet"));
+          await http.get(Uri.parse("http://35.174.6.20:5000/feesuet"));
       if (response.statusCode == 200) {
         final decoded = json.decode(response.body);
         if (decoded["status"] == "success") {
@@ -264,60 +264,8 @@ class _UetFeePageState extends State<UetFeePage> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(16),
-                    margin: const EdgeInsets.only(bottom: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.indigo.shade50,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          spreadRadius: 2,
-                          blurRadius: 8,
-                          offset: const Offset(0, 4),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Merit Check Result',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            color: Colors.indigo,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          'UET Match: ${hasUetMatch ? 'Yes' : 'No'}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14,
-                            color: hasUetMatch ? Colors.green.shade700 : Colors.red.shade600,
-                          ),
-                        ),
-                        if (hasUetMatch) ...[
-                          Text(
-                            'Matched Field: $matchedField',
-                            style: TextStyle(fontSize: 14, color: Colors.grey[900]),
-                          ),
-                          Text(
-                            'Value: $matchedValue',
-                            style: TextStyle(fontSize: 14, color: Colors.grey[900]),
-                          ),
-                        ],
-                        if (!hasUetMatch)
-                          Text(
-                            'No matching UET data found.',
-                            style: TextStyle(fontSize: 14, color: Colors.grey[900]),
-                          ),
-                      ],
-                    ),
-                  ),
+                
+               
                   if (hasUetMatch && !hasCGPA) ...[
                     ExpansionTile(
                       leading: const Icon(Icons.school, color: Colors.indigo),

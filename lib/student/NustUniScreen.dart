@@ -33,7 +33,7 @@ class _NustUniScreenState extends State<NustUniScreen> {
 
   Future<void> fetchFeeData() async {
     try {
-      final response = await http.get(Uri.parse('http://192.168.100.121:5000/feesnust'));
+      final response = await http.get(Uri.parse('http://35.174.6.20:5000/feesnust'));
       print('API Response Status: ${response.statusCode}');
       print('API Response Body: ${response.body}');
 
@@ -133,7 +133,7 @@ class _NustUniScreenState extends State<NustUniScreen> {
       await Future.delayed(const Duration(milliseconds: 100));
 
       final meritResponse = await http.get(
-        Uri.parse('http://192.168.100.121:5000/merit-nust'),
+        Uri.parse('http://35.174.6.20:5000:5000/merit-nust'),
         headers: {'Content-Type': 'application/json'},
       );
 

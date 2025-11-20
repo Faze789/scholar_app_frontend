@@ -26,7 +26,7 @@ class _AirUniFeesState extends State<AirUniFees> {
 
   Future<void> loadData() async {
     try {
-      final response = await http.get(Uri.parse("http://192.168.100.121:5000/feesair"));
+      final response = await http.get(Uri.parse("http://35.174.6.20:5000/feesair"));
 
       if (response.statusCode == 200) {
         final decoded = json.decode(response.body);

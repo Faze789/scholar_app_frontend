@@ -33,7 +33,7 @@ class _ComsatsUniState extends State<ComsatsUni> {
 
   Future<void> fetchFeeData() async {
     try {
-      final uri = Uri.parse('http://192.168.100.121:5000/feescomsats');
+      final uri = Uri.parse('http://35.174.6.20:5000/feescomsats');
       final response = await http.get(uri);
 
       if (!mounted) return;
@@ -327,7 +327,7 @@ class _ComsatsUniState extends State<ComsatsUni> {
         {'key': 'COMSATS Admission Chance', 'value': formatValue(comsatsData['comsats_admission_chance'])},
         {'key': 'COMSATS Predicted 2026 Aggregate', 'value': formatValue(comsatsData['comsats_predicted_2026_aggregate'])},
       ],
-      {'key': 'Program Fee Structure', 'value': formatValue(programFee['Fee Structure'])},
+
       {'key': 'Admission Fee (one time)', 'value': formatValue(programFee['Admission Fee (one time)'])},
       {'key': 'Registration Fee (per semester)', 'value': formatValue(programFee['Registration Fee (per semester)'])},
       {'key': 'Tuition Fee (per semester)', 'value': formatValue(programFee['Tuition fee (Per semester)'])},
@@ -438,69 +438,9 @@ class _ComsatsUniState extends State<ComsatsUni> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(16),
-                    margin: const EdgeInsets.only(bottom: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.indigo.shade50,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          spreadRadius: 2,
-                          blurRadius: 8,
-                          offset: const Offset(0, 4),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Merit Check Result',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            color: Colors.indigo,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          'COMSATS Match: ${hasComsatsMatch ? 'Yes' : 'No'}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14,
-                            color: hasComsatsMatch ? Colors.green.shade700 : Colors.red.shade600,
-                          ),
-                        ),
-                        if (hasComsatsMatch) ...[
-                          Text(
-                            'Matched Field: $matchedField',
-                            style: TextStyle(fontSize: 14, color: Colors.grey[900]),
-                          ),
-                          Text(
-                            'Value: $matchedValue',
-                            style: TextStyle(fontSize: 14, color: Colors.grey[900]),
-                          ),
-                        ],
-                        if (!hasComsatsMatch)
-                          Text(
-                            'No matching COMSATS data found.',
-                            style: TextStyle(fontSize: 14, color: Colors.grey[900]),
-                          ),
-                      ],
-                    ),
-                  ),
+           
                   if (hasComsatsMatch) ...[
-                    if (programFee['Fee Structure'] == 'No fee information available')
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 20.0),
-                        child: Text(
-                          'No fee information available for your program.',
-                          style: TextStyle(color: Colors.red.shade600, fontSize: 14, fontStyle: FontStyle.italic),
-                        ),
-                      ),
+                    
                     ExpansionTile(
                       leading: const Icon(Icons.school, color: Colors.indigo),
                       title: const Text(

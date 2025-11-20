@@ -3,7 +3,6 @@ import 'student_alumni_admin.dart';
 import 'student/student_screen.dart'; 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:scholar_match_app/erasmus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:scholar_match_app/student/uet_fee.dart';
 import 'package:scholar_match_app/student/feedback.dart';
@@ -61,62 +60,13 @@ import 'package:scholar_match_app/student/ned_scholarship_screen.dart';
 import 'package:scholar_match_app/admin/admin_check_user_feedback.dart';
 import 'package:scholar_match_app/student/COMSATS_scholarship_screen.dart';
 import 'package:scholar_match_app/student/abroad_scholarships/rhodes.dart';
+import 'package:scholar_match_app/student/abroad_scholarships/erasmus.dart';
 import 'package:scholar_match_app/student/abroad_scholarships/common_wealth.dart';
 import 'package:scholar_match_app/student/abroad_scholarships/sweden_scholarships.dart';
 import 'package:scholar_match_app/student/abroad_scholarships/turkey_scholarships.dart';
 import 'package:scholar_match_app/student/abroad_scholarships/hungary_scholarships.dart';
 import 'package:scholar_match_app/student/abroad_scholarships/chevening_scholarships.dart';
 import 'package:scholar_match_app/student/abroad_scholarships/abroad_scholarships_screen.dart';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

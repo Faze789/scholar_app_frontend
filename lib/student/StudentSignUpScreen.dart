@@ -21,7 +21,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  // Form fields
+
   String name = '';
   String fatherName = '';
   String matricMarks = '';
@@ -118,7 +118,7 @@ Future<bool> _callPredictionAPI() async {
 
     String program = selectedFields.isNotEmpty ? selectedFields.first : _selectedDegreeLevel;
 
-    final url = Uri.parse("http://192.168.100.149:5000/predict");
+    final url = Uri.parse("http://35.174.6.20:5000/predict");
     
     print('Making API call to: $url');
     

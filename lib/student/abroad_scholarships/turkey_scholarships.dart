@@ -24,7 +24,7 @@ class _TurkeyScholarshipsScreenState extends State<TurkeyScholarshipsScreen> {
 
   Future<void> fetchScholarshipData() async {
     try {
-      final response = await http.get(Uri.parse("http://192.168.100.121:5000/turkiye"));
+      final response = await http.get(Uri.parse("http://35.174.6.20:5000/turkiye"));
       if (response.statusCode == 200) {
         setState(() {
           scholarshipData = json.decode(response.body);

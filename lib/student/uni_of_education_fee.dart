@@ -27,7 +27,7 @@ class _uni_of_education_feesState extends State<uni_of_education_fees> {
 
   Future<void> fetchFeeData() async {
     try {
-      final uri = Uri.parse('http://192.168.100.121:5000/fees_uni_of_education');
+      final uri = Uri.parse('http://35.174.6.20:5000/fees_uni_of_education');
       final response = await http.get(uri);
 
       if (!mounted) return;

@@ -27,7 +27,7 @@ class _SwedenScholarshipsScreenState extends State<SwedenScholarshipsScreen> {
   Future<void> fetchScholarshipData() async {
     try {
       final response =
-          await http.get(Uri.parse("http://192.168.100.121:5000/sisgp"));
+          await http.get(Uri.parse("http://35.174.6.20:5000/sisgp"));
 
       if (response.statusCode == 200) {
         setState(() {
