@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class VisualUni extends StatefulWidget {
   final Map<String, dynamic> studentData;
@@ -13,7 +15,6 @@ class VisualUni extends StatefulWidget {
 class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
-  final int _selectedView = 0;
 
   @override
   void initState() {
@@ -35,18 +36,30 @@ class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMix
     super.dispose();
   }
 
+  // Compute admission chance based on score vs last year aggregate
+  String computeChance(double student, double required) {
+    final diff = student - required;
+    if (diff >= 5) return 'High (90%+)';
+    if (diff >= 2) return 'Good (70-90%)';
+    if (diff >= 0) return 'Possible (30-70%)';
+    if (diff >= -2) return 'Low (20-30%)';
+    return 'Very Low (0-20%)';
+  }
+
   List<UniversityData> _getUniversityData() {
     final List<dynamic> universities = widget.studentData['universities_list'] ?? [];
     final List<UniversityData> uniList = universities.map((uni) {
       final String id = uni['id'] ?? '';
       final String name = uni['name'] ?? '';
       final bool admitted = uni['admitted'] ?? false;
-      final String admissionChance = uni['admission_chance'] ?? 'N/A';
-      
+
       final double studentAggregate = (widget.studentData['${id}_student_aggregate'] ?? 0.0).toDouble();
       final double lastYearAggregate = (widget.studentData['${id}_last_year_aggregate'] ?? 0.0).toDouble();
       final double predicted2026 = (widget.studentData['${id}_predicted_2026_aggregate'] ?? 0.0).toDouble();
-      
+
+      // Use our computed chance instead of backend string
+      final String admissionChance = computeChance(studentAggregate, lastYearAggregate);
+
       return UniversityData(
         id: id,
         name: name,
@@ -57,13 +70,13 @@ class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMix
         predicted2026: predicted2026,
       );
     }).toList();
-    
+
     uniList.sort((a, b) {
       final aPercentage = _getChancePercentage(a.admissionChance);
       final bPercentage = _getChancePercentage(b.admissionChance);
       return bPercentage.compareTo(aPercentage);
     });
-    
+
     return uniList;
   }
 
@@ -71,6 +84,7 @@ class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMix
     if (chance.contains('High (90%+)')) return const Color(0xFF10B981);
     if (chance.contains('Good (70-90%)')) return const Color(0xFF3B82F6);
     if (chance.contains('Possible (30-70%)')) return const Color(0xFFF59E0B);
+    if (chance.contains('Low (20-30%)')) return const Color(0xFFF87171);
     return const Color(0xFF6B7280);
   }
 
@@ -78,7 +92,25 @@ class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMix
     if (chance.contains('High (90%+)')) return 95.0;
     if (chance.contains('Good (70-90%)')) return 80.0;
     if (chance.contains('Possible (30-70%)')) return 50.0;
-    return 20.0;
+    if (chance.contains('Low (20-30%)')) return 25.0;
+    return 10.0;
+  }
+
+  /// Full Firestore conversion for printing
+  dynamic _convert(value) {
+    if (value is Timestamp) return value.toDate().toString();
+    if (value is GeoPoint) return {"latitude": value.latitude, "longitude": value.longitude};
+    if (value is DocumentReference) return value.path;
+    if (value is Map) return value.map((k, v) => MapEntry(k, _convert(v)));
+    if (value is List) return value.map(_convert).toList();
+    return value;
+  }
+
+  void printFull(String text) {
+    const int chunkSize = 800;
+    for (int i = 0; i < text.length; i += chunkSize) {
+      print(text.substring(i, i + chunkSize > text.length ? text.length : i + chunkSize));
+    }
   }
 
   @override
@@ -90,6 +122,16 @@ class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMix
     return Scaffold(
       backgroundColor: const Color(0xFF0F172A),
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              final converted = _convert(widget.studentData);
+              final jsonText = jsonEncode(converted);
+              printFull(jsonText);
+            },
+            icon: const Icon(Icons.check),
+          )
+        ],
         backgroundColor: const Color(0xFF1E293B),
         elevation: 0,
         title: const Text(
@@ -99,28 +141,20 @@ class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMix
             fontWeight: FontWeight.bold,
           ),
         ),
-        leading:   IconButton(
-      icon: const Icon(Icons.home),
-      tooltip: 'Student Dashboard',
-      onPressed: () {
-        context.go(
-          '/student_dashboard',
-          extra: widget.studentData, 
-        );
-      },
-    ),
+        leading: IconButton(
+          icon: const Icon(Icons.home, color: Colors.white),
+          onPressed: () {
+            context.go('/student_dashboard', extra: widget.studentData);
+          },
+        ),
       ),
       body: Column(
         children: [
-
           Container(
             padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
-                colors: [
-                  const Color(0xFF1E293B),
-                  const Color(0xFF0F172A),
-                ],
+                colors: [Color(0xFF1E293B), Color(0xFF0F172A)],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
@@ -149,7 +183,6 @@ class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMix
               ],
             ),
           ),
-
           Expanded(
             child: _buildBarView(universityData),
           ),
@@ -172,19 +205,9 @@ class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMix
           const SizedBox(height: 8),
           Text(
             value,
-            style: TextStyle(
-              color: color,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(color: color, fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          Text(
-            label,
-            style: TextStyle(
-              color: color.withOpacity(0.7),
-              fontSize: 12,
-            ),
-          ),
+          Text(label, style: TextStyle(color: color.withOpacity(0.7), fontSize: 12)),
         ],
       ),
     );
@@ -198,11 +221,7 @@ class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMix
         children: [
           const Text(
             'Aggregate Comparison',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),
           ...data.map((uni) => _buildBarItem(uni)),
@@ -226,18 +245,12 @@ class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMix
               Expanded(
                 child: Text(
                   uni.name,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
                 ),
               ),
               Text(
                 '${percentage.toInt()}%',
-                style: TextStyle(
-                  color: color,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(color: color, fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -249,35 +262,20 @@ class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMix
                 children: [
                   Container(
                     height: 40,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF1E293B),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
+                    decoration: BoxDecoration(color: const Color(0xFF1E293B), borderRadius: BorderRadius.circular(20)),
                   ),
                   Container(
                     height: 40,
                     width: (MediaQuery.of(context).size.width - 40) * (percentage / 100) * _animation.value,
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [color, color.withOpacity(0.6)],
-                      ),
+                      gradient: LinearGradient(colors: [color, color.withOpacity(0.6)]),
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: color.withOpacity(0.5),
-                          blurRadius: 10,
-                          offset: const Offset(0, 4),
-                        ),
-                      ],
+                      boxShadow: [BoxShadow(color: color.withOpacity(0.5), blurRadius: 10, offset: const Offset(0, 4))],
                     ),
                     child: Center(
                       child: Text(
                         uni.admissionChance,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -313,10 +311,7 @@ class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMix
       ),
       child: Text(
         '$label: ${score.toStringAsFixed(1)}',
-        style: const TextStyle(
-          color: Colors.white70,
-          fontSize: 11,
-        ),
+        style: const TextStyle(color: Colors.white70, fontSize: 11),
       ),
     );
   }

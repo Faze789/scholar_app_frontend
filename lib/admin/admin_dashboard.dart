@@ -11,6 +11,26 @@ class admin_dashboard extends StatefulWidget {
 }
 
 class _admin_dashboardState extends State<admin_dashboard> {
+
+  Widget customButton(String text, VoidCallback onTap) {
+    return ElevatedButton(
+      onPressed: onTap,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.blue.shade900,
+        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        elevation: 5,
+      ),
+      child: Text(
+        text,
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,94 +86,41 @@ class _admin_dashboardState extends State<admin_dashboard> {
                             Shadow(
                               color: Colors.black.withOpacity(0.3),
                               blurRadius: 5,
-                              offset: Offset(2, 2),
+                              offset: const Offset(2, 2),
                             ),
                           ],
                         ),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 30),
-                      Container(
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.15),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Column(
-                          children: [
-                            Text(
-                              'Email: ${widget.email}',
-                              style: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              'Password: ${widget.password}',
-                              style: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 30),
-                     ElevatedButton(
-  onPressed: () {
-    context.go(
-      '/admin_check_user_feedback',
-      extra: {
-        'email': widget.email,
-        'password': widget.password,
-      },
-    );
-  },
-  style: ElevatedButton.styleFrom(
-    backgroundColor: Colors.white,
-    foregroundColor: Colors.blue.shade900,
-    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15),
-    ),
-    elevation: 5,
-  ),
-  child: const Text(
-    'User\'s Feedback',
-    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-  ),
-),
 
-SizedBox(height: 50,),
+                      customButton("User's Feedback", () {
+                        context.go(
+                          '/admin_check_user_feedback',
+                          extra: {
+                            'email': widget.email,
+                            'password': widget.password,
+                          },
+                        );
+                      }),
 
-ElevatedButton(
-  onPressed: () {
-    context.go(
-      '/admin_check_all_users',
-      extra: {
-        'email': widget.email,
-        'password': widget.password,
-      },
-    );
-  },
-  style: ElevatedButton.styleFrom(
-    backgroundColor: Colors.white,
-    foregroundColor: Colors.blue.shade900,
-    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15),
-    ),
-    elevation: 5,
-  ),
-  child: const Text(
-    'Check All Users',
-    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-  ),
-),
+                      const SizedBox(height: 50),
 
+                      customButton("Check All Users", () {
+                        context.go(
+                          '/admin_check_all_users',
+                          extra: {
+                            'email': widget.email,
+                            'password': widget.password,
+                          },
+                        );
+                      }),
+
+                      const SizedBox(height: 50),
+
+                      customButton("Logout", () {
+                        context.go('/student_admin');
+                      }),
                     ],
                   ),
                 ),

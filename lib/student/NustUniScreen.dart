@@ -115,39 +115,6 @@ class _NustUniScreenState extends State<NustUniScreen> {
       print('CGPA: ${widget.studentData['cgpa']}');
       print('====================================');
 
-      showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) => AlertDialog(
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const CircularProgressIndicator(),
-              const SizedBox(height: 16),
-              const Text('Fetching NUST Merit Data...'),
-            ],
-          ),
-        ),
-      );
-
-      await Future.delayed(const Duration(milliseconds: 100));
-
-      final meritResponse = await http.get(
-        Uri.parse('http://35.174.6.20:5000:5000/merit-nust'),
-        headers: {'Content-Type': 'application/json'},
-      );
-
-      if (!mounted) return;
-      Navigator.of(context).pop();
-
-      Map<String, dynamic> meritData = {};
-      if (meritResponse.statusCode == 200) {
-        meritData = json.decode(meritResponse.body);
-        print('NUST Merit API response: $meritData');
-      } else {
-        meritData = {'error': 'Failed to fetch merit data: ${meritResponse.statusCode}'};
-      }
-
       bool hasNustMatch = false;
       String matchedField = '';
       String matchedValue = '';
@@ -195,7 +162,6 @@ class _NustUniScreenState extends State<NustUniScreen> {
           nustData[key] = value;
         }
       });
-      nustData.addAll(meritData['nust_data'] ?? {});
 
       final studentProgram = widget.studentData['program']?.toString() ?? 'N/A';
       final normalizedStudentProgram = studentProgram == 'BS' &&
@@ -430,47 +396,8 @@ class _NustUniScreenState extends State<NustUniScreen> {
                         ],
                       ),
                     ),
-                    if (hasNustMatch && !hasCGPA) ...[
-                      if (programFee['fee'] == 'No fee information available')
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 20.0),
-                          child: Text(
-                            'No fee information available for your program.',
-                            style: TextStyle(color: Colors.red.shade600, fontSize: 14, fontStyle: FontStyle.italic),
-                          ),
-                        ),
-                      ExpansionTile(
-                        leading: const Icon(Icons.school, color: Colors.deepPurple),
-                        title: const Text(
-                          'NUST University Data',
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.deepPurple),
-                        ),
-                        initiallyExpanded: true,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-                            child: buildSectionContent(universityData),
-                          ),
-                        ],
-                      ),
-                      const Divider(height: 30, thickness: 1, color: Colors.deepPurple),
-                    ],
-                    if (hasNustMatch) ...[
-                      ExpansionTile(
-                        leading: const Icon(Icons.attach_money, color: Colors.deepPurple),
-                        title: const Text(
-                          'Fee Details',
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.deepPurple),
-                        ),
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-                            child: buildSectionContent(feeDetails),
-                          ),
-                        ],
-                      ),
-                      const Divider(height: 30, thickness: 1, color: Colors.deepPurple),
-                    ],
+                   
+                
                     ExpansionTile(
                       leading: const Icon(Icons.person, color: Colors.deepPurple),
                       title: const Text(
@@ -571,12 +498,11 @@ class _NustUniScreenState extends State<NustUniScreen> {
       );
     } catch (e) {
       if (!mounted) return;
-      Navigator.of(context).pop();
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
           title: const Text('Error'),
-          content: Text('Failed to fetch merit data: ${e.toString()}'),
+          content: Text('Failed to show merit data: ${e.toString()}'),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),

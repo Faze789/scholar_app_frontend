@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 
 class NustScholarshipScreen extends StatefulWidget {
   final Map<String, dynamic> studentData;
-
   const NustScholarshipScreen({super.key, required this.studentData});
 
   @override
@@ -28,18 +27,18 @@ class _NustScholarshipScreenState extends State<NustScholarshipScreen> {
       final response = await http.get(Uri.parse('http://35.174.6.20:5000/scholarshipsnust'));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        if (data['status'] == 'success') {
-          final List<String> raw = List<String>.from(data['data']);
-
+        if (data is Map && data['status'] == 'success' && data['scholarships'] != null) {
+          final List<dynamic> rawData = data['scholarships'];
           final List<Map<String, String>> parsed = [];
           String? currentTitle;
 
-          for (final line in raw) {
-            if (!line.trim().startsWith('-')) {
-              currentTitle = line;
+          for (final line in rawData) {
+            final text = line?.toString() ?? '';
+            if (!text.trim().startsWith('-')) {
+              currentTitle = text;
               parsed.add({"title": currentTitle, "description": ""});
             } else if (currentTitle != null) {
-              parsed.last["description"] = line.replaceFirst('- ', '').trim();
+              parsed.last["description"] = text.replaceFirst('- ', '').trim();
             }
           }
 
@@ -49,7 +48,7 @@ class _NustScholarshipScreenState extends State<NustScholarshipScreen> {
           });
         } else {
           setState(() {
-            errorMessage = 'Failed to load scholarships.';
+            errorMessage = 'No scholarships data available';
             isLoading = false;
           });
         }
@@ -61,7 +60,7 @@ class _NustScholarshipScreenState extends State<NustScholarshipScreen> {
       }
     } catch (e) {
       setState(() {
-        errorMessage = 'Error: $e';
+        errorMessage = 'Error: ${e.toString()}';
         isLoading = false;
       });
     }
@@ -69,26 +68,22 @@ class _NustScholarshipScreenState extends State<NustScholarshipScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final studentName = widget.studentData['name'] ?? 'Student';
+    final studentName = widget.studentData['name']?.toString() ?? 'Student';
 
     return Scaffold(
-    appBar: AppBar(
-  title: const Text("NUST Scholarships"),
-  backgroundColor: Colors.indigo,
-  actions: [
-    IconButton(
-      icon: const Icon(Icons.dashboard_customize),
-      tooltip: 'Student Dashboard',
-      onPressed: () {
-        context.go(
-          '/student_dashboard',
-          extra: widget.studentData, 
-        );
-      },
-    ),
-  ],
-),
-    
+      appBar: AppBar(
+        title: const Text("NUST Scholarships"),
+        backgroundColor: Colors.indigo,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.dashboard_customize),
+            tooltip: 'Student Dashboard',
+            onPressed: () {
+              context.go('/student_dashboard', extra: widget.studentData);
+            },
+          ),
+        ],
+      ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : errorMessage.isNotEmpty
@@ -100,10 +95,7 @@ class _NustScholarshipScreenState extends State<NustScholarshipScreen> {
                     children: [
                       Text(
                         "Hi $studentName 👋",
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 8),
                       const Text(
@@ -116,28 +108,19 @@ class _NustScholarshipScreenState extends State<NustScholarshipScreen> {
                           itemCount: structuredScholarships.length,
                           itemBuilder: (context, index) {
                             final item = structuredScholarships[index];
+                            final title = item['title']?.toString() ?? '';
+                            final description = item['description']?.toString() ?? '';
                             return Card(
                               elevation: 3,
                               margin: const EdgeInsets.symmetric(vertical: 8),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                               child: ListTile(
                                 contentPadding: const EdgeInsets.all(16),
-                                title: Text(
-                                  item['title'] ?? '',
-                                  style: const TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                subtitle: item['description']!.isNotEmpty
+                                title: Text(title, style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600)),
+                                subtitle: description.isNotEmpty
                                     ? Padding(
                                         padding: const EdgeInsets.only(top: 6.0),
-                                        child: Text(
-                                          item['description'] ?? '',
-                                          style: const TextStyle(fontSize: 15),
-                                        ),
+                                        child: Text(description, style: const TextStyle(fontSize: 15)),
                                       )
                                     : null,
                               ),

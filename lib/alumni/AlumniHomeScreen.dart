@@ -119,17 +119,32 @@ class AlumniHomeScreen extends StatelessWidget {
                 ],
               ),
 
-              const SizedBox(height: 20),
+              
 
               
-              _buildHomeButton(
-                context,
-                icon: Icons.info_outline,
-                label: 'Check Own Info',
-                onTap: () {
-                  _showAlumniInfoDialog(context);
-                },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildHomeButton(
+                    context,
+                    icon: Icons.info_outline,
+                    label: 'Check Own Info',
+                    onTap: () {
+                      _showAlumniInfoDialog(context);
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                      _buildHomeButton(
+                    context,
+                    icon: Icons.logout,
+                    label: 'Logout',
+                    onTap: () {
+                      context.go('/student_admin');
+                    },
+                  ),
+                ],
               ),
+             
             ],
           ),
         ),

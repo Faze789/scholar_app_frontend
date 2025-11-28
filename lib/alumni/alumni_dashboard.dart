@@ -73,8 +73,8 @@ class alumni_dashboard extends StatelessWidget {
                     
                       ElevatedButton(
                         onPressed: () {
-  context.go('/alumni-signin');
-},
+                      context.go('/alumni-signin');
+                          },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           foregroundColor: Colors.purple.shade700,
@@ -94,7 +94,7 @@ class alumni_dashboard extends StatelessWidget {
                     
                       ElevatedButton(
                       onPressed: () {
-            context.go('/alumni-signup');
+                  context.go('/alumni-signup');
             },   
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,

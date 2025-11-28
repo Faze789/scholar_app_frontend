@@ -17,10 +17,8 @@ class StudentSignUpScreen extends StatefulWidget {
 class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
   final _formKey = GlobalKey<FormState>();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
 
   String name = '';
   String fatherName = '';
@@ -36,30 +34,175 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
   String mastersCgpa = ''; 
   String email = '';
   String password = '';
-  bool isBS = false;
-  bool isMS = false;
-  bool isPhD = false;
   bool isOALevel = false;
   File? _profileImage;
   List<String> selectedFields = [];
   Map<String, dynamic>? apiResponseData;
-
   String _selectedDegreeLevel = 'bachelors'; 
 
   final List<String> fieldsOfStudy = [
-    "Computer Science",
-    "Software Engineering",
-    "Electrical Engineering",
-    "Mechanical Engineering",
-    "Civil Engineering",
-    "Business Administration",
-    "Data Science",
-    "Artificial Intelligence",
-    "Medicine",
-    "Architecture"
+    "Computer Science", "Software Engineering", "Electrical Engineering",
+    "Mechanical Engineering", "Civil Engineering", "Business Administration",
+    "Data Science", "Artificial Intelligence", "Medicine", "Architecture"
   ];
 
-  static const String otpServerUrl = 'http://192.168.100.149:3001';
+  static const String otpServerUrl = 'http://192.168.100.121:3001';
+
+  // Controllers for marks fields
+  final TextEditingController _matricController = TextEditingController();
+  final TextEditingController _fscController = TextEditingController();
+  final TextEditingController _oLevelController = TextEditingController();
+  final TextEditingController _aLevelController = TextEditingController();
+  final TextEditingController _ntsController = TextEditingController();
+  final TextEditingController _netController = TextEditingController();
+  final TextEditingController _ecatController = TextEditingController();
+  final TextEditingController _nedController = TextEditingController();
+  final TextEditingController _cgpaController = TextEditingController();
+  final TextEditingController _mastersCgpaController = TextEditingController();
+
+  // Error states for marks fields
+  bool _matricError = false;
+  bool _fscError = false;
+  bool _oLevelError = false;
+  bool _aLevelError = false;
+  bool _ntsError = false;
+  bool _netError = false;
+  bool _ecatError = false;
+  bool _nedError = false;
+  bool _cgpaError = false;
+  bool _mastersCgpaError = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Add listeners to update error states in real-time
+    _matricController.addListener(() => _validateField(_matricController, 1100, (error) => setState(() => _matricError = error)));
+    _fscController.addListener(() => _validateField(_fscController, 1100, (error) => setState(() => _fscError = error)));
+    _oLevelController.addListener(() => _validateField(_oLevelController, 900, (error) => setState(() => _oLevelError = error)));
+    _aLevelController.addListener(() => _validateField(_aLevelController, 1200, (error) => setState(() => _aLevelError = error)));
+    _ntsController.addListener(() => _validateField(_ntsController, 100, (error) => setState(() => _ntsError = error)));
+    _netController.addListener(() => _validateField(_netController, 200, (error) => setState(() => _netError = error)));
+    _ecatController.addListener(() => _validateField(_ecatController, 400, (error) => setState(() => _ecatError = error)));
+    _nedController.addListener(() => _validateField(_nedController, 100, (error) => setState(() => _nedError = error)));
+    _cgpaController.addListener(() => _validateField(_cgpaController, 4.0, (error) => setState(() => _cgpaError = error)));
+    _mastersCgpaController.addListener(() => _validateField(_mastersCgpaController, 4.0, (error) => setState(() => _mastersCgpaError = error)));
+  }
+
+  @override
+  void dispose() {
+    // Dispose controllers
+    _matricController.dispose();
+    _fscController.dispose();
+    _oLevelController.dispose();
+    _aLevelController.dispose();
+    _ntsController.dispose();
+    _netController.dispose();
+    _ecatController.dispose();
+    _nedController.dispose();
+    _cgpaController.dispose();
+    _mastersCgpaController.dispose();
+    super.dispose();
+  }
+
+  // Validate a single field and update error state
+  void _validateField(TextEditingController controller, double maxMarks, Function(bool) setError) {
+    final text = controller.text;
+    if (text.isEmpty) {
+      setError(false);
+      return;
+    }
+    
+    final value = double.tryParse(text);
+    if (value == null || value < 0 || value > maxMarks) {
+      setError(true);
+    } else {
+      setError(false);
+    }
+  }
+
+  // Validate all marks fields
+  bool _validateMarksFields() {
+    // Reset all error states first
+    setState(() {
+      _matricError = false;
+      _fscError = false;
+      _oLevelError = false;
+      _aLevelError = false;
+      _ntsError = false;
+      _netError = false;
+      _ecatError = false;
+      _nedError = false;
+      _cgpaError = false;
+      _mastersCgpaError = false;
+    });
+    
+    bool hasError = false;
+    
+    // Validate Matric/FSC or O/A Level
+    if (!isOALevel) {
+      if (!_validateFieldWithController(_matricController, 1100)) {
+        setState(() => _matricError = true);
+        hasError = true;
+      }
+      if (!_validateFieldWithController(_fscController, 1100)) {
+        setState(() => _fscError = true);
+        hasError = true;
+      }
+    } else {
+      if (!_validateFieldWithController(_oLevelController, 900)) {
+        setState(() => _oLevelError = true);
+        hasError = true;
+      }
+      if (!_validateFieldWithController(_aLevelController, 1200)) {
+        setState(() => _aLevelError = true);
+        hasError = true;
+      }
+    }
+    
+    // Validate test scores
+    if (!_validateFieldWithController(_ntsController, 100)) {
+      setState(() => _ntsError = true);
+      hasError = true;
+    }
+    if (!_validateFieldWithController(_netController, 200)) {
+      setState(() => _netError = true);
+      hasError = true;
+    }
+    if (!_validateFieldWithController(_ecatController, 400)) {
+      setState(() => _ecatError = true);
+      hasError = true;
+    }
+    if (!_validateFieldWithController(_nedController, 100)) {
+      setState(() => _nedError = true);
+      hasError = true;
+    }
+    
+    // Validate CGPA if applicable
+    if (_selectedDegreeLevel == 'masters' || _selectedDegreeLevel == 'phd') {
+      if (!_validateFieldWithController(_cgpaController, 4.0)) {
+        setState(() => _cgpaError = true);
+        hasError = true;
+      }
+    }
+    
+    if (_selectedDegreeLevel == 'phd') {
+      if (!_validateFieldWithController(_mastersCgpaController, 4.0)) {
+        setState(() => _mastersCgpaError = true);
+        hasError = true;
+      }
+    }
+    
+    return !hasError;
+  }
+
+  // Helper to validate a field using its controller
+  bool _validateFieldWithController(TextEditingController controller, double maxMarks) {
+    final text = controller.text;
+    if (text.isEmpty) return false; // Empty field is invalid
+    
+    final value = double.tryParse(text);
+    return value != null && value >= 0 && value <= maxMarks;
+  }
 
   Future<void> _pickImage() async {
     final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -97,95 +240,99 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
     }
   }
 
-Future<bool> _callPredictionAPI() async {
-  try {
-    double matric, fsc;
-    
-    if (isOALevel) {
-      matric = (double.tryParse(oLevelMarks) ?? 0) / 900 * 1100;
-      fsc = (double.tryParse(aLevelMarks) ?? 0) / 1200 * 1100;
-      print('🔄 Converting O/A Level marks for API: O-Level($oLevelMarks/900) -> Matric($matric/1100), A-Level($aLevelMarks/1200) -> FSC($fsc/1100)');
-    } else {
-      matric = double.tryParse(matricMarks) ?? 0;
-      fsc = double.tryParse(fscMarks) ?? 0;
-      print('🔄 Using original Matric/FSC marks for API: Matric($matricMarks), FSC($fscMarks)');
-    }
-    
-    double ecat = double.tryParse(ecatMarks) ?? 0;
-    double nts = double.tryParse(ntsMarks) ?? 0;
-    double net = double.tryParse(netMarks) ?? 0;
-    double ned = double.tryParse(nedMarks) ?? 0;
-
-    String program = selectedFields.isNotEmpty ? selectedFields.first : _selectedDegreeLevel;
-
-    final url = Uri.parse("http://35.174.6.20:5000/predict");
-    
-    print('Making API call to: $url');
-    
- 
-    Map<String, dynamic> requestData = {
-      "matric_marks": matric,
-      "fsc_marks": fsc,
-      "nts_marks": nts,
-      "net_marks": net,
-      "ecat_marks": ecat,
-      "ned_test_marks": ned,
-      "program": program,
-    };
-    
-    
-    if (_selectedDegreeLevel == 'masters' || _selectedDegreeLevel == 'phd') {
-      requestData['bachelors_cgpa'] = double.tryParse(cgpa) ?? 0;
-    }
-    
-   
-    if (_selectedDegreeLevel == 'phd') {
-      requestData['masters_cgpa'] = double.tryParse(mastersCgpa) ?? 0;
-    }
-    
-    print('Request data: ${json.encode(requestData)}');
-
-    final response = await http.post(
-      url,
-      headers: {"Content-Type": "application/json"},
-      body: json.encode(requestData),
-    ).timeout(const Duration(seconds: 30));
-
-    print('API Response Status: ${response.statusCode}');
-    print('API Response Body: ${response.body}');
-
-    if (response.statusCode == 200) {
+  Future<bool> _callPredictionAPI() async {
+    try {
+      double matric, fsc;
       
-      String processedResponse = response.body.replaceAll('NaN', 'null');
+      if (isOALevel) {
+        matric = (double.tryParse(oLevelMarks) ?? 0) / 900 * 1100;
+        fsc = (double.tryParse(aLevelMarks) ?? 0) / 1200 * 1100;
+        print('🔄 Converting O/A Level marks for API: O-Level($oLevelMarks/900) -> Matric($matric/1100), A-Level($aLevelMarks/1200) -> FSC($fsc/1100)');
+      } else {
+        matric = double.tryParse(matricMarks) ?? 0;
+        fsc = double.tryParse(fscMarks) ?? 0;
+        print('🔄 Using original Matric/FSC marks for API: Matric($matricMarks), FSC($fscMarks)');
+      }
       
-      final result = json.decode(processedResponse);
+      double ecat = double.tryParse(ecatMarks) ?? 0;
+      double nts = double.tryParse(ntsMarks) ?? 0;
+      double net = double.tryParse(netMarks) ?? 0;
+      double ned = double.tryParse(nedMarks) ?? 0;
+
+      String program = selectedFields.isNotEmpty ? selectedFields.first : _selectedDegreeLevel;
+
+      final url = Uri.parse("http://192.168.100.121:5000/predict");
       
-      if (result['universities'] == null || result['universities'] is! List) {
-        print('Invalid API response structure');
-        _showErrorDialog("Invalid API response structure");
+      print('Making API call to: $url');
+      
+      Map<String, dynamic> requestData = {
+        "matric_marks": matric,
+        "fsc_marks": fsc,
+        "nts_marks": nts,
+        "net_marks": net,
+        "ecat_marks": ecat,
+        "ned_test_marks": ned,
+        "program": program,
+      };
+      
+      if (_selectedDegreeLevel == 'masters' || _selectedDegreeLevel == 'phd') {
+        requestData['bachelors_cgpa'] = double.tryParse(cgpa) ?? 0;
+      }
+      
+      if (_selectedDegreeLevel == 'phd') {
+        requestData['masters_cgpa'] = double.tryParse(mastersCgpa) ?? 0;
+      }
+      
+      print('Request data: ${json.encode(requestData)}');
+
+      final response = await http.post(
+        url,
+        headers: {"Content-Type": "application/json"},
+        body: json.encode(requestData),
+      ).timeout(const Duration(seconds: 30));
+
+      print('API Response Status: ${response.statusCode}');
+      print('API Response Body: ${response.body}');
+
+      if (response.statusCode == 200) {
+        String processedResponse = response.body.replaceAll('NaN', 'null');
+        final result = json.decode(processedResponse);
+        
+        if (result['universities'] == null || result['universities'] is! List) {
+          print('Invalid API response structure');
+          _showErrorDialog("Invalid API response structure");
+          return false;
+        }
+
+        print(' API call successful, universities found: ${result['universities'].length}');
+        
+        setState(() {
+          apiResponseData = result;
+        });
+        return true;
+      } else {
+        print(' API Error: ${response.statusCode}');
+        _showErrorDialog("API Error: ${response.statusCode}\n${response.body}");
         return false;
       }
-
-      print(' API call successful, universities found: ${result['universities'].length}');
-      
-      setState(() {
-        apiResponseData = result;
-      });
-      return true;
-    } else {
-      print(' API Error: ${response.statusCode}');
-      _showErrorDialog("API Error: ${response.statusCode}\n${response.body}");
+    } catch (e) {
+      print(' API call failed: $e');
+      _showErrorDialog("API call failed: $e");
       return false;
     }
-  } catch (e) {
-    print(' API call failed: $e');
-    _showErrorDialog("API call failed: $e");
-    return false;
   }
-}
 
   Future<void> _saveStudentData() async {
-    if (!_formKey.currentState!.validate()) return;
+    // First validate the form
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+    
+    // Then validate marks fields
+    if (!_validateMarksFields()) {
+      _showErrorDialog("Please correct the marks fields highlighted in red");
+      return;
+    }
     
     if (_selectedDegreeLevel.isEmpty) {
       _showErrorDialog("Please select a degree level");
@@ -259,40 +406,36 @@ Future<bool> _callPredictionAPI() async {
       );
 
       print('Creating Firebase user...');
-UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
-  email: email,
-  password: password,
-);
+      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
-final user = userCredential.user;
-if (user == null) {
-  throw Exception("Firebase user creation failed");
-}
-print('Firebase user created: ${user.uid}');
+      final user = userCredential.user;
+      if (user == null) {
+        throw Exception("Firebase user creation failed");
+      }
+      print('Firebase user created: ${user.uid}');
 
+      print('Preparing student data...');
+      final studentData = _prepareStudentData(imageUrl);
+      print('Student data prepared');
 
-print('Preparing student data...');
-final studentData = _prepareStudentData(imageUrl);
-print('Student data prepared');
+      print('Saving to Firestore...');
+      await _firestore.collection('students_data').doc(user.uid).set(studentData)
+        .timeout(const Duration(seconds: 30));
+      print('Data saved to Firestore with UID: ${user.uid}');
 
-print('Saving to Firestore...');
-await _firestore.collection('students_data').doc(user.uid).set(studentData)
-  .timeout(const Duration(seconds: 30));
-print('Data saved to Firestore with UID: ${user.uid}');
+      print('Verifying saved data...');
+      final savedDoc = await _firestore.collection('students_data').doc(user.uid).get()
+        .timeout(const Duration(seconds: 15));
 
-
-print('Verifying saved data...');
-final savedDoc = await _firestore.collection('students_data').doc(user.uid).get()
-  .timeout(const Duration(seconds: 15));
-
-if (!savedDoc.exists) {
-  throw Exception("Document not found after saving");
-}
-print('✅ Data verification successful');
-
+      if (!savedDoc.exists) {
+        throw Exception("Document not found after saving");
+      }
+      print('✅ Data verification successful');
 
       Navigator.pop(context);
-      
       _showSuccessDialog();
 
     } catch (e) {
@@ -465,7 +608,6 @@ print('✅ Data verification successful');
       'ned_marks': double.tryParse(nedMarks) ?? 0,
     });
 
-    // Add CGPA fields based on degree level
     if (_selectedDegreeLevel == 'masters' || _selectedDegreeLevel == 'phd') {
       data['bachelors_cgpa'] = double.tryParse(cgpa) ?? 0;
     }
@@ -609,7 +751,6 @@ print('✅ Data verification successful');
             if (apiResponseData != null && apiResponseData!['universities'] != null) ...[
               Text("${(apiResponseData!['universities'] as List).length} universities analyzed"),
               const SizedBox(height: 5),
-          
               ...((apiResponseData!['universities'] as List)
                   .where((uni) => uni['admitted'] == true)
                   .map((uni) => Text(" Admitted: ${uni['name']}", 
@@ -690,7 +831,6 @@ print('✅ Data verification successful');
                   _buildTextField(label: 'Full Name', onSaved: (v) => name = v!),
                   _buildTextField(label: 'Father Name', onSaved: (v) => fatherName = v!),
                   
-              
                   const SizedBox(height: 20),
                   const Text(
                     'Select Degree Level:',
@@ -719,67 +859,100 @@ print('✅ Data verification successful');
                       const Text("O/A Level?", style: TextStyle(color: Colors.white)),
                       Switch(
                         value: isOALevel,
-                        onChanged: (v) => setState(() => isOALevel = v),
+                        onChanged: (v) => setState(() {
+                          isOALevel = v;
+                          // Clear error states when switching between O/A Level and Matric/FSC
+                          if (v) {
+                            _matricController.clear();
+                            _fscController.clear();
+                            _matricError = false;
+                            _fscError = false;
+                          } else {
+                            _oLevelController.clear();
+                            _aLevelController.clear();
+                            _oLevelError = false;
+                            _aLevelError = false;
+                          }
+                        }),
                       ),
                     ],
                   ),
                   if (isOALevel) ...[
-                    _buildTextField(
+                    _buildMarksField(
                       label: 'O Level Marks (out of 900)',
-                      keyboardType: TextInputType.number,
+                      controller: _oLevelController,
+                      error: _oLevelError,
+                      maxMarks: 900,
                       onSaved: (v) => oLevelMarks = v!,
                     ),
-                    _buildTextField(
+                    _buildMarksField(
                       label: 'A Level Marks (out of 1200)',
-                      keyboardType: TextInputType.number,
+                      controller: _aLevelController,
+                      error: _aLevelError,
+                      maxMarks: 1200,
                       onSaved: (v) => aLevelMarks = v!,
                     ),
                   ] else ...[
-                    _buildTextField(
+                    _buildMarksField(
                       label: 'Matric Marks (out of 1100)',
-                      keyboardType: TextInputType.number,
+                      controller: _matricController,
+                      error: _matricError,
+                      maxMarks: 1100,
                       onSaved: (v) => matricMarks = v!,
                     ),
-                    _buildTextField(
+                    _buildMarksField(
                       label: 'FSC Marks (out of 1100)',
-                      keyboardType: TextInputType.number,
+                      controller: _fscController,
+                      error: _fscError,
+                      maxMarks: 1100,
                       onSaved: (v) => fscMarks = v!,
                     ),
                   ],
-                  _buildTextField(
+                  _buildMarksField(
                     label: 'NTS Marks (out of 100)',
-                    keyboardType: TextInputType.number,
+                    controller: _ntsController,
+                    error: _ntsError,
+                    maxMarks: 100,
                     onSaved: (v) => ntsMarks = v!,
                   ),
-                  _buildTextField(
+                  _buildMarksField(
                     label: 'NET Marks (out of 200)',
-                    keyboardType: TextInputType.number,
+                    controller: _netController,
+                    error: _netError,
+                    maxMarks: 200,
                     onSaved: (v) => netMarks = v!,
                   ),
-                  _buildTextField(
+                  _buildMarksField(
                     label: 'ECAT Marks (out of 400)',
-                    keyboardType: TextInputType.number,
+                    controller: _ecatController,
+                    error: _ecatError,
+                    maxMarks: 400,
                     onSaved: (v) => ecatMarks = v!,
                   ),
-                  _buildTextField(
+                  _buildMarksField(
                     label: 'NED Entry Test Marks (out of 100)',
-                    keyboardType: TextInputType.number,
+                    controller: _nedController,
+                    error: _nedError,
+                    maxMarks: 100,
                     onSaved: (v) => nedMarks = v!,
                     helperText: 'Required for NED University admission prediction',
                   ),
                   
-                  // Conditional CGPA fields based on degree level
                   if (_selectedDegreeLevel == 'masters' || _selectedDegreeLevel == 'phd')
-                    _buildTextField(
-                      label: 'Bachelor\'s CGPA',
-                      keyboardType: TextInputType.number,
+                    _buildMarksField(
+                      label: 'Bachelor\'s CGPA (out of 4.0)',
+                      controller: _cgpaController,
+                      error: _cgpaError,
+                      maxMarks: 4.0,
                       onSaved: (v) => cgpa = v!,
                     ),
                   
                   if (_selectedDegreeLevel == 'phd')
-                    _buildTextField(
-                      label: 'Master\'s CGPA',
-                      keyboardType: TextInputType.number,
+                    _buildMarksField(
+                      label: 'Master\'s CGPA (out of 4.0)',
+                      controller: _mastersCgpaController,
+                      error: _mastersCgpaError,
+                      maxMarks: 4.0,
                       onSaved: (v) => mastersCgpa = v!,
                     ),
                   
@@ -800,19 +973,29 @@ print('✅ Data verification successful');
                     },
                   ),
                   
-                  // Field selection
                   if (_selectedDegreeLevel.isNotEmpty)
-                    Column(
-                      children: fieldsOfStudy.map((field) {
-                        return CheckboxListTile(
-                          title: Text(field, style: const TextStyle(color: Colors.white)),
-                          value: selectedFields.contains(field),
-                          onChanged: (v) => setState(() {
-                            v! ? selectedFields.add(field) : selectedFields.remove(field);
-                          }),
-                        );
-                      }).toList(),
-                    ),
+                   Column(
+                     children: fieldsOfStudy.map((field) {
+                       bool isSelected = selectedFields.contains(field);
+                       bool disableOther = selectedFields.isNotEmpty && !isSelected;
+
+                       return CheckboxListTile(
+                         title: Text(field, style: const TextStyle(color: Colors.white)),
+                         value: isSelected,
+                         onChanged: disableOther
+                             ? null  
+                             : (v) {
+                                 setState(() {
+                                   if (v == true) {
+                                     selectedFields = [field]; 
+                                   } else {
+                                     selectedFields.remove(field);
+                                   }
+                                 });
+                               },
+                       );
+                     }).toList(),
+                   ),
                   
                   const SizedBox(height: 20),
                   ElevatedButton(
@@ -834,6 +1017,15 @@ print('✅ Data verification successful');
         setState(() {
           _selectedDegreeLevel = value;
           selectedFields.clear(); 
+          // Clear CGPA fields when changing degree level
+          if (value != 'masters' && value != 'phd') {
+            _cgpaController.clear();
+            _cgpaError = false;
+          }
+          if (value != 'phd') {
+            _mastersCgpaController.clear();
+            _mastersCgpaError = false;
+          }
         });
       },
       child: Container(
@@ -888,6 +1080,45 @@ print('✅ Data verification successful');
           ),
         ),
         validator: validator ?? (v) => v!.isEmpty ? 'Required field' : null,
+        onSaved: onSaved,
+      ),
+    );
+  }
+
+  Widget _buildMarksField({
+    required String label,
+    required TextEditingController controller,
+    required bool error,
+    required double maxMarks,
+    required FormFieldSetter<String> onSaved,
+    String? helperText,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: TextFormField(
+        controller: controller,
+        style: TextStyle(color: error ? Colors.red : Colors.white),
+        keyboardType: TextInputType.numberWithOptions(decimal: maxMarks <= 4.0),
+        decoration: InputDecoration(
+          labelText: label,
+          helperText: helperText,
+          helperStyle: const TextStyle(color: Colors.white70),
+          labelStyle: TextStyle(color: error ? Colors.red : Colors.white),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: error ? Colors.red : Colors.white70),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: error ? Colors.red : Colors.white),
+          ),
+          errorText: error ? 'Must be between 0 and $maxMarks' : null,
+        ),
+        validator: (v) {
+          if (v == null || v.isEmpty) return 'Required field';
+          final value = double.tryParse(v);
+          if (value == null) return 'Please enter a valid number';
+          if (value < 0 || value > maxMarks) return 'Must be between 0 and $maxMarks';
+          return null;
+        },
         onSaved: onSaved,
       ),
     );

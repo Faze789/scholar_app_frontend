@@ -10,6 +10,7 @@ import 'package:scholar_match_app/student/air_feee.dart';
 import 'package:scholar_match_app/student/iiui_uni.dart';
 import 'package:scholar_match_app/student/lums_fee.dart';
 import 'package:scholar_match_app/student/all_chats.dart';
+import 'package:scholar_match_app/student/practice__.dart';
 import 'package:scholar_match_app/student/visual_uni.dart';
 import 'package:scholar_match_app/student/uni_events.dart';
 import 'package:scholar_match_app/student/AIR_scholar.dart';
@@ -72,6 +73,7 @@ import 'package:scholar_match_app/student/abroad_scholarships/abroad_scholarship
 
 
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -87,8 +89,12 @@ class MyApp extends StatelessWidget {
       routes: [
         GoRoute(
           path: '/',
-          builder: (context, state) => const HomePage(),
+          builder: (context, state) => const HomePage(),   
         ),
+        //  GoRoute(
+        //   path: '/',
+        //   builder: (context, state) =>  practice__(), // i will comment this soon 
+        // ),
         GoRoute(
           path: '/student_admin',
           builder: (context, state) => const StudentAdmin(),

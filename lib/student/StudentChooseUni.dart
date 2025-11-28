@@ -351,15 +351,17 @@ class StudentChooseUni extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Map<String, String>> universities = [
+       {"name": "COMSATS", "image": "assets/comsats.jpg"},
+       {"name": "fast", "image": "assets/fast.png"},
+         {"name": "NED", "image": "assets/ned.png"},
+          {"name": "UET Lahore", "image": "assets/uet.jpg"},
+          {"name": "AIR UNIVERSITY", "image": "assets/air.png"},
+          {"name": "NUST", "image": "assets/nust.jpg"},
+          {"name": "uni_of_education", "image": "assets/ue.png"},
       {"name": "IIUI", "image": "assets/iiui.jpg"},
       {"name": "LUMS", "image": "assets/lums.png"},
-      {"name": "COMSATS", "image": "assets/comsats.jpg"},
-      {"name": "fast", "image": "assets/fast.png"},
-      {"name": "NED", "image": "assets/ned.png"},
-      {"name": "uni_of_education", "image": "assets/ue.png"},
-      {"name": "AIR UNIVERSITY", "image": "assets/air.png"},
-      {"name": "NUST", "image": "assets/nust.jpg"},
-      {"name": "UET Lahore", "image": "assets/uet.jpg"},
+  
+    
     ];
 
     return Scaffold(

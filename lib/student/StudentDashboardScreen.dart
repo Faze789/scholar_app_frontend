@@ -705,6 +705,13 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
                        context.go('/visual_uni', extra: _prepareNavigationData());
                       },
                     ),
+                    _dashboardItem(
+                      icon: Icons.logout,
+                      label: "Log out",
+                      onTap: ()  {
+                       context.go('/student_admin');
+                      },
+                    ),
 
                     ],
                   ),
