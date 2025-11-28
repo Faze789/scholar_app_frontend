@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
+import 'package:go_router/go_router.dart';
 
 class AirUniFees extends StatefulWidget {
   final Map<String, dynamic> studentData;
@@ -527,12 +527,12 @@ class _AirUniFeesState extends State<AirUniFees> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Display fees from API
+                
                       if (feeData != null)
                         ...feeData!.entries.map((entry) => _buildFeeCard(entry.key, entry.value)),
 
                       const SizedBox(height: 24),
-                      // Scholarships & contact sections remain unchanged
+                     
                       buildScholarshipSection(),
                       const SizedBox(height: 24),
                       buildContactSection(),

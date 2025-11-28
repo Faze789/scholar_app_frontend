@@ -46,9 +46,9 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
     "Data Science", "Artificial Intelligence", "Medicine", "Architecture"
   ];
 
-  static const String otpServerUrl = 'http://192.168.100.121:3001';
+  static const String otpServerUrl = 'http://192.168.100.149:3001';
 
-  // Controllers for marks fields
+  
   final TextEditingController _matricController = TextEditingController();
   final TextEditingController _fscController = TextEditingController();
   final TextEditingController _oLevelController = TextEditingController();
@@ -261,7 +261,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
 
       String program = selectedFields.isNotEmpty ? selectedFields.first : _selectedDegreeLevel;
 
-      final url = Uri.parse("http://192.168.100.121:5000/predict");
+      final url = Uri.parse("http://192.168.100.149:5000/predict");
       
       print('Making API call to: $url');
       

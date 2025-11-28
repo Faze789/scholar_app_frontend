@@ -18,7 +18,6 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
   Future<void> _login() async {
     if (!_formKey.currentState!.validate()) return;
     _formKey.currentState!.save();
-
     setState(() => isLoading = true);
 
     final snapshot = await FirebaseFirestore.instance
@@ -31,9 +30,9 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
 
     if (snapshot.docs.isNotEmpty) {
       context.go(
-  '/student_dashboard',
-  extra: snapshot.docs.first.data(),
-);
+        '/student_dashboard',
+        extra: snapshot.docs.first.data(),
+      );
     } else {
       _showDialog("Login Failed", "No user found with these credentials.");
     }
@@ -105,7 +104,20 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
                       obscureText: true,
                       onSaved: (v) => password = v!,
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          context.push('/student_forgot_pass');
+                        },
+                        child: const Text(
+                          'Forgot Password?',
+                          style: TextStyle(color: Colors.white70),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: isLoading ? null : _login,
                       style: ElevatedButton.styleFrom(

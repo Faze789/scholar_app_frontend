@@ -4,6 +4,7 @@ import 'student/student_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:scholar_match_app/student/forgot.dart';
 import 'package:scholar_match_app/student/uet_fee.dart';
 import 'package:scholar_match_app/student/feedback.dart';
 import 'package:scholar_match_app/student/air_feee.dart';
@@ -74,6 +75,7 @@ import 'package:scholar_match_app/student/abroad_scholarships/abroad_scholarship
 
 
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -107,6 +109,10 @@ class MyApp extends StatelessWidget {
         GoRoute(
           path: '/student_login',
           builder: (context, state) => const StudentLoginScreen(),
+        ),
+         GoRoute(
+          path: '/student_forgot_pass',
+          builder: (context, state) => const ForgotPasswordScreen(),
         ),
         GoRoute(
           path: '/student_sign_up',

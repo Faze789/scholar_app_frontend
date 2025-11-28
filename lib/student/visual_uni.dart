@@ -36,14 +36,13 @@ class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMix
     super.dispose();
   }
 
-  // Compute admission chance based on score vs last year aggregate
-  String computeChance(double student, double required) {
-    final diff = student - required;
-    if (diff >= 5) return 'High (90%+)';
-    if (diff >= 2) return 'Good (70-90%)';
-    if (diff >= 0) return 'Possible (30-70%)';
-    if (diff >= -2) return 'Low (20-30%)';
-    return 'Very Low (0-20%)';
+  bool _hasGraduateMessage(Map<String, dynamic> data) {
+    final List<dynamic> list = data['universities_list'] ?? [];
+    return list.any((u) =>
+        (u['admission_chance'] ?? '')
+            .toString()
+            .toLowerCase()
+            .contains('graduate application'));
   }
 
   List<UniversityData> _getUniversityData() {
@@ -53,50 +52,44 @@ class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMix
       final String name = uni['name'] ?? '';
       final bool admitted = uni['admitted'] ?? false;
 
-      final double studentAggregate = (widget.studentData['${id}_student_aggregate'] ?? 0.0).toDouble();
-      final double lastYearAggregate = (widget.studentData['${id}_last_year_aggregate'] ?? 0.0).toDouble();
-      final double predicted2026 = (widget.studentData['${id}_predicted_2026_aggregate'] ?? 0.0).toDouble();
-
-      // Use our computed chance instead of backend string
-      final String admissionChance = computeChance(studentAggregate, lastYearAggregate);
+      final double studentAggregate =
+          (widget.studentData['${id}_student_aggregate'] ?? 0.0).toDouble();
+      final double predicted2026 =
+          (widget.studentData['${id}_predicted_2026_aggregate'] ?? 0.0).toDouble();
 
       return UniversityData(
         id: id,
         name: name,
         admitted: admitted,
-        admissionChance: admissionChance,
         studentAggregate: studentAggregate,
-        lastYearAggregate: lastYearAggregate,
         predicted2026: predicted2026,
       );
     }).toList();
 
     uniList.sort((a, b) {
-      final aPercentage = _getChancePercentage(a.admissionChance);
-      final bPercentage = _getChancePercentage(b.admissionChance);
-      return bPercentage.compareTo(aPercentage);
+      final aPerc = _getBarPercentage(a.studentAggregate, a.predicted2026);
+      final bPerc = _getBarPercentage(b.studentAggregate, b.predicted2026);
+      return bPerc.compareTo(aPerc);
     });
 
     return uniList;
   }
 
-  Color _getChanceColor(String chance) {
-    if (chance.contains('High (90%+)')) return const Color(0xFF10B981);
-    if (chance.contains('Good (70-90%)')) return const Color(0xFF3B82F6);
-    if (chance.contains('Possible (30-70%)')) return const Color(0xFFF59E0B);
-    if (chance.contains('Low (20-30%)')) return const Color(0xFFF87171);
-    return const Color(0xFF6B7280);
+  Color _getBarColor(double student, double predicted) {
+    if (student > predicted) return const Color(0xFF3B82F6);      
+    if (student >= predicted - 2) return const Color(0xFF10B981); 
+    if (student >= predicted - 5) return const Color(0xFFF87171); 
+    return const Color(0xFF6B7280);                               
   }
 
-  double _getChancePercentage(String chance) {
-    if (chance.contains('High (90%+)')) return 95.0;
-    if (chance.contains('Good (70-90%)')) return 80.0;
-    if (chance.contains('Possible (30-70%)')) return 50.0;
-    if (chance.contains('Low (20-30%)')) return 25.0;
-    return 10.0;
+  double _getBarPercentage(double student, double predicted) {
+    if (predicted == 0) return 0.0;
+    double perc = (student / predicted) * 100;
+    if (perc > 100) perc = 100;
+    if (perc < 0) perc = 0;
+    return perc;
   }
 
-  /// Full Firestore conversion for printing
   dynamic _convert(value) {
     if (value is Timestamp) return value.toDate().toString();
     if (value is GeoPoint) return {"latitude": value.latitude, "longitude": value.longitude};
@@ -115,9 +108,38 @@ class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
+    final isGraduate =
+        (widget.studentData['program_level'] == 'masters') ||
+        (widget.studentData['bachelors_cgpa'] != null) ||
+        _hasGraduateMessage(widget.studentData);
+
+    if (isGraduate) {
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF0F172A),
+          actions: [
+            IconButton(onPressed: () {
+              context.go('/student_dashboard', extra: widget.studentData);
+            }, icon: Icon(Icons.home))
+          ],
+        ),
+        backgroundColor: const Color(0xFF0F172A),
+        body: Center(
+          child: Text(
+            'You are a graduated student',
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 22,
+              fontWeight: FontWeight.bold
+            ),
+          ),
+        ),
+      );
+    }
+
     final universityData = _getUniversityData();
     final admittedCount = universityData.where((u) => u.admitted == true).length;
-    final totalCount = universityData.where((u) => u.admitted != null).length;
+    final totalCount = universityData.length;
 
     return Scaffold(
       backgroundColor: const Color(0xFF0F172A),
@@ -231,8 +253,8 @@ class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMix
   }
 
   Widget _buildBarItem(UniversityData uni) {
-    final percentage = _getChancePercentage(uni.admissionChance);
-    final color = _getChanceColor(uni.admissionChance);
+    final percentage = _getBarPercentage(uni.studentAggregate, uni.predicted2026);
+    final color = _getBarColor(uni.studentAggregate, uni.predicted2026);
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
@@ -249,7 +271,7 @@ class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMix
                 ),
               ),
               Text(
-                '${percentage.toInt()}%',
+                '${percentage.toStringAsFixed(1)}%',
                 style: TextStyle(color: color, fontWeight: FontWeight.bold),
               ),
             ],
@@ -262,20 +284,31 @@ class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMix
                 children: [
                   Container(
                     height: 40,
-                    decoration: BoxDecoration(color: const Color(0xFF1E293B), borderRadius: BorderRadius.circular(20)),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF1E293B),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
                   Container(
                     height: 40,
-                    width: (MediaQuery.of(context).size.width - 40) * (percentage / 100) * _animation.value,
+                    width: (MediaQuery.of(context).size.width - 40) *
+                        (percentage / 100) *
+                        _animation.value,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(colors: [color, color.withOpacity(0.6)]),
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: [BoxShadow(color: color.withOpacity(0.5), blurRadius: 10, offset: const Offset(0, 4))],
+                      boxShadow: [
+                        BoxShadow(
+                            color: color.withOpacity(0.5),
+                            blurRadius: 10,
+                            offset: const Offset(0, 4))
+                      ],
                     ),
                     child: Center(
                       child: Text(
-                        uni.admissionChance,
-                        style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
+                        '${percentage.toStringAsFixed(1)}%',
+                        style: const TextStyle(
+                            color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -288,11 +321,12 @@ class _VisualUniState extends State<VisualUni> with SingleTickerProviderStateMix
             children: [
               _buildScorePill('Your Score', uni.studentAggregate),
               const SizedBox(width: 8),
-              _buildScorePill('Required', uni.lastYearAggregate),
+              _buildScorePill('Predicted', uni.predicted2026),
               if (uni.admitted == true)
                 const Padding(
                   padding: EdgeInsets.only(left: 8),
-                  child: Icon(Icons.check_circle, color: Color(0xFF10B981), size: 20),
+                  child: Icon(Icons.check_circle,
+                      color: Color(0xFF10B981), size: 20),
                 ),
             ],
           ),
@@ -329,18 +363,14 @@ class UniversityData {
   final String id;
   final String name;
   final bool? admitted;
-  final String admissionChance;
   final double studentAggregate;
-  final double lastYearAggregate;
   final double predicted2026;
 
   UniversityData({
     required this.id,
     required this.name,
     required this.admitted,
-    required this.admissionChance,
     required this.studentAggregate,
-    required this.lastYearAggregate,
     required this.predicted2026,
   });
 }
