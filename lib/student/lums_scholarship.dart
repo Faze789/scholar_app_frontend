@@ -115,7 +115,7 @@ class _LumsScholarshipsState extends State<LumsScholarships> {
       onPressed: () {
         context.go(
           '/student_dashboard',
-          extra: widget.studentData, // ✅ send directly
+          extra: widget.studentData, 
         );
       },
     ),

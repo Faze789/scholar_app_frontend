@@ -39,7 +39,7 @@ class _AdminCheckAllUsersState extends State<AdminCheckAllUsers> {
     for (var doc in alumniSnapshot.docs) {
       users.add({
         'type': 'Alumni',
-        'email': doc['gmail'],
+        'email': doc['email'],
         'name': doc['name'],
         'image': doc['image_url'],
         'institute': doc['institute'],
@@ -49,23 +49,66 @@ class _AdminCheckAllUsersState extends State<AdminCheckAllUsers> {
     return users;
   }
 
+  Future<String?> fetchDegreeImage(String email) async {
+    final snapshot = await _firestore
+        .collection('alumni_degree_data')
+        .where('email', isEqualTo: email)
+        .limit(1)
+        .get();
+    if (snapshot.docs.isEmpty) return null;
+    return snapshot.docs.first['degree_image_url'];
+  }
+
+  Future<void> deleteUser(Map<String, dynamic> user) async {
+    if (user['type'] == 'Student') {
+      final snapshot = await _firestore
+          .collection('students_data')
+          .where('email', isEqualTo: user['email'])
+          .get();
+      for (var doc in snapshot.docs) {
+        await doc.reference.delete();
+      }
+    } else if (user['type'] == 'Alumni') {
+      final snapshot = await _firestore
+          .collection('alumni_data')
+          .where('email', isEqualTo: user['email'])
+          .get();
+      for (var doc in snapshot.docs) {
+        await doc.reference.delete();
+      }
+    }
+    setState(() {});
+  }
+
+  void showDegreePopup(String imageUrl) {
+    showDialog(
+      context: context,
+      builder: (_) => Dialog(
+        backgroundColor: Colors.transparent,
+        child: InteractiveViewer(
+          child: Image.network(imageUrl),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
-               IconButton(
-  onPressed: () {
-    context.go(
-      '/admin_dashboard',
-      extra: {
-        'email': widget.email,
-        'password': widget.password,
-      },
-    );
-  },
-  icon: const Icon(Icons.home),
-)
+          IconButton(
+            onPressed: () {
+              context.go(
+                '/admin_dashboard',
+                extra: {
+                  'email': widget.email,
+                  'password': widget.password,
+                },
+              );
+            },
+            icon: const Icon(Icons.home),
+          )
         ],
         title: const Text("All Users"),
         backgroundColor: Colors.deepPurple,
@@ -137,6 +180,31 @@ class _AdminCheckAllUsersState extends State<AdminCheckAllUsers> {
                             style: const TextStyle(
                                 color: Colors.white, fontSize: 12),
                           ),
+                        ),
+                      ],
+                    ),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (user['type'] == 'Alumni')
+                          FutureBuilder<String?>(
+                            future: fetchDegreeImage(user['email']),
+                            builder: (context, snapshot) {
+                              if (!snapshot.hasData || snapshot.data == null) {
+                                return const SizedBox.shrink();
+                              }
+                              return IconButton(
+                                icon: const Icon(Icons.school, color: Colors.orange),
+                                tooltip: 'View Degree Image',
+                                onPressed: () =>
+                                    showDegreePopup(snapshot.data!),
+                              );
+                            },
+                          ),
+                        IconButton(
+                          icon: const Icon(Icons.delete, color: Colors.red),
+                          tooltip: 'Delete User',
+                          onPressed: () => deleteUser(user),
                         ),
                       ],
                     ),

@@ -10,7 +10,7 @@ class air_univeristy extends StatefulWidget {
 }
 
 class _AirUniversityDashboardState extends State<air_univeristy> {
-  final Color auColor = const Color(0xFF003B73); // Air University Blue
+  final Color auColor = const Color(0xFF003B73); 
 
   @override
   Widget build(BuildContext context) {
@@ -61,11 +61,11 @@ class _AirUniversityDashboardState extends State<air_univeristy> {
         ],
       ),
 
-      // MAIN BODY
+      
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // HEADER WITH IMAGE
+           
             Container(
               height: 320,
               decoration: BoxDecoration(

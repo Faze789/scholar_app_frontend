@@ -11,7 +11,6 @@ import 'package:scholar_match_app/student/air_feee.dart';
 import 'package:scholar_match_app/student/iiui_uni.dart';
 import 'package:scholar_match_app/student/lums_fee.dart';
 import 'package:scholar_match_app/student/all_chats.dart';
-import 'package:scholar_match_app/student/practice__.dart';
 import 'package:scholar_match_app/student/visual_uni.dart';
 import 'package:scholar_match_app/student/uni_events.dart';
 import 'package:scholar_match_app/student/AIR_scholar.dart';
@@ -46,6 +45,7 @@ import 'package:scholar_match_app/student/lums_scholarship.dart';
 import 'package:scholar_match_app/student/StudentChooseUni.dart';
 import 'package:scholar_match_app/student/uni_of_education.dart';
 import 'package:scholar_match_app/student/uoe_scholarships.dart';
+import 'package:scholar_match_app/alumni/Alumni_forgot_pass.dart';
 import 'package:scholar_match_app/student/IIUI-scholarships.dart';
 import 'package:scholar_match_app/student/FAST_SCHOLARSHIPS.dart';
 import 'package:scholar_match_app/alumni/alumni_chats_screen.dart';
@@ -69,11 +69,6 @@ import 'package:scholar_match_app/student/abroad_scholarships/turkey_scholarship
 import 'package:scholar_match_app/student/abroad_scholarships/hungary_scholarships.dart';
 import 'package:scholar_match_app/student/abroad_scholarships/chevening_scholarships.dart';
 import 'package:scholar_match_app/student/abroad_scholarships/abroad_scholarships_screen.dart';
-
-
-
-
-
 
 
 void main() async {
@@ -516,6 +511,14 @@ GoRoute(
       path: '/alumni-signin',
       builder: (context, state) => const AlumniSignIn(),
     ),
+  GoRoute(
+  path: '/alumni-forgot_pass',
+  builder: (context, state) {
+    final email = state.extra as String?;
+    return Alumni_forgot_pass(email: email);
+  },
+),
+
     GoRoute(
       path: '/alumni-signup',
       builder: (context, state) => const AlumniSignUp(),

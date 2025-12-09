@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class practice__ extends StatefulWidget {
-  practice__({super.key});
+  const practice__({super.key});
 
   @override
   State<practice__> createState() => _practice__State();

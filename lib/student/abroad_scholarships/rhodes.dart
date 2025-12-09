@@ -127,7 +127,7 @@ class _RhodesScholarshipScreenState extends State<RhodesScholarshipScreen> {
                               padding: const EdgeInsets.all(12.0),
                               child: ListView(
                                 children: [
-                                  // ✅ Introduction
+                                  
                                   if ((scholarshipData!["introduction"] ?? "").toString().isNotEmpty)
                                     ListTile(
                                       title: const Text(
@@ -138,7 +138,7 @@ class _RhodesScholarshipScreenState extends State<RhodesScholarshipScreen> {
                                     ),
                                   const Divider(),
 
-                                  // ✅ Quick Facts
+                                  
                                   if (scholarshipData!["quick_facts"] != null &&
                                       (scholarshipData!["quick_facts"] as Map).isNotEmpty)
                                     ListTile(
@@ -151,7 +151,7 @@ class _RhodesScholarshipScreenState extends State<RhodesScholarshipScreen> {
                                     ),
                                   const Divider(),
 
-                                  // ✅ Eligibility
+                               
                                   if (scholarshipData!["eligibility"] != null &&
                                       (scholarshipData!["eligibility"] as List).isNotEmpty)
                                     ListTile(
@@ -164,7 +164,7 @@ class _RhodesScholarshipScreenState extends State<RhodesScholarshipScreen> {
                                     ),
                                   const Divider(),
 
-                                  // ✅ Benefits
+                                 
                                   if (scholarshipData!["benefits"] != null &&
                                       (scholarshipData!["benefits"] as List).isNotEmpty)
                                     ListTile(
@@ -177,7 +177,7 @@ class _RhodesScholarshipScreenState extends State<RhodesScholarshipScreen> {
                                     ),
                                   const Divider(),
 
-                                  // ✅ Application Process
+                                 
                                   if (scholarshipData!["application_process"] != null &&
                                       (scholarshipData!["application_process"] as List).isNotEmpty)
                                     ListTile(
@@ -190,7 +190,7 @@ class _RhodesScholarshipScreenState extends State<RhodesScholarshipScreen> {
                                     ),
                                   const Divider(),
 
-                                  // ✅ Final Thoughts
+                               
                                   if ((scholarshipData!["final_thoughts"] ?? "").toString().isNotEmpty)
                                     ListTile(
                                       title: const Text(

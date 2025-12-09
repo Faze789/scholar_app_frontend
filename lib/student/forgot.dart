@@ -35,7 +35,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.100.149:3001/send-otp'),
+        Uri.parse('https://sign-up-final-fyp-faze789s-projects.vercel.app/send-otp?x-vercel-protection-bypass=fazal111111111111111111111111111'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'email': email}),
       );
@@ -66,7 +66,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.100.149:3001/verify-otp'),
+        Uri.parse('https://sign-up-final-fyp-faze789s-projects.vercel.app/send-otp?x-vercel-protection-bypass=fazal111111111111111111111111111'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'email': _emailController.text.trim(),

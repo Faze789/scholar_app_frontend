@@ -65,8 +65,7 @@ class _ChatScreenState extends State<ChatScreen> {
     }, SetOptions(merge: true));
 
     _controller.clear();
-    
-    // Scroll to bottom after sending
+   
     Future.delayed(const Duration(milliseconds: 100), () {
       if (_scrollController.hasClients) {
         _scrollController.animateTo(
@@ -161,7 +160,7 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       body: Column(
         children: [
-          // Messages list
+          
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
@@ -334,7 +333,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ),
 
-          // Input area
+         
           Container(
             decoration: BoxDecoration(
               color: const Color(0xFFF7F7F7),

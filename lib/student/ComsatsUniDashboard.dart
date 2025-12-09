@@ -64,7 +64,7 @@ class _ComsatsUniDashboardState extends State<ComsatsUniDashboard> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Hero Section
+            
             Container(
               height: 300,
               decoration: const BoxDecoration(

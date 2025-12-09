@@ -46,6 +46,14 @@ dependencies:
   url_launcher: ^6.3.2
   flutter_animate: ^4.5.2
   fl_chart: ^1.1.0
+  firebase_messaging: ^15.2.10
+  google_mlkit_text_recognition: ^0.15.0
+  google_sign_in: ^7.2.0
+  googleapis_auth: ^1.5.2
+  googleapis: ^11.4.0
+  path_provider: ^2.1.0
+  photo_view: ^0.15.0
+
 
 
 dev_dependencies:
@@ -99,6 +107,7 @@ flutter:
     - assets/ned_intl.jpg
     - assets/ned_alumni.jpg
     - assets/main_icon.png
+    - assets/tessdata/eng.traineddata
 
 
 

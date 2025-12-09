@@ -63,6 +63,25 @@ class _FastUniversityScreenState extends State<FastUniversityScreen> {
     return program;
   }
 
+  String getFastBestModel() {
+    final data = widget.studentData;
+    if (data['fast_best_model'] != null) {
+      return data['fast_best_model'].toString().toLowerCase();
+    }
+    return 'linear';
+  }
+
+  String getFastMaeScore() {
+    final data = widget.studentData;
+    final bestModel = getFastBestModel();
+    if (bestModel == 'polynomial' && data['fast_poly_mae'] != null) {
+      return formatValue(data['fast_poly_mae']);
+    } else if (data['fast_linear_mae'] != null) {
+      return formatValue(data['fast_linear_mae']);
+    }
+    return 'N/A';
+  }
+
   void showFastMeritCheck(BuildContext context) {
     final student = widget.studentData;
     final isGraduate = student.containsKey('bachelors_cgpa') && student['bachelors_cgpa'] != null;
@@ -88,6 +107,10 @@ class _FastUniversityScreenState extends State<FastUniversityScreen> {
       {'key': 'ECAT Marks', 'value': formatValue(student['ecat_marks'])},
       {'key': 'NET Marks', 'value': formatValue(student['net_marks'])},
     ];
+
+    final bestModel = getFastBestModel();
+    final bestModelCapitalized = bestModel[0].toUpperCase() + bestModel.substring(1);
+    final maeScore = getFastMaeScore();
    
     final meritData = [
       {'key': 'Program Name', 'value': getProgramDisplay()},
@@ -95,6 +118,7 @@ class _FastUniversityScreenState extends State<FastUniversityScreen> {
       {'key': 'FAST Student Aggregate', 'value': formatValue(student['fast_student_aggregate'] ?? 'N/A')},
       {'key': 'FAST Admission Chance', 'value': formatValue(student['fast_admission_chance'] ?? 'N/A')},
       {'key': 'FAST Predicted 2026 Aggregate', 'value': formatValue(student['fast_predicted_2026_aggregate'] ?? 'N/A')},
+      {'key': '$bestModelCapitalized MAE Score', 'value': maeScore},
     ];
    
     Widget buildSection(List<Map<String, String>> data, {Color? keyColor, Color? valueColor}) {
@@ -298,7 +322,7 @@ class _FastUniversityScreenState extends State<FastUniversityScreen> {
             ),
           ),
         ],
-      ),
+      )
     );
   }
 
@@ -639,6 +663,10 @@ class _FastUniversityScreenState extends State<FastUniversityScreen> {
   @override
   Widget build(BuildContext context) {
     final feeStructure = fastFeeData['fee_structure'] ?? fastFeeData;
+    final bestModel = getFastBestModel();
+    final bestModelCapitalized = bestModel[0].toUpperCase() + bestModel.substring(1);
+    final maeScore = getFastMaeScore();
+    final predictedAggregate = widget.studentData['fast_predicted_2026_aggregate'] ?? 'N/A';
    
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
@@ -725,6 +753,82 @@ class _FastUniversityScreenState extends State<FastUniversityScreen> {
                               ),
                             ],
                           ),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.1),
+                              spreadRadius: 1,
+                              blurRadius: 4,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.trending_up,
+                                  color: Colors.deepPurple.shade700,
+                                  size: 20,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  'FAST Predicted 2026 Aggregate:',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.grey.shade800,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              formatValue(predictedAggregate),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.deepPurple,
+                                fontSize: 20,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            Row(
+                              children: [
+                                Icon(
+                                  bestModel == 'polynomial' ? Icons.polyline : Icons.show_chart,
+                                  color: Colors.deepPurple.shade600,
+                                  size: 20,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  '$bestModelCapitalized MAE Score:',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.grey.shade800,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              maeScore,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.deepPurple.shade600,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       const SizedBox(height: 24),

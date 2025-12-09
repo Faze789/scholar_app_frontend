@@ -1,11 +1,13 @@
 buildscript {
+    // No need to define kotlin_version here since it's in settings.gradle.kts
     repositories {
         google()
         mavenCentral()
     }
+    
     dependencies {
-        classpath("com.google.gms:google-services:4.3.15")
-
+        // Don't define AGP or Kotlin plugin here - they're in settings.gradle.kts
+        classpath("com.google.gms:google-services:4.3.15") // Keep if using Firebase
     }
 }
 
@@ -23,6 +25,7 @@ subprojects {
     val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
     project.layout.buildDirectory.value(newSubprojectBuildDir)
 }
+
 subprojects {
     project.evaluationDependsOn(":app")
 }

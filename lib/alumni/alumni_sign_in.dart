@@ -30,7 +30,6 @@ class _AlumniSignInState extends State<AlumniSignIn> {
 
       if (snapshot.docs.isNotEmpty) {
         final userData = snapshot.docs.first.data();
-
         context.go('/alumni_home_screen', extra: userData);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -113,6 +112,25 @@ class _AlumniSignInState extends State<AlumniSignIn> {
                               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                             ),
                           ),
+
+                    const SizedBox(height: 15),
+
+                    TextButton(
+                     onPressed: () {
+    context.push(
+      '/alumni-forgot_pass',
+      extra: _gmailController.text.trim(),
+    );
+  },
+                      child: const Text(
+                        'Forgot Password?',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

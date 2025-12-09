@@ -3,12 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class all_chats extends StatefulWidget {
-
-  
   final Map<String, dynamic> studentData;
-
   const all_chats({super.key, required this.studentData});
-
 
   @override
   State<all_chats> createState() => _ConnectWithAlumniState();
@@ -28,7 +24,9 @@ class _ConnectWithAlumniState extends State<all_chats> {
         actions: [
           IconButton(
             icon: const Icon(Icons.grid_view_rounded),
-            onPressed: () {},
+            onPressed: () {
+              context.go('/student_dashboard', extra: widget.studentData); 
+            },
           )
         ],
       ),
@@ -53,14 +51,6 @@ class _ConnectWithAlumniState extends State<all_chats> {
                   icon: Icon(Icons.search, color: Colors.white54),
                 ),
               ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 16, bottom: 6),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text('1 Alumni Available',
-                  style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500)),
             ),
           ),
           Expanded(
@@ -128,93 +118,76 @@ class _ConnectWithAlumniState extends State<all_chats> {
                               children: [
                                 Row(
                                   children: [
-                                    Text(
-                                      data['name'],
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold, fontSize: 16),
-                                    ),
+                                    Text(data['name'], style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                                     const SizedBox(width: 6),
                                     Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8, vertical: 4),
+                                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                                       decoration: BoxDecoration(
                                         color: Colors.yellow.shade100,
                                         borderRadius: BorderRadius.circular(8),
                                       ),
-                                      child: Text(
-                                        data['institute'],
-                                        style: const TextStyle(
-                                            color: Colors.black87, fontSize: 12),
-                                      ),
+                                      child: Text(data['institute'], style: const TextStyle(color: Colors.black87, fontSize: 12)),
                                     ),
                                   ],
                                 ),
                                 const SizedBox(height: 2),
                                 Row(
                                   children: [
-                                    const Icon(Icons.computer,
-                                        size: 16, color: Colors.black54),
+                                    const Icon(Icons.computer, size: 16, color: Colors.black54),
                                     const SizedBox(width: 4),
-                                    Text(
-                                      data['field'],
-                                      style: const TextStyle(
-                                          fontSize: 13, color: Colors.black54),
-                                    ),
+                                    Text(data['field'], style: const TextStyle(fontSize: 13, color: Colors.black54)),
                                   ],
                                 ),
                                 const SizedBox(height: 6),
                                 Row(
                                   children: [
                                     Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8, vertical: 3),
-                                      decoration: BoxDecoration(
-                                          color: Colors.blue.shade100,
-                                          borderRadius: BorderRadius.circular(8)),
-                                      child: Text(
-                                        'BS: ${data['cgpa_bs']}',
-                                        style: const TextStyle(fontSize: 12),
-                                      ),
+                                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                                      decoration: BoxDecoration(color: Colors.blue.shade100, borderRadius: BorderRadius.circular(8)),
+                                      child: Text('BS: ${data['cgpa_bs']}', style: const TextStyle(fontSize: 12)),
                                     ),
                                     const SizedBox(width: 6),
                                     Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8, vertical: 3),
-                                      decoration: BoxDecoration(
-                                          color: Colors.purple.shade100,
-                                          borderRadius: BorderRadius.circular(8)),
-                                      child: Text(
-                                        'MS: ${data['cgpa_ms']}',
-                                        style: const TextStyle(fontSize: 12),
-                                      ),
+                                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                                      decoration: BoxDecoration(color: Colors.purple.shade100, borderRadius: BorderRadius.circular(8)),
+                                      child: Text('MS: ${data['cgpa_ms']}', style: const TextStyle(fontSize: 12)),
                                     ),
                                   ],
                                 ),
                               ],
                             ),
                           ),
-                          const SizedBox(width: 8),
-                        GestureDetector(
-                    onTap: () {
-
-                         context.go('/chat', extra: {
-                           'currentStudent': widget.studentData,
-                         'alumni': data,
-            });
-
-                    
-                    },
-                    child: Container(
-                      width: 42,
-                      height: 42,
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Icon(Icons.message, color: Colors.white),
-                    ),
-                  )
-
+                          Column(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                                      AlumniDetailsScreen(alumniData: data , student_data: widget.studentData)));
+                                },
+                                child: Container(
+                                  width: 42,
+                                  height: 42,
+                                  decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(12)),
+                                  child: const Icon(Icons.visibility, color: Colors.white),
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              GestureDetector(
+                                onTap: () {
+                                  context.go('/chat', extra: {
+                                    'currentStudent': widget.studentData,
+                                    'alumni': data,
+                                  });
+                                },
+                                child: Container(
+                                  width: 42,
+                                  height: 42,
+                                  decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(12)),
+                                  child: const Icon(Icons.message, color: Colors.white),
+                                ),
+                              )
+                            ],
+                          )
                         ],
                       ),
                     );
@@ -224,6 +197,180 @@ class _ConnectWithAlumniState extends State<all_chats> {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class AlumniDetailsScreen extends StatelessWidget {
+  final Map<String, dynamic> alumniData;
+  final Map<String, dynamic> student_data;
+  const AlumniDetailsScreen({super.key, required this.alumniData , required this.student_data});
+
+  Future<String?> fetchDegreeImage() async {
+    final snapshot = await FirebaseFirestore.instance
+        .collection('alumni_degree_data')
+        .where('email', isEqualTo: alumniData['email'])
+        .limit(1)
+        .get();
+    if (snapshot.docs.isEmpty) return null;
+    return snapshot.docs.first['degree_image_url'];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xfff7f7f7),
+      appBar: AppBar(
+        
+        backgroundColor: Colors.black87,
+        title: Text(alumniData['name'], style: const TextStyle(color: Colors.white)),
+      ),
+      body: FutureBuilder<String?>(
+        future: fetchDegreeImage(),
+        builder: (context, snapshot) {
+          final degreeImage = snapshot.data;
+          return SingleChildScrollView(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 14),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(color: Colors.black.withOpacity(0.08), blurRadius: 10)
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        radius: 55,
+                        backgroundImage: NetworkImage(alumniData['image_url']),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        alumniData['name'],
+                        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        alumniData['email'],
+                        style: const TextStyle(fontSize: 14, color: Colors.black54),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(color: Colors.black.withOpacity(0.08), blurRadius: 10)
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(Icons.school, color: Colors.blue),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              "Institute: ${alumniData['institute']}",
+                              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          const Icon(Icons.computer, color: Colors.green),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              "Field of Study: ${alumniData['field']}",
+                              style: const TextStyle(fontSize: 16),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          const Icon(Icons.grade, color: Colors.orange),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text("BS CGPA: ${alumniData['cgpa_bs']}", style: const TextStyle(fontSize: 16)),
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          const Icon(Icons.workspace_premium, color: Colors.purple),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text("MS CGPA: ${alumniData['cgpa_ms']}", style: const TextStyle(fontSize: 16)),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 25),
+                degreeImage != null
+                    ? GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FullDegreeImage(imageUrl: degreeImage),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            boxShadow: [
+                              BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 12)
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(14),
+                            child: Image.network(degreeImage, height: 260, fit: BoxFit.cover),
+                          ),
+                        ),
+                      )
+                    : const Text('Degree Image Not Uploaded', style: TextStyle(fontSize: 15)),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class FullDegreeImage extends StatelessWidget {
+  final String imageUrl;
+  const FullDegreeImage({super.key, required this.imageUrl});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: GestureDetector(
+        onTap: () => Navigator.pop(context),
+        child: Center(
+          child: InteractiveViewer(
+            child: Image.network(imageUrl),
+          ),
+        ),
       ),
     );
   }

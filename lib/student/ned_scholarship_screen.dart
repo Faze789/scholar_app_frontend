@@ -24,15 +24,15 @@ class _NedScholarshipsScreenState extends State<NedScholarshipsScreen> {
 
   Future<void> loadScholarships() async {
     try {
-      // Load JSON file from assets
+     
       final String response =
           await rootBundle.loadString('assets/scholarships.json');
       final data = json.decode(response);
 
-      // Get all universities from JSON
+    
       final universities = data['universities'] as List<dynamic>;
 
-      // Find NED University
+    
       final nedUniversity = universities.firstWhere(
         (u) => u['name'] == 'NED University',
         orElse: () => {},

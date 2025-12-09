@@ -64,7 +64,7 @@ class _fast_univeristy_dashboardState extends State<fast_univeristy_dashboard> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Hero Section
+            
             Container(
               height: 320,
               decoration: const BoxDecoration(
@@ -162,7 +162,7 @@ class _fast_univeristy_dashboardState extends State<fast_univeristy_dashboard> {
               ),
             ),
 
-            // About Section
+           
             Container(
               padding: const EdgeInsets.all(20),
               child: Column(
@@ -205,7 +205,7 @@ class _fast_univeristy_dashboardState extends State<fast_univeristy_dashboard> {
               ),
             ),
 
-            // Academic Programs
+        
             _buildSection(
               title: 'Academic Programs',
               imageUrl: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1000&q=80',
@@ -219,7 +219,7 @@ class _fast_univeristy_dashboardState extends State<fast_univeristy_dashboard> {
               ],
             ),
 
-            // Research & Innovation
+           
             _buildSection(
               title: 'Research & Innovation',
               imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80',
@@ -233,7 +233,7 @@ class _fast_univeristy_dashboardState extends State<fast_univeristy_dashboard> {
               ],
             ),
 
-            // Facilities & Infrastructure
+          
             _buildSection(
               title: 'Facilities & Infrastructure',
               imageUrl: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1000&q=80',
@@ -247,7 +247,7 @@ class _fast_univeristy_dashboardState extends State<fast_univeristy_dashboard> {
               ],
             ),
 
-            // Student Life
+       
             _buildSection(
               title: 'Student Life',
               imageUrl: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80',
@@ -261,7 +261,7 @@ class _fast_univeristy_dashboardState extends State<fast_univeristy_dashboard> {
               ],
             ),
 
-            // Industry Partnerships
+            
             _buildSection(
               title: 'Industry Partnerships',
               imageUrl: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1000&q=80',
@@ -275,7 +275,7 @@ class _fast_univeristy_dashboardState extends State<fast_univeristy_dashboard> {
               ],
             ),
 
-            // Alumni Network
+          
             _buildSection(
               title: 'Alumni Success',
               imageUrl: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=80',
@@ -289,7 +289,7 @@ class _fast_univeristy_dashboardState extends State<fast_univeristy_dashboard> {
               ],
             ),
 
-            // Contact Section
+            
             Container(
               padding: const EdgeInsets.all(20),
               margin: const EdgeInsets.all(20),

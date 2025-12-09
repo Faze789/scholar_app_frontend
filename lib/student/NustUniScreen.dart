@@ -34,12 +34,9 @@ class _NustUniScreenState extends State<NustUniScreen> {
   Future<void> fetchFeeData() async {
     try {
       final response = await http.get(Uri.parse('http://35.174.6.20:5000/feesnust'));
-      print('API Response Status: ${response.statusCode}');
-      print('API Response Body: ${response.body}');
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        print('Decoded Data: $data');
 
         if (data is Map && data.containsKey('fee_structure') && data['fee_structure'] is List) {
           final feeStructure = data['fee_structure'] as List<dynamic>;
@@ -83,7 +80,6 @@ class _NustUniScreenState extends State<NustUniScreen> {
         errorMessage = 'Error fetching data: ${e.toString()}';
         isLoading = false;
       });
-      print('Error fetching data: $e');
     }
   }
 
@@ -104,95 +100,6 @@ class _NustUniScreenState extends State<NustUniScreen> {
 
   void _showNustMeritCheck(BuildContext context) async {
     try {
-      print('=== NUST Merit Check Start ===');
-      print('studentData: ${widget.studentData}');
-      print('is_o_a_level: ${widget.studentData['is_o_a_level']}');
-      print('O-Level Marks: ${widget.studentData['o_level_marks']}');
-      print('A-Level Marks: ${widget.studentData['a_level_marks']}');
-      print('Matric Marks: ${widget.studentData['matric_marks']}');
-      print('FSC Marks: ${widget.studentData['fsc_marks']}');
-      print('Bachelors CGPA: ${widget.studentData['bachelors_cgpa']}');
-      print('CGPA: ${widget.studentData['cgpa']}');
-      print('====================================');
-
-      bool hasNustMatch = false;
-      String matchedField = '';
-      String matchedValue = '';
-
-      widget.studentData.forEach((key, value) {
-        if (value != null) {
-          final keyLower = key.toLowerCase();
-          final valueLower = value.toString().toLowerCase();
-          for (var nustName in nust_uni) {
-            final nustLower = nustName.toLowerCase();
-            if (keyLower.contains(nustLower) || valueLower.contains(nustLower)) {
-              hasNustMatch = true;
-              matchedField = key;
-              matchedValue = formatValue(value);
-              break;
-            }
-          }
-        }
-        if (hasNustMatch) return;
-      });
-
-      if (!hasNustMatch && widget.studentData['full_api_response'] != null) {
-        final universities = widget.studentData['full_api_response']['universities'];
-        if (universities is List && universities.isNotEmpty) {
-          for (var uni in universities) {
-            if (uni is Map && uni.containsKey('name')) {
-              final uniName = uni['name']?.toString().toLowerCase() ?? '';
-              for (var nustName in nust_uni) {
-                if (uniName.contains(nustName.toLowerCase())) {
-                  hasNustMatch = true;
-                  matchedField = 'full_api_response.universities.name';
-                  matchedValue = formatValue(uni['name']);
-                  break;
-                }
-              }
-              if (hasNustMatch) break;
-            }
-          }
-        }
-      }
-
-      final nustData = <String, dynamic>{};
-      widget.studentData.forEach((key, value) {
-        if (key.toLowerCase().contains('nust')) {
-          nustData[key] = value;
-        }
-      });
-
-      final studentProgram = widget.studentData['program']?.toString() ?? 'N/A';
-      final normalizedStudentProgram = studentProgram == 'BS' &&
-              (widget.studentData['selected_fields']?.contains('Computer Science') ?? false)
-          ? 'Bachelor of Science in Computer Science'
-          : studentProgram == 'BS' &&
-                  (widget.studentData['selected_fields']?.contains('Business Administration') ?? false)
-              ? 'Bachelor of Science in Business Administration'
-              : studentProgram == 'BS' &&
-                      (widget.studentData['selected_fields']?.contains('Psychology') ?? false)
-                  ? 'Bachelor of Science in Psychology'
-                  : studentProgram
-                      .replaceAll('BSCS', 'Bachelor of Science in Computer Science')
-                      .replaceAll('BBA', 'Bachelor of Science in Business Administration')
-                      .replaceAll('BS Psychology', 'Bachelor of Science in Psychology');
-
-      Map<String, dynamic> programFee = {};
-      for (var item in msPrograms) {
-        if (item['program']?.toString().toLowerCase().contains(normalizedStudentProgram.toLowerCase()) ?? false) {
-          programFee = item;
-          break;
-        }
-      }
-      if (programFee.isEmpty) {
-        programFee = {
-          'program': 'No matching program found',
-          'duration': 'N/A',
-          'fee': 'No fee information available'
-        };
-      }
-
       final hasCGPA = widget.studentData.containsKey('bachelors_cgpa') || widget.studentData.containsKey('cgpa');
       final isOALevel = widget.studentData['is_o_a_level'] == true;
 
@@ -216,20 +123,14 @@ class _NustUniScreenState extends State<NustUniScreen> {
 
       final hasValidAcademicMarks = academicMarks.any((entry) => entry['value'] != 'N/A');
 
-      final universityData = [
-        {'key': 'Program Name', 'value': getProgramDisplay()},
-        {'key': 'NUST University Name', 'value': formatValue(nustData['nust_university_name'])},
-        {'key': 'NUST Admitted', 'value': formatValue(nustData['nust_admitted'])},
-        {'key': 'NUST Last Actual Cutoff', 'value': formatValue(nustData['nust_last_actual_cutoff'])},
-        {'key': 'NUST Student Aggregate', 'value': formatValue(nustData['nust_student_aggregate'])},
-        {'key': 'NUST Admission Chance', 'value': formatValue(nustData['nust_admission_chance'])},
-      ];
-
-      final feeDetails = [
-        {'key': 'Program Name', 'value': formatValue(programFee['program'])},
-        {'key': 'Program Duration', 'value': formatValue(programFee['duration'])},
-        {'key': 'Program Fee', 'value': formatValue(programFee['fee'])},
-      ];
+      final List<Map<String, String>> nustData = hasCGPA
+          ? <Map<String, String>>[]
+          : [
+              {'key': 'NUST Name', 'value': formatValue(widget.studentData['nust_name'])},
+              {'key': 'NUST Admitted', 'value': formatValue(widget.studentData['nust_admitted'])},
+              {'key': 'NUST Last Year Aggregate', 'value': formatValue(widget.studentData['nust_last_year_aggregate'])},
+              {'key': 'NUST Student Aggregate', 'value': formatValue(widget.studentData['nust_student_aggregate'])},
+            ];
 
       final personalDetails = [
         {'key': 'Name', 'value': formatValue(widget.studentData['student_name'] ?? widget.studentData['name'])},
@@ -342,62 +243,6 @@ class _NustUniScreenState extends State<NustUniScreen> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(16),
-                      margin: const EdgeInsets.only(bottom: 20),
-                      decoration: BoxDecoration(
-                        color: Colors.deepPurple.shade50,
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.2),
-                            spreadRadius: 2,
-                            blurRadius: 8,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Merit Check Result',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              color: Colors.deepPurple,
-                            ),
-                          ),
-                          const SizedBox(height: 12),
-                          Text(
-                            'NUST Match: ${hasNustMatch ? 'Yes' : 'No'}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14,
-                              color: hasNustMatch ? Colors.green.shade700 : Colors.red.shade600,
-                            ),
-                          ),
-                          if (hasNustMatch) ...[
-                            Text(
-                              'Matched Field: $matchedField',
-                              style: TextStyle(fontSize: 14, color: Colors.grey[900]),
-                            ),
-                            Text(
-                              'Value: $matchedValue',
-                              style: TextStyle(fontSize: 14, color: Colors.grey[900]),
-                            ),
-                          ],
-                          if (!hasNustMatch)
-                            Text(
-                              'No matching NUST data found.',
-                              style: TextStyle(fontSize: 14, color: Colors.grey[900]),
-                            ),
-                        ],
-                      ),
-                    ),
-                   
-                
                     ExpansionTile(
                       leading: const Icon(Icons.person, color: Colors.deepPurple),
                       title: const Text(
@@ -429,53 +274,23 @@ class _NustUniScreenState extends State<NustUniScreen> {
                         ],
                       ),
                     ],
-                    const Divider(height: 30, thickness: 1, color: Colors.deepPurple),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.deepPurple.shade50,
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.2),
-                            spreadRadius: 2,
-                            blurRadius: 8,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    if (!hasCGPA) ...[
+                      const Divider(height: 30, thickness: 1, color: Colors.deepPurple),
+                      ExpansionTile(
+                        leading: const Icon(Icons.school, color: Colors.deepPurple),
+                        title: const Text(
+                          'NUST Predictions',
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.deepPurple),
+                        ),
+                        initiallyExpanded: true,
                         children: [
-                          const Text(
-                            'Program Information',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              color: Colors.deepPurple,
-                            ),
-                          ),
-                          const SizedBox(height: 12),
-                          Text(
-                            'Full Program: ${getProgramDisplay()}',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14,
-                              color: Colors.deepPurple,
-                            ),
-                          ),
-                          Text(
-                            'Program: ${formatValue(widget.studentData['program'])}',
-                            style: TextStyle(fontSize: 14, color: Colors.grey[900]),
-                          ),
-                          Text(
-                            'Fields: ${(widget.studentData['selected_fields'] is List && (widget.studentData['selected_fields'] as List).isNotEmpty) ? (widget.studentData['selected_fields'] as List).join(', ') : (widget.studentData['fields'] is List && (widget.studentData['fields'] as List).isNotEmpty) ? (widget.studentData['fields'] as List).join(', ') : 'N/A'}',
-                            style: TextStyle(fontSize: 14, color: Colors.grey[900]),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                            child: buildSectionContent(nustData),
                           ),
                         ],
                       ),
-                    ),
+                    ],
                   ],
                 ),
               ),

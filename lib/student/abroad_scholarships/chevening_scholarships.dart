@@ -91,10 +91,10 @@ class _CheveningScholarshipScreenState extends State<CheveningScholarshipScreen>
       );
     }
 
-    // Display the data based on the structure you expect from the API
+  
     return ListView(
       children: [
-        // Overview Section
+    
         _buildSection(
           title: 'Overview',
           content: scholarshipData?['overview'] ?? 
@@ -103,7 +103,7 @@ class _CheveningScholarshipScreenState extends State<CheveningScholarshipScreen>
         
         const Divider(),
         
-        // Eligibility Section
+        
         _buildSection(
           title: 'Eligibility',
           content: scholarshipData?['eligibility'] ?? 
@@ -112,7 +112,7 @@ class _CheveningScholarshipScreenState extends State<CheveningScholarshipScreen>
         
         const Divider(),
         
-        // How to Apply Section
+   
         _buildSection(
           title: 'How to Apply',
           content: scholarshipData?['applicationProcess'] ?? 
@@ -121,7 +121,7 @@ class _CheveningScholarshipScreenState extends State<CheveningScholarshipScreen>
         
         const Divider(),
         
-        // Display additional dynamic data
+        
         ..._buildAdditionalData(),
       ],
     );
@@ -142,7 +142,7 @@ class _CheveningScholarshipScreenState extends State<CheveningScholarshipScreen>
     
     List<Widget> additionalWidgets = [];
     
-    // Add dynamic fields from the API response (excluding already displayed ones)
+    
     scholarshipData!.forEach((key, value) {
       if (!['overview', 'eligibility', 'applicationProcess'].contains(key)) {
         additionalWidgets.addAll([
@@ -162,7 +162,7 @@ class _CheveningScholarshipScreenState extends State<CheveningScholarshipScreen>
   }
 
   String _formatKey(String key) {
-    // Convert snake_case or camelCase to Title Case
+  
     String formatted = key.replaceAll('_', ' ').splitMapJoin(
       RegExp(r'[A-Z]'),
       onMatch: (m) => ' ${m[0]}',
@@ -226,8 +226,7 @@ class _CheveningScholarshipScreenState extends State<CheveningScholarshipScreen>
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                
-                // Display last updated time if available
+               
                 if (scholarshipData?['lastUpdated'] != null)
                   Padding(
                     padding: const EdgeInsets.only(top: 4.0),
@@ -242,7 +241,7 @@ class _CheveningScholarshipScreenState extends State<CheveningScholarshipScreen>
                 
                 const SizedBox(height: 16),
                 
-                // Main content area
+            
                 Expanded(
                   child: Container(
                     decoration: const BoxDecoration(

@@ -173,7 +173,7 @@ class _ConnectAlumniScreenState extends State<ConnectAlumniScreen> {
                 ),
                 const SizedBox(width: 14),
                 
-                // Alumni info
+                
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -289,7 +289,7 @@ class _ConnectAlumniScreenState extends State<ConnectAlumniScreen> {
                   ),
                 ),
                 
-                // Message button
+              
                 Container(
                   width: 44,
                   height: 44,
@@ -347,7 +347,7 @@ class _ConnectAlumniScreenState extends State<ConnectAlumniScreen> {
       ),
       body: Column(
         children: [
-          // Search bar
+  
           Container(
             color: const Color(0xFF2C2C2C),
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
@@ -390,7 +390,6 @@ class _ConnectAlumniScreenState extends State<ConnectAlumniScreen> {
             ),
           ),
 
-          // Alumni count
           if (!isLoading)
             Container(
               width: double.infinity,
@@ -406,7 +405,7 @@ class _ConnectAlumniScreenState extends State<ConnectAlumniScreen> {
               ),
             ),
 
-          // Alumni list
+         
           Expanded(
             child: isLoading
                 ? const Center(

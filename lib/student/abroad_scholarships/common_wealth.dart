@@ -93,7 +93,7 @@ class _CommonwealthScholarshipScreenState extends State<CommonwealthScholarshipS
 
     return ListView(
       children: [
-        // Title
+    
         if (scholarshipData?['title'] != null)
           Padding(
             padding: const EdgeInsets.only(bottom: 16.0),
@@ -108,12 +108,12 @@ class _CommonwealthScholarshipScreenState extends State<CommonwealthScholarshipS
             ),
           ),
 
-        // Quick Facts Table
+  
         _buildFactsTable(),
 
         const SizedBox(height: 20),
 
-        // Headings and Paragraphs
+      
         ..._buildContentSections(),
 
         const SizedBox(height: 20),
@@ -184,10 +184,10 @@ class _CommonwealthScholarshipScreenState extends State<CommonwealthScholarshipS
 
     if (headings != null && paragraphs != null) {
       for (int i = 0; i < headings.length; i++) {
-        // Skip "Table of Contents" heading since we have the facts table
+        
         if (headings[i] == "Table of Contents") continue;
 
-        // Add heading
+      
         sections.add(
           Padding(
             padding: EdgeInsets.only(
@@ -205,18 +205,18 @@ class _CommonwealthScholarshipScreenState extends State<CommonwealthScholarshipS
           ),
         );
 
-        // Find corresponding paragraphs
+       
         List<String> relatedParagraphs = [];
         for (int j = 0; j < paragraphs.length; j++) {
-          // Simple logic to map headings to paragraphs (you might need to adjust this based on your API structure)
-          if (j >= i && j < i + 3) { // Get next 3 paragraphs for this heading
+      
+          if (j >= i && j < i + 3) {
             if (paragraphs[j] != null && paragraphs[j].toString().isNotEmpty) {
               relatedParagraphs.add(paragraphs[j]);
             }
           }
         }
 
-        // Add related paragraphs
+        
         for (String paragraph in relatedParagraphs) {
           sections.add(
             Padding(
@@ -234,14 +234,13 @@ class _CommonwealthScholarshipScreenState extends State<CommonwealthScholarshipS
           );
         }
 
-        // Add divider except for last item
         if (i < headings.length - 1 && headings[i] != "Table of Contents") {
           sections.add(const Divider(height: 24));
         }
       }
     }
 
-    // If no content was added, show fallback content
+    
     if (sections.isEmpty) {
       sections.addAll([
         ListTile(

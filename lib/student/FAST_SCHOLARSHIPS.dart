@@ -27,14 +27,14 @@ class _FAST_SCHOALRSHIPSState extends State<FAST_SCHOALRSHIPS> {
           await rootBundle.loadString('assets/scholarships.json');
       final data = json.decode(response);
 
-      // ✅ Extract only the FAST-NUCES university data
+      
       final List universities = data['universities'] ?? [];
       if (universities.isNotEmpty) {
         setState(() {
           universityData = universities.firstWhere(
             (u) => (u['university'] ?? '')
                 .toString()
-                .contains('FAST-NUCES'), // find FAST-NUCES
+                .contains('FAST-NUCES'), 
             orElse: () => universities.first,
           );
         });
@@ -92,7 +92,7 @@ class _FAST_SCHOALRSHIPSState extends State<FAST_SCHOALRSHIPS> {
             const Divider(),
             const SizedBox(height: 8),
 
-            // 🎓 Scholarships List
+           
             ...scholarships.map((s) {
               return Card(
                 elevation: 4,
@@ -143,7 +143,6 @@ class _FAST_SCHOALRSHIPSState extends State<FAST_SCHOALRSHIPS> {
             const SizedBox(height: 20),
             const Divider(),
 
-            // 📞 Contact Info
             const Text(
               "📞 Contact Information",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -154,7 +153,7 @@ class _FAST_SCHOALRSHIPSState extends State<FAST_SCHOALRSHIPS> {
 
             const SizedBox(height: 20),
 
-            // 🏫 Campuses
+         
             const Text(
               "🏫 Campuses",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

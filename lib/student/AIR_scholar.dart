@@ -31,10 +31,10 @@ class _AirUniFeesState extends State<AIRScholarshipScreen> {
       if (decoded is Map && decoded['universities'] is List) {
         final universities = decoded['universities'] as List;
         final airUni = universities.firstWhere(
-          (u) => u['university']
+          (u) => u['name']
               .toString()
               .toLowerCase()
-              .contains('air university'),
+              .contains('air'),
           orElse: () => null,
         );
 

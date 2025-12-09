@@ -66,7 +66,7 @@ class _UniEventsState extends State<UniEvents> {
               itemBuilder: (context, index) {
                 final uni = universities[index];
                 final events = uni['events'] as List? ?? [];
-                if (events.isEmpty) return const SizedBox(); // skip if no events
+                if (events.isEmpty) return const SizedBox(); 
                 return _buildUniversityCard(uni, events);
               },
             ),

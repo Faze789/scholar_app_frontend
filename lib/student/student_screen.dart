@@ -23,7 +23,7 @@ class _StudentScreenState extends State<StudentScreen> {
         child: SafeArea(
           child: Stack(
             children: [
-              // Decorative circles
+             
               Positioned(
                 top: -50,
                 left: -50,
@@ -49,7 +49,7 @@ class _StudentScreenState extends State<StudentScreen> {
                 ),
               ),
 
-              // Main content
+          
               Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),

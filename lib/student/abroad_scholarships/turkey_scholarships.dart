@@ -118,7 +118,7 @@ class _TurkeyScholarshipsScreenState extends State<TurkeyScholarshipsScreen> {
                                     ),
                                   const Divider(),
 
-                                  // ✅ Benefits Section
+                                
                                   if (scholarshipData!["benefits"] != null)
                                     ListTile(
                                       title: const Text(
@@ -135,7 +135,7 @@ class _TurkeyScholarshipsScreenState extends State<TurkeyScholarshipsScreen> {
                                     ),
                                   const Divider(),
 
-                                  // ✅ Eligibility Section
+                                 
                                   if (scholarshipData!["eligibility"] != null)
                                     ListTile(
                                       title: const Text(

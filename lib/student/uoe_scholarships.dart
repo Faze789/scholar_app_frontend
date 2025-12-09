@@ -28,7 +28,7 @@ class _UoeScholarshipsState extends State<UoeScholarships> {
       if (data is Map && data['universities'] is List) {
         final List universities = data['universities'];
         final university = universities.firstWhere(
-          (u) => u['university']
+          (u) => u['University of Education (UE) Lahore']
               .toString()
               .toLowerCase()
               .contains('university of education'),

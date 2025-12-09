@@ -108,10 +108,10 @@ class _ErasmusScholarshipScreenState extends State<ErasmusScholarshipScreen> {
             ),
           ),
 
-        // Headings and Paragraphs
+ 
         ..._buildContentSections(),
 
-        // Facts section if available
+       
         if (scholarshipData?['facts'] != null && scholarshipData!['facts'] is Map)
           ..._buildFactsSection(),
 
@@ -128,7 +128,7 @@ class _ErasmusScholarshipScreenState extends State<ErasmusScholarshipScreen> {
 
     if (headings != null && paragraphs != null) {
       for (int i = 0; i < headings.length; i++) {
-        // Add heading
+       
         sections.add(
           Padding(
             padding: EdgeInsets.only(
@@ -146,7 +146,7 @@ class _ErasmusScholarshipScreenState extends State<ErasmusScholarshipScreen> {
           ),
         );
 
-        // Find corresponding paragraph
+     
         if (i < paragraphs.length && paragraphs[i] != null) {
           sections.add(
             Text(
@@ -161,13 +161,13 @@ class _ErasmusScholarshipScreenState extends State<ErasmusScholarshipScreen> {
           );
         }
 
-        // Add divider except for last item
+      
         if (i < headings.length - 1) {
           sections.add(const Divider(height: 24));
         }
       }
     } else {
-      // Fallback content if structure is different
+
       sections.addAll([
         ListTile(
           title: const Text(
@@ -278,7 +278,7 @@ class _ErasmusScholarshipScreenState extends State<ErasmusScholarshipScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Dynamic title from API or fallback
+               
                 Text(
                   scholarshipData?['title'] ?? "Erasmus Scholarship",
                   style: const TextStyle(

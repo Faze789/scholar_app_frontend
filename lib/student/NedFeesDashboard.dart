@@ -419,9 +419,11 @@ Widget _buildSection({
   required List<String> items,
 }) {
 
-  final ImageProvider imageProvider = imageUrl.startsWith('assets/')
+  final ImageProvider imageProvider = (imageUrl.startsWith('assets/')
     ? AssetImage(imageUrl)
-    : NetworkImage(imageUrl);
+    : NetworkImage(imageUrl)) as ImageProvider<Object>;
+
+
 
 
   return Container(

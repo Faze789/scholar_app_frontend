@@ -42,13 +42,17 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
 
   final List<String> fieldsOfStudy = [
     "Computer Science", "Software Engineering", "Electrical Engineering",
-    "Mechanical Engineering", "Civil Engineering", "Business Administration",
-    "Data Science", "Artificial Intelligence", "Medicine", "Architecture"
+    "Mechanical Engineering", "Cyber Security", "Computer Engineering",
+    "Data Science", "Artificial Intelligence",
   ];
 
-  static const String otpServerUrl = 'http://192.168.100.149:3001';
+  // static const String otpServerUrl = 'https://sign-up-final-fyp-faze789s-projects.vercel.app/send-otp?x-vercel-protection-bypass=fazal111111111111111111111111111';
+static const String bypassToken = 'fazal111111111111111111111111111';
+  static const String baseUrl = 'https://sign-up-final-fyp-faze789s-projects.vercel.app';
 
-  
+static const String otpServerUrl = 'http://192.168.100.149:3001/send-otp';
+
+
   final TextEditingController _matricController = TextEditingController();
   final TextEditingController _fscController = TextEditingController();
   final TextEditingController _oLevelController = TextEditingController();
@@ -60,7 +64,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
   final TextEditingController _cgpaController = TextEditingController();
   final TextEditingController _mastersCgpaController = TextEditingController();
 
-  // Error states for marks fields
+  
   bool _matricError = false;
   bool _fscError = false;
   bool _oLevelError = false;
@@ -75,7 +79,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
   @override
   void initState() {
     super.initState();
-    // Add listeners to update error states in real-time
+
     _matricController.addListener(() => _validateField(_matricController, 1100, (error) => setState(() => _matricError = error)));
     _fscController.addListener(() => _validateField(_fscController, 1100, (error) => setState(() => _fscError = error)));
     _oLevelController.addListener(() => _validateField(_oLevelController, 900, (error) => setState(() => _oLevelError = error)));
@@ -90,7 +94,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
 
   @override
   void dispose() {
-    // Dispose controllers
+   
     _matricController.dispose();
     _fscController.dispose();
     _oLevelController.dispose();
@@ -104,7 +108,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
     super.dispose();
   }
 
-  // Validate a single field and update error state
+ 
   void _validateField(TextEditingController controller, double maxMarks, Function(bool) setError) {
     final text = controller.text;
     if (text.isEmpty) {
@@ -120,9 +124,9 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
     }
   }
 
-  // Validate all marks fields
+  
   bool _validateMarksFields() {
-    // Reset all error states first
+   
     setState(() {
       _matricError = false;
       _fscError = false;
@@ -138,7 +142,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
     
     bool hasError = false;
     
-    // Validate Matric/FSC or O/A Level
+ 
     if (!isOALevel) {
       if (!_validateFieldWithController(_matricController, 1100)) {
         setState(() => _matricError = true);
@@ -159,7 +163,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
       }
     }
     
-    // Validate test scores
+   
     if (!_validateFieldWithController(_ntsController, 100)) {
       setState(() => _ntsError = true);
       hasError = true;
@@ -177,7 +181,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
       hasError = true;
     }
     
-    // Validate CGPA if applicable
+ 
     if (_selectedDegreeLevel == 'masters' || _selectedDegreeLevel == 'phd') {
       if (!_validateFieldWithController(_cgpaController, 4.0)) {
         setState(() => _cgpaError = true);
@@ -195,10 +199,10 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
     return !hasError;
   }
 
-  // Helper to validate a field using its controller
+  
   bool _validateFieldWithController(TextEditingController controller, double maxMarks) {
     final text = controller.text;
-    if (text.isEmpty) return false; // Empty field is invalid
+    if (text.isEmpty) return false; 
     
     final value = double.tryParse(text);
     return value != null && value >= 0 && value <= maxMarks;
@@ -239,6 +243,23 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
       return null;
     }
   }
+
+  Future<bool> isEmailAlreadyRegistered(String email) async {
+  try {
+    final list = await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
+
+    if (list.isNotEmpty) {
+      // Email is already registered
+      return true;
+    } else {
+      // Email is NOT registered
+      return false;
+    }
+  } catch (e) {
+    print("Error checking email: $e");
+    return false;
+  }
+}
 
   Future<bool> _callPredictionAPI() async {
     try {
@@ -323,12 +344,12 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
   }
 
   Future<void> _saveStudentData() async {
-    // First validate the form
+    
     if (!_formKey.currentState!.validate()) {
       return;
     }
     
-    // Then validate marks fields
+    
     if (!_validateMarksFields()) {
       _showErrorDialog("Please correct the marks fields highlighted in red");
       return;
@@ -450,7 +471,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
   Future<bool> _sendOtp() async {
     try {
       final response = await http.post(
-        Uri.parse('$otpServerUrl/send-otp'),
+        Uri.parse(otpServerUrl),
         headers: {"Content-Type": "application/json"},
         body: json.encode({"email": email}),
       ).timeout(const Duration(seconds: 10));
@@ -477,8 +498,9 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
 
   Future<bool> _verifyOtp(String enteredOtp) async {
     try {
+      final verifyUrl = 'http://192.168.100.149:3001/verify-otp';
       final response = await http.post(
-        Uri.parse('$otpServerUrl/verify-otp'),
+        Uri.parse(verifyUrl),
         headers: {"Content-Type": "application/json"},
         body: json.encode({
           "otpId": _otpId,
@@ -569,6 +591,8 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
   }
 
   Map<String, dynamic> _prepareStudentData(String? imageUrl) {
+
+
     Map<String, dynamic> data = {
       'student_name': name,
       'father_name': fatherName,
@@ -619,7 +643,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
     if (apiResponseData != null && apiResponseData!['universities'] is List) {
       try {
         List<dynamic> universities = apiResponseData!['universities'];
-        print('📊 Processing ${universities.length} universities data...');
+        print(' Processing ${universities.length} universities data...');
         
         for (var uni in universities) {
           if (uni == null) continue;
@@ -638,6 +662,34 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
             '${uniId}_admission_chance': uni['admission_chance'],
             '${uniId}_admitted': uni['admitted'],
           });
+
+          if (uni['linear_mae'] != null) {
+          data['${uniId}_linear_mae'] = uni['linear_mae'];
+        }
+        
+        if (uni['poly_mae'] != null) {
+          data['${uniId}_poly_mae'] = uni['poly_mae'];
+        }
+        
+        // Optional: Add MSE and R² scores for completeness
+        if (uni['linear_mse'] != null) {
+          data['${uniId}_linear_mse'] = uni['linear_mse'];
+        }
+        
+        if (uni['poly_mse'] != null) {
+          data['${uniId}_poly_mse'] = uni['poly_mse'];
+        }
+        
+        if (uni['linear_r2'] != null) {
+          data['${uniId}_linear_r2'] = uni['linear_r2'];
+        }
+        
+        if (uni['poly_r2'] != null) {
+          data['${uniId}_poly_r2'] = uni['poly_r2'];
+        }
+        if (uni['best_model'] != null) {
+  data['${uniId}_best_model'] = uni['best_model'];
+}
 
           if (uni['criteria'] != null) {
             Map<String, dynamic> criteria = uni['criteria'];
@@ -861,7 +913,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
                         value: isOALevel,
                         onChanged: (v) => setState(() {
                           isOALevel = v;
-                          // Clear error states when switching between O/A Level and Matric/FSC
+                         
                           if (v) {
                             _matricController.clear();
                             _fscController.clear();
@@ -1017,7 +1069,7 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
         setState(() {
           _selectedDegreeLevel = value;
           selectedFields.clear(); 
-          // Clear CGPA fields when changing degree level
+     
           if (value != 'masters' && value != 'phd') {
             _cgpaController.clear();
             _cgpaError = false;

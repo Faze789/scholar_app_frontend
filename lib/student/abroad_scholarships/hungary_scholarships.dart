@@ -125,7 +125,7 @@ class _HungaryScholarshipsScreenState extends State<HungaryScholarshipsScreen> {
                                     ),
                                   const Divider(),
 
-                                  // ✅ Eligibility
+                                 
                                   if (scholarshipData!["eligibility"] != null &&
                                       (scholarshipData!["eligibility"] as List).isNotEmpty)
                                     ListTile(
@@ -142,7 +142,7 @@ class _HungaryScholarshipsScreenState extends State<HungaryScholarshipsScreen> {
                                     ),
                                   const Divider(),
 
-                                  // ✅ Benefits
+                                
                                   if (scholarshipData!["benefits"] != null &&
                                       (scholarshipData!["benefits"] as List).isNotEmpty)
                                     ListTile(
@@ -159,7 +159,7 @@ class _HungaryScholarshipsScreenState extends State<HungaryScholarshipsScreen> {
                                     ),
                                   const Divider(),
 
-                                  // ✅ Community Info
+                                  
                                   if (scholarshipData!["community_info"] != null &&
                                       (scholarshipData!["community_info"] as List).isNotEmpty)
                                     ListTile(

@@ -316,6 +316,18 @@ class _ComsatsUniState extends State<ComsatsUni> {
 
     final hasValidAcademicMarks = academicMarks.any((entry) => entry['value'] != 'N/A');
 
+    final bestModel = comsatsData['comsats_best_model']?.toString().toLowerCase() ?? '';
+    String modelScoreLabel = '';
+    String modelScoreValue = 'N/A';
+    
+    if (bestModel == 'polynomial' || bestModel == 'poly') {
+      modelScoreLabel = 'Polynomial MAE Score';
+      modelScoreValue = formatValue(comsatsData['comsats_poly_mae']);
+    } else if (bestModel == 'linear') {
+      modelScoreLabel = 'Linear MAE Score';
+      modelScoreValue = formatValue(comsatsData['comsats_linear_mae']);
+    }
+
     final universityData = [
       {'key': 'Program Name', 'value': getProgramDisplay()},
       {'key': 'COMSATS University Name', 'value': formatValue(comsatsData['comsats_university_name'])},
@@ -326,8 +338,8 @@ class _ComsatsUniState extends State<ComsatsUni> {
       if (!hasCGPA) ...[
         {'key': 'COMSATS Admission Chance', 'value': formatValue(comsatsData['comsats_admission_chance'])},
         {'key': 'COMSATS Predicted 2026 Aggregate', 'value': formatValue(comsatsData['comsats_predicted_2026_aggregate'])},
+        if (modelScoreLabel.isNotEmpty) {'key': modelScoreLabel, 'value': modelScoreValue},
       ],
-
       {'key': 'Admission Fee (one time)', 'value': formatValue(programFee['Admission Fee (one time)'])},
       {'key': 'Registration Fee (per semester)', 'value': formatValue(programFee['Registration Fee (per semester)'])},
       {'key': 'Tuition Fee (per semester)', 'value': formatValue(programFee['Tuition fee (Per semester)'])},
@@ -626,7 +638,7 @@ class _ComsatsUniState extends State<ComsatsUni> {
         iconTheme: const IconThemeData(color: Colors.white),
         actions: [
           IconButton(
-            icon: const Icon(Icons.dashboard),
+            icon: const Icon(Icons.home),
             tooltip: 'Dashboard',
             onPressed: () => context.go('/student_dashboard', extra: widget.studentData),
           ),
@@ -644,13 +656,13 @@ class _ComsatsUniState extends State<ComsatsUni> {
             onPressed: () => context.go('/scholarships', extra: widget.studentData),
           ),
           IconButton(
-            icon: const Icon(Icons.connect_without_contact),
+            icon: const Icon(Icons.message),
             tooltip: 'Connect with Alumni',
             onPressed: () => context.go('/connect-alumni', extra: widget.studentData),
           ),
         ],
       ),
-      body: isLoading
+          body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : error.isNotEmpty
               ? Center(
@@ -673,7 +685,11 @@ class _ComsatsUniState extends State<ComsatsUni> {
                         children: [
                           _sectionTitle("Fee Structure (All Programs)"),
                           ElevatedButton(
-                            onPressed: () => _showMeritCheck(context),
+                            onPressed: () {
+                              print("\n----------------------------------");
+                              debugPrint(widget.studentData.toString(), wrapWidth: 10024);
+                              _showMeritCheck(context);
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.indigo,
                               foregroundColor: Colors.white,

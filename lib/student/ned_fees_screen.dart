@@ -134,6 +134,7 @@ class _NedFeesScreenState extends State<NedFeesScreen> {
     }
     return value?.toString() ?? 'N/A';
   }
+
 void _showMeritCheck(BuildContext context) {
   print('=== NED Merit Check Start ===');
   print('studentData: ${widget.studentData}');
@@ -202,13 +203,28 @@ void _showMeritCheck(BuildContext context) {
   final hasCGPA = widget.studentData.containsKey('bachelors_cgpa') || widget.studentData.containsKey('cgpa');
   final isOA = widget.studentData['is_o_a_level'] ?? false;
 
+  final bestModel = nedData['ned_best_model']?.toString().toLowerCase() ?? '';
+  String modelScoreLabel = '';
+  String modelScoreValue = 'N/A';
+  
+  if (bestModel == 'polynomial' || bestModel == 'poly') {
+    modelScoreLabel = 'Polynomial MAE Score';
+    modelScoreValue = formatValue(nedData['ned_poly_mae']);
+  } else if (bestModel == 'linear') {
+    modelScoreLabel = 'Linear MAE Score';
+    modelScoreValue = formatValue(nedData['ned_linear_mae']);
+  }
+
   final nedAdmissionData = [
     {'key': 'University Name', 'value': formatValue(nedData['ned_name'] ?? 'NED University')},
     {'key': 'Test Used', 'value': formatValue(nedData['ned_test_used'] ?? 'N/A')},
     {'key': 'Student Aggregate', 'value': formatValue(nedData['ned_student_aggregate'] ?? 'N/A')},
     {'key': 'Last Year Aggregate', 'value': formatValue(nedData['ned_last_year_aggregate'] ?? 'N/A')},
     {'key': 'NED Marks', 'value': formatValue(nedData['ned_marks'] ?? 'N/A')},
-    if (!hasCGPA) {'key': 'Predicted 2026 Aggregate', 'value': formatValue(nedData['ned_predicted_2026_aggregate'] ?? 'N/A')},
+    if (!hasCGPA) ...[
+      {'key': 'Predicted 2026 Aggregate', 'value': formatValue(nedData['ned_predicted_2026_aggregate'] ?? 'N/A')},
+      if (modelScoreLabel.isNotEmpty) {'key': modelScoreLabel, 'value': modelScoreValue},
+    ],
   ];
 
   final personalDetails = [
