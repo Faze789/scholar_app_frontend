@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-// Import necessary packages for Firestore, HTTP, and Image Picker
+
 
 class AlumniHomeScreen extends StatefulWidget {
   final Map<String, dynamic> alumniData;
@@ -26,9 +26,7 @@ class _AlumniHomeScreenState extends State<AlumniHomeScreen> {
   late final Uri _cloudinaryUploadUrl = Uri.parse(
       "https://api.cloudinary.com/v1_1/$_cloudName/image/upload");
 
-  // --- Firestore and Cloudinary Handlers ---
 
-  // 1. Fetch the degree image URL from Firestore
   Future<void> _fetchDegreeImageUrl() async {
     setState(() {
       _isLoadingDegree = true;
@@ -48,11 +46,11 @@ class _AlumniHomeScreenState extends State<AlumniHomeScreen> {
         });
       } else {
         setState(() {
-          _degreeImageUrl = null; // No degree data found
+          _degreeImageUrl = null; 
         });
       }
     } catch (e) {
-      // Handle error (e.g., Firestore connection issues)
+    
       _degreeImageUrl = null;
     } finally {
       setState(() {
@@ -61,7 +59,7 @@ class _AlumniHomeScreenState extends State<AlumniHomeScreen> {
     }
   }
 
-  // 2. Upload image to Cloudinary
+
   Future<String?> _uploadImage(File imageFile) async {
     try {
       final request = http.MultipartRequest('POST', _cloudinaryUploadUrl)
@@ -74,15 +72,15 @@ class _AlumniHomeScreenState extends State<AlumniHomeScreen> {
         final responseData = await response.stream.toBytes();
         final responseString = utf8.decode(responseData);
         final jsonMap = json.decode(responseString);
-        return jsonMap['secure_url']; // This is the new image URL
+        return jsonMap['secure_url']; 
       }
     } catch (e) {
-      // Handle upload error
+  
     }
     return null;
   }
 
-  // 3. Update Firestore with new degree image URL
+  
   Future<void> _updateDegreeImageUrl(String newImageUrl) async {
     try {
       final String userEmail = widget.alumniData['email'];
@@ -100,11 +98,11 @@ class _AlumniHomeScreenState extends State<AlumniHomeScreen> {
         });
       }
     } catch (e) {
-      // Handle update error
+     
     }
   }
 
-  // 4. Handle picking and uploading a new image
+ 
   Future<void> _changeDegreePicture() async {
     final ImagePicker picker = ImagePicker();
     final XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -112,7 +110,7 @@ class _AlumniHomeScreenState extends State<AlumniHomeScreen> {
     if (pickedFile != null) {
       setState(() {
         _isUploading = true;
-        Navigator.of(context).pop(); // Close the dialog immediately
+        Navigator.of(context).pop(); 
       });
 
       final File imageFile = File(pickedFile.path);
@@ -121,17 +119,16 @@ class _AlumniHomeScreenState extends State<AlumniHomeScreen> {
       if (newUrl != null) {
         await _updateDegreeImageUrl(newUrl);
       } else {
-        // Show an error to the user (e.g., using a SnackBar)
+       
       }
 
       setState(() {
         _isUploading = false;
-        // The info dialog will be shown again in the onTap handler of the button
+        
       });
     }
   }
 
-  // --- UI Methods ---
 
   void _showAlumniInfoDialog(BuildContext context) {
     if (_isLoadingDegree) {
@@ -150,7 +147,7 @@ class _AlumniHomeScreenState extends State<AlumniHomeScreen> {
       return;
     }
 
-    // Re-show the dialog with loaded info
+
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -343,7 +340,7 @@ class _AlumniHomeScreenState extends State<AlumniHomeScreen> {
                     icon: Icons.info_outline,
                     label: 'Check Own Info',
                     onTap: () async {
-                      // Fetch the degree image before showing the dialog
+                   
                       await _fetchDegreeImageUrl();
                       _showAlumniInfoDialog(context);
                     },

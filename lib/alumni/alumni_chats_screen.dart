@@ -27,24 +27,46 @@ class _AlumniChatsScreenState extends State<AlumniChatsScreen> {
     try {
       final snapshot = await FirebaseFirestore.instance
           .collection('student_alumni_chat')
-          .where('participants', arrayContains: currentEmail)
-          .orderBy('lastTimestamp', descending: true)
           .get();
 
       final List<Map<String, dynamic>> chats = [];
 
       for (final doc in snapshot.docs) {
-        final data = doc.data();
-        final participants = List<String>.from(data['participants'] ?? []);
-        final otherEmail = participants.firstWhere((e) => e != currentEmail, orElse: () => 'Unknown');
-
-        chats.add({
-          'chatId': doc.id,
-          'otherEmail': otherEmail,
-          'lastMessage': data['lastMessage'] ?? 'No message',
-          'lastTimestamp': data['lastTimestamp'],
-        });
+        final docId = doc.id;
+        
+        if (docId.contains(currentEmail)) {
+          final parts = docId.split('_');
+          String studentEmail = '';
+          
+          for (int i = 0; i < parts.length; i++) {
+            if (parts[i] == currentEmail) {
+              studentEmail = parts.sublist(0, i).join('_') + 
+                           parts.sublist(i + 1).join('_');
+              break;
+            }
+          }
+          
+          if (studentEmail.isEmpty) {
+            studentEmail = docId.replaceAll('${currentEmail}_', '').replaceAll('_$currentEmail', '');
+          }
+          
+          final data = doc.data();
+          
+          chats.add({
+            'chatId': doc.id,
+            'studentEmail': studentEmail,
+            'lastMessage': data['lastMessage'] ?? 'No message',
+            'lastTimestamp': data['lastTimestamp'],
+          });
+        }
       }
+      
+      chats.sort((a, b) {
+        final timestampA = a['lastTimestamp'] as Timestamp?;
+        final timestampB = b['lastTimestamp'] as Timestamp?;
+        if (timestampA == null || timestampB == null) return 0;
+        return timestampB.compareTo(timestampA);
+      });
 
       setState(() {
         userChats = chats;
@@ -142,7 +164,7 @@ class _AlumniChatsScreenState extends State<AlumniChatsScreen> {
                           radius: 26,
                           backgroundColor: const Color(0xFF07C160),
                           child: Text(
-                            chat['otherEmail'][0].toUpperCase(),
+                            chat['studentEmail'].isNotEmpty ? chat['studentEmail'][0].toUpperCase() : '?',
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -153,7 +175,7 @@ class _AlumniChatsScreenState extends State<AlumniChatsScreen> {
                         title: Padding(
                           padding: const EdgeInsets.only(bottom: 4),
                           child: Text(
-                            chat['otherEmail'],
+                            chat['studentEmail'],
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
@@ -190,7 +212,7 @@ class _AlumniChatsScreenState extends State<AlumniChatsScreen> {
                             extra: {
                               'alumniData': widget.alumniData,
                               'chatId': chat['chatId'],
-                              'otherEmail': chat['otherEmail'],
+                              'otherEmail': chat['studentEmail'],
                             },
                           );
                         },

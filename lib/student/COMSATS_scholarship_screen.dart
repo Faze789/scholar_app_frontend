@@ -88,8 +88,7 @@ class _Comsats_ScholarshipScreenState
                 _userDetailRow("✉️ Email", widget.studentData['email']),
                 _userDetailRow("🎓 Program", widget.studentData['program']),
                 _userDetailRow("📊 CGPA", widget.studentData['cgpa'].toString()),
-                _userDetailRow(
-                    "🔍 Fields", (widget.studentData['fields'] as List).join(', ')),
+            
                 const SizedBox(height: 20),
                 Center(
                   child: ElevatedButton(
@@ -218,11 +217,7 @@ class _Comsats_ScholarshipScreenState
                   .go('/student_dashboard', extra: widget.studentData);
             },
           ),
-          IconButton(
-            icon: const Icon(Icons.person_outline, color: Colors.white),
-            tooltip: "Show Student Info",
-            onPressed: () => _showUserDetails(context),
-          ),
+        
         ],
       ),
       body: comsatsCampuses.isEmpty

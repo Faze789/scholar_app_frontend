@@ -90,10 +90,7 @@ class MyApp extends StatelessWidget {
           path: '/',
           builder: (context, state) => const HomePage(),   
         ),
-        //  GoRoute(
-        //   path: '/',
-        //   builder: (context, state) =>  practice__(), // i will comment this soon 
-        // ),
+        
         GoRoute(
           path: '/student_admin',
           builder: (context, state) => const StudentAdmin(),

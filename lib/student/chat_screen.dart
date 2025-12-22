@@ -27,7 +27,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void initState() {
     super.initState();
     final studentEmail = widget.currentStudent['email'];
-    final alumniEmail = widget.alumni['gmail'];
+    final alumniEmail = widget.alumni['email'];
     chatId = '${studentEmail}_$alumniEmail';
   }
 
@@ -43,7 +43,7 @@ class _ChatScreenState extends State<ChatScreen> {
     if (text.trim().isEmpty) return;
 
     final studentEmail = widget.currentStudent['email'];
-    final alumniEmail = widget.alumni['gmail'];
+    final alumniEmail = widget.alumni['email'];
 
     final chatRef = FirebaseFirestore.instance
         .collection('student_alumni_chat')

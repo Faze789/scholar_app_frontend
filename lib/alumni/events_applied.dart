@@ -73,7 +73,7 @@ class _EventsAppliedState extends State<EventsApplied> {
 
   @override
   Widget build(BuildContext context) {
-    final String gmail = widget.alumniData['gmail'];
+    final String gmail = widget.alumniData['email'];
 
     return Scaffold(
       appBar: AppBar(
