@@ -46,11 +46,9 @@ class _StudentSignUpScreenState extends State<StudentSignUpScreen> {
     "Data Science", "Artificial Intelligence",
   ];
 
-  // static const String otpServerUrl = 'https://sign-up-final-fyp-faze789s-projects.vercel.app/send-otp?x-vercel-protection-bypass=fazal111111111111111111111111111';
-static const String bypassToken = 'fazal111111111111111111111111111';
-  static const String baseUrl = 'https://sign-up-final-fyp-faze789s-projects.vercel.app';
+  
 
-static const String otpServerUrl = 'http://192.168.100.149:3001/send-otp';
+static const String otpServerUrl = 'https://signupnodejs.vercel.app/send-otp';
 
 
   final TextEditingController _matricController = TextEditingController();
@@ -282,7 +280,7 @@ static const String otpServerUrl = 'http://192.168.100.149:3001/send-otp';
 
       String program = selectedFields.isNotEmpty ? selectedFields.first : _selectedDegreeLevel;
 
-      final url = Uri.parse("http://192.168.100.149:5000/predict");
+      final url = Uri.parse("http://35.174.6.20:5000//predict");
       
       print('Making API call to: $url');
       
@@ -498,7 +496,7 @@ static const String otpServerUrl = 'http://192.168.100.149:3001/send-otp';
 
   Future<bool> _verifyOtp(String enteredOtp) async {
     try {
-      final verifyUrl = 'http://192.168.100.149:3001/verify-otp';
+      final verifyUrl = 'https://signupnodejs.vercel.app/verify-otp';
       final response = await http.post(
         Uri.parse(verifyUrl),
         headers: {"Content-Type": "application/json"},

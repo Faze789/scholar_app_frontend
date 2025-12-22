@@ -22,7 +22,7 @@ class _AlumniChatsScreenState extends State<AlumniChatsScreen> {
   }
 
   Future<void> fetchChatsInvolvingUser() async {
-    final currentEmail = widget.alumniData['gmail'].toString().toLowerCase();
+    final currentEmail = widget.alumniData['email'].toString().toLowerCase();
 
     try {
       final snapshot = await FirebaseFirestore.instance

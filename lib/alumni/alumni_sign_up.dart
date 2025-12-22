@@ -17,7 +17,7 @@ class AlumniSignUp extends StatefulWidget {
 class _AlumniSignUpState extends State<AlumniSignUp> {
   final _formKey = GlobalKey<FormState>();
 
-  // User input fields
+
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -40,9 +40,9 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
   final String cloudName = 'dwcsrl6tl';
   final String uploadPreset = 'images';
 
-  // OTP URLs
-  String otpSendUrl = "https://sign-up-final-fyp-faze789s-projects.vercel.app/send-otp?x-vercel-protection-bypass=fazal111111111111111111111111111";
-  String otpVerifyUrl = "https://sign-up-final-fyp-faze789s-projects.vercel.app/verify-otp?x-vercel-protection-bypass=fazal111111111111111111111111111";
+ 
+  String otpSendUrl = "https://signupnodejs.vercel.app/send-otp";
+  String otpVerifyUrl = "https://signupnodejs.vercel.app/verify-otp";
 
   @override
   void dispose() {
@@ -59,7 +59,7 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
     super.dispose();
   }
 
-  // ========== IMAGE PICKERS ==========
+ 
   Future<void> _pickProfileImage() async {
     final pickedFile = await picker.pickImage(
       source: ImageSource.gallery,
@@ -84,7 +84,7 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
     }
   }
 
-  // ========== CLOUDINARY UPLOAD ==========
+
   Future<String?> _uploadToCloudinary(File imageFile) async {
     final url = Uri.parse("https://api.cloudinary.com/v1_1/$cloudName/image/upload");
 
@@ -104,7 +104,7 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
     }
   }
 
-  // ========== OTP FUNCTIONS ==========
+ 
   Future<void> _sendOTP(String email) async {
     if (_profileImageFile == null) {
       _showSnackBar('Please upload profile picture', isError: true);
@@ -175,12 +175,12 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
     }
   }
 
-  // ========== FIREBASE USER CREATION ==========
+ 
   Future<void> _createFirebaseUserAndSave(String email) async {
     setState(() => _isLoading = true);
 
     try {
-      // Upload both images
+     
       final profileImageUrl = await _uploadToCloudinary(_profileImageFile!);
       final degreeImageUrl = await _uploadToCloudinary(_degreeImageFile!);
       
@@ -188,7 +188,7 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
         throw Exception('Image upload failed');
       }
 
-      // Create Firebase user
+     
       final credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
         email: email,
@@ -198,11 +198,12 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
       final user = credential.user;
       if (user == null) throw Exception('Firebase user creation failed');
 
-      // Save data to alumni_data collection
+     
       final alumniData = {
         'name': _nameController.text.trim(),
         'email': email,
         'father_name': _fatherNameController.text.trim(),
+        'password':_passwordController.text.trim(),
         'registration_no': _registrationNoController.text.trim(),
         'institute': _instituteController.text.trim(),
         'field': _fieldController.text.trim(),
@@ -211,10 +212,10 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
         'image_url': profileImageUrl,
         'degree_image_url': degreeImageUrl,
         'timestamp': FieldValue.serverTimestamp(),
-        'user_id': user.uid, // Store user ID for reference
+        'user_id': user.uid, 
       };
 
-      // Save degree verification data to separate collection
+      
       final degreeData = {
         'email': email,
         'name': _nameController.text.trim(),
@@ -225,33 +226,32 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
         'profile_image_url': profileImageUrl,
         'timestamp': FieldValue.serverTimestamp(),
         'user_id': user.uid,
-        'verification_status': 'pending', // Can be: pending, verified, rejected
+        'verification_status': 'pending', 
         'verified_by': null,
         'verification_date': null,
         'verification_notes': null,
       };
 
-      // Save to both collections in a batch write for consistency
+     
       final batch = FirebaseFirestore.instance.batch();
       
-      // Document in alumni_data collection
+     
       final alumniRef = FirebaseFirestore.instance
           .collection('alumni_data')
           .doc(user.uid);
       batch.set(alumniRef, alumniData);
-      
-      // Document in alumni_degree_data collection
+     
       final degreeRef = FirebaseFirestore.instance
           .collection('alumni_degree_data')
           .doc(user.uid);
       batch.set(degreeRef, degreeData);
       
-      // Commit the batch
+   
       await batch.commit();
 
       _showSnackBar('Alumni Registered Successfully!', isError: false);
 
-      // Send email verification
+ 
       try {
         await user.sendEmailVerification();
         _showSnackBar('Verification email sent', isError: false);
@@ -276,7 +276,7 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
     }
   }
 
-  // ========== OTP DIALOG ==========
+ 
   void _showOTPDialog(String email) {
     _otpController.clear();
     showDialog(
@@ -333,7 +333,7 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
     );
   }
 
-  // ========== UI BUILD ==========
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -349,7 +349,7 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Profile Picture Section
+      
               const Text('Profile Picture', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(height: 10),
               Center(
@@ -381,7 +381,7 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
               ),
               const SizedBox(height: 20),
 
-              // Degree Picture Section
+         
               const Text('Degree/Transcript Picture', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(height: 10),
               Center(
@@ -422,11 +422,10 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
               ),
               const SizedBox(height: 20),
 
-              // Personal Information Section
+              
               const Text('Personal Information', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(height: 10),
 
-              // Name Field
               TextFormField(
                 controller: _nameController,
                 decoration: const InputDecoration(
@@ -443,7 +442,7 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
               ),
               const SizedBox(height: 10),
 
-              // Father's Name Field
+       
               TextFormField(
                 controller: _fatherNameController,
                 decoration: const InputDecoration(
@@ -460,7 +459,7 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
               ),
               const SizedBox(height: 10),
 
-              // Registration No Field
+         
               TextFormField(
                 controller: _registrationNoController,
                 decoration: const InputDecoration(
@@ -477,7 +476,6 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
               ),
               const SizedBox(height: 10),
 
-              // Email Field
               TextFormField(
                 controller: _emailController,
                 decoration: const InputDecoration(
@@ -498,7 +496,7 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
               ),
               const SizedBox(height: 10),
 
-              // Password Field
+          
               TextFormField(
                 controller: _passwordController,
                 obscureText: true,
@@ -519,11 +517,11 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
               ),
               const SizedBox(height: 20),
 
-              // Academic Information Section
+          
               const Text('Academic Information', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(height: 10),
 
-              // University/Institute Field
+            
               TextFormField(
                 controller: _instituteController,
                 decoration: const InputDecoration(
@@ -540,7 +538,7 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
               ),
               const SizedBox(height: 10),
 
-              // Field of Study
+          
               TextFormField(
                 controller: _fieldController,
                 decoration: const InputDecoration(
@@ -557,11 +555,11 @@ class _AlumniSignUpState extends State<AlumniSignUp> {
               ),
               const SizedBox(height: 10),
 
-              // CGPA
+           
               TextFormField(
                 controller: _cgpaController,
                 decoration: const InputDecoration(
-                  labelText: 'CGPA *',
+                  labelText: 'BS CGPA *',
                   prefixIcon: Icon(Icons.grade),
                   border: OutlineInputBorder(),
                 ),

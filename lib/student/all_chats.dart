@@ -144,14 +144,10 @@ class _ConnectWithAlumniState extends State<all_chats> {
                                     Container(
                                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                                       decoration: BoxDecoration(color: Colors.blue.shade100, borderRadius: BorderRadius.circular(8)),
-                                      child: Text('BS: ${data['cgpa_bs']}', style: const TextStyle(fontSize: 12)),
+                                      child: Text('BS: ${data['cgpa']}', style: const TextStyle(fontSize: 12)),
                                     ),
-                                    const SizedBox(width: 6),
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                                      decoration: BoxDecoration(color: Colors.purple.shade100, borderRadius: BorderRadius.circular(8)),
-                                      child: Text('MS: ${data['cgpa_ms']}', style: const TextStyle(fontSize: 12)),
-                                    ),
+                                    const SizedBox(width: 3),
+                                   
                                   ],
                                 ),
                               ],
@@ -305,20 +301,12 @@ class AlumniDetailsScreen extends StatelessWidget {
                           const Icon(Icons.grade, color: Colors.orange),
                           const SizedBox(width: 10),
                           Expanded(
-                            child: Text("BS CGPA: ${alumniData['cgpa_bs']}", style: const TextStyle(fontSize: 16)),
+                            child: Text("BS CGPA: ${alumniData['cgpa']}", style: const TextStyle(fontSize: 16)),
                           )
                         ],
                       ),
                       const SizedBox(height: 12),
-                      Row(
-                        children: [
-                          const Icon(Icons.workspace_premium, color: Colors.purple),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Text("MS CGPA: ${alumniData['cgpa_ms']}", style: const TextStyle(fontSize: 16)),
-                          )
-                        ],
-                      ),
+                     
                     ],
                   ),
                 ),

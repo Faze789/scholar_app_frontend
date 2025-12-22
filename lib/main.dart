@@ -19,6 +19,7 @@ import 'package:scholar_match_app/student/comsats_uni.dart';
 import 'package:scholar_match_app/alumni/apply_alumnii.dart';
 import 'package:scholar_match_app/alumni/comsats_event.dart';
 import 'package:scholar_match_app/student/UetDashboard.dart';
+import 'package:scholar_match_app/student/error_anaysis.dart';
 import 'package:scholar_match_app/admin/admin_dashboard.dart';
 import 'package:scholar_match_app/alumni/all_uni_events.dart';
 import 'package:scholar_match_app/alumni/events_applied.dart';
@@ -71,6 +72,7 @@ import 'package:scholar_match_app/student/abroad_scholarships/chevening_scholars
 import 'package:scholar_match_app/student/abroad_scholarships/abroad_scholarships_screen.dart';
 
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -118,6 +120,14 @@ class MyApp extends StatelessWidget {
   builder: (context, state) {
     final studentData = state.extra as Map<String, dynamic>;
     return StudentDashboardScreen(studentData: studentData);
+  },
+),
+
+      GoRoute(
+  path: '/error-analysis',
+  builder: (context, state) {
+    final studentData = state.extra as Map<String, dynamic>;
+    return ErrorAnalysis(studentData: studentData);
   },
 ),
 
@@ -695,6 +705,7 @@ class _HomePageState extends State<HomePage> {
 
    
     Timer(const Duration(seconds: 3), () {
+      if (!mounted) return;
       context.go('/student_admin');
     });
   }

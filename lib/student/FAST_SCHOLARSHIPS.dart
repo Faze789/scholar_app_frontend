@@ -74,23 +74,7 @@ class _FAST_SCHOALRSHIPSState extends State<FAST_SCHOALRSHIPS> {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            Text("Name: ${widget.studentData['name'] ?? 'N/A'}",
-                style: const TextStyle(fontSize: 18)),
-            const SizedBox(height: 10),
-            Text("Program: ${widget.studentData['program'] ?? 'N/A'}",
-                style: const TextStyle(fontSize: 18)),
-            const SizedBox(height: 10),
-            Text("GPA: ${widget.studentData['gpa'] ?? 'N/A'}",
-                style: const TextStyle(fontSize: 18)),
-            const SizedBox(height: 20),
-
-            Text(
-              universityData?['university'] ?? '',
-              style: const TextStyle(
-                  fontSize: 20, fontWeight: FontWeight.bold, color: Colors.teal),
-            ),
-            const Divider(),
-            const SizedBox(height: 8),
+  
 
            
             ...scholarships.map((s) {

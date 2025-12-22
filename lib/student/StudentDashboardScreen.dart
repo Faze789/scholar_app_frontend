@@ -531,7 +531,7 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
     double? maxMarks;
     if (title.contains('O-Level Marks')) {
       maxMarks = 900;
-    } else if (title.contains('A-Level Marks')) maxMarks = 1200; // As per provided data (a_level_marks: 950)
+    } else if (title.contains('A-Level Marks')) maxMarks = 1200;
     else if (title.contains('Matric Marks') || title.contains('FSC Marks')) maxMarks = 1100;
     else if (title.contains('NTS Marks') || title.contains('NED Entry Test Marks')) maxMarks = 100;
     else if (title.contains('NET Marks')) maxMarks = 200;
@@ -644,6 +644,14 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                     childAspectRatio: 1.1,
                     children: [
+                         _dashboardItem(
+                        icon: Icons.school,
+                        label: "Error Analysis Check ",
+                        onTap: () async {
+                          await _fetchStudentData();
+                          context.go('/error-analysis', extra: _prepareNavigationData());
+                        },
+                      ),
                       _dashboardItem(
                         icon: Icons.school,
                         label: "University Info",

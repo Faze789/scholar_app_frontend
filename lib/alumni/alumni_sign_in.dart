@@ -24,7 +24,7 @@ class _AlumniSignInState extends State<AlumniSignIn> {
     try {
       final snapshot = await FirebaseFirestore.instance
           .collection('alumni_data')
-          .where('gmail', isEqualTo: _gmailController.text.trim())
+          .where('email', isEqualTo: _gmailController.text.trim())
           .where('password', isEqualTo: _passwordController.text.trim())
           .get();
 

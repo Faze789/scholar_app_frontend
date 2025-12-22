@@ -84,7 +84,7 @@ class _Comsats_ScholarshipScreenState
                   ),
                 ),
                 const SizedBox(height: 16),
-                _userDetailRow("👤 Name", widget.studentData['name']),
+                _userDetailRow("👤 Name", widget.studentData['student_name']),
                 _userDetailRow("✉️ Email", widget.studentData['email']),
                 _userDetailRow("🎓 Program", widget.studentData['program']),
                 _userDetailRow("📊 CGPA", widget.studentData['cgpa'].toString()),
